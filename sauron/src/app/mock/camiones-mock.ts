@@ -26,13 +26,7 @@ export const CAMIONES: Carga[] = [
         anden: "4",
         llegadaRDC: new Date(2018, 1, 1, 11, 30),
         enrampe: new Date(2018, 1, 1, 12, 0),
-        empiezaCarga: new Date(2018, 1, 12, 15),
-        terminaCarga: null,
-        initFacturacion: null,
-        endFacturacion: null,
-        salidaRDC: null,
-        llegadaDeposito: null,
-
+        empiezaCarga: new Date(2018, 1, 12, 15)
     },
     {
         camion: {
@@ -45,11 +39,7 @@ export const CAMIONES: Carga[] = [
         enrampe: new Date(2018, 1, 1, 21, 15),
         empiezaCarga: new Date(2018, 1, 21, 30),
         terminaCarga: new Date(2018, 1, 22, 0),
-        initFacturacion: new Date(2018, 1, 22, 20),
-        endFacturacion: null,
-        salidaRDC: null,
-        llegadaDeposito: null,
-
+        initFacturacion: new Date(2018, 1, 22, 20)
     },
     {
         camion: {
@@ -66,6 +56,19 @@ export const CAMIONES: Carga[] = [
         endFacturacion: new Date(2018, 1, 1, 19, 20),
         salidaRDC: new Date(2018, 1, 1, 20, 0),
         llegadaDeposito: new Date(2018, 1, 1, 20, 45),
+
+    },
+    {
+        camion: {
+            id: 24,
+            nombre: "Soriana 1",
+            conductor: ""
+        },
+        anden: "6",
+        llegadaRDC: new Date(2018, 1, 1, 8, 30),
+        enrampe: new Date(2018, 1, 1, 8, 40),
+        empiezaCarga: new Date(2018, 1, 1, 9, 0),
+        terminaCarga: new Date(2018, 1, 1, 9, 15)
 
     }
 
