@@ -8,7 +8,7 @@ export class Carga {
     empiezaCarga : Date;
     terminaCarga: Date;
     initFacturacion: Date;
-    endFacturacion : Date;
-    salidaRDC : Date;
+    endFacturacion: Date;
+    salidaRDC: Date;
     llegadaDeposito: Date;
 }
