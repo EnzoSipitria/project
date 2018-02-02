@@ -1,8 +1,6 @@
 import { Carga } from '../model/carga';
 
 export const CAMIONES: Carga[] = [
-
-    
     {
         camion : {
             id: 34,
@@ -10,14 +8,14 @@ export const CAMIONES: Carga[] = [
             conductor: ""
         },
         anden : "1",
-        llegadaRDC : new Date(2018, 1, 1, 14, 30, 0, 0),
-        enrampe : new Date(2018, 1, 1, 14, 45, 0, 0),
-        empiezaCarga : new Date(2018, 1, 1, 15, 0, 0, 0),
-        terminaCarga: new Date(2018, 1, 1, 15, 10, 0, 0),
-        initFacturacion: new Date(2018, 1, 1, 15, 10, 0, 0),
-        endFacturacion: new Date(2018, 1, 1, 15, 10, 0, 0),
-        salidaRDC: new Date(2018, 1, 1, 15, 10, 0, 0),
-        llegadaDeposito: new Date(2018, 1, 1, 15, 10, 0, 0),
+        llegadaRDC : new Date(2018, 1, 1, 14, 30),
+        enrampe : new Date(2018, 1, 1, 14, 45),
+        empiezaCarga : new Date(2018, 1, 1, 15),
+        terminaCarga: new Date(2018, 1, 1, 15, 10),
+        initFacturacion: new Date(2018, 1, 1, 15, 50),
+        endFacturacion: new Date(2018, 1, 1, 16, 5),
+        salidaRDC: new Date(2018, 1, 1, 16, 30),
+        llegadaDeposito: new Date(2018, 1, 1, 17, 30),
 
     },
     {
@@ -27,14 +25,14 @@ export const CAMIONES: Carga[] = [
             conductor: ""
         },
         anden: "24",
-        llegadaRDC : new Date(),
-        enrampe : new Date(),
-        empiezaCarga : new Date(),
-        terminaCarga: new Date(),
-        initFacturacion: new Date(),
-        endFacturacion: new Date(),
-        salidaRDC: new Date(),
-        llegadaDeposito: new Date(),
+        llegadaRDC : new Date(2018, 1, 1, 18, 0),
+        enrampe : new Date(2018, 1, 1, 18, 15),
+        empiezaCarga : new Date(2018, 1, 1, 18, 55),
+        terminaCarga: new Date(2018, 1, 1, 19, 0),
+        initFacturacion: new Date(2018, 1, 1, 19, 5),
+        endFacturacion: new Date(2018, 1, 1, 19, 20),
+        salidaRDC: new Date(2018, 1, 1, 20, 0),
+        llegadaDeposito: new Date(2018, 1, 1, 20, 45),
 
     }
 
