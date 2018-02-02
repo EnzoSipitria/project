@@ -1,2 +1,54 @@
+<div class="content-grid mdl-grid">
 
+    <div class="reloj">
+        <h4>
+            <a href="https://www.zeitverschiebung.net/es/city/3435910"> Buenos Aires, Argentina</a>
+        </h4>
+        <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=es&size=small&timezone=America%2FArgentina%2FBuenos_Aires"
+            width="100%" height="90" frameborder="0" seamless></iframe>
+    </div>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th class="mdl-data-table__cell--1"> </th>
+            <th class="mdl-data-table__cell--2">Andén</th>
+            <th class="mdl-data-table__cell--non-numeric">Llegada a RDC</th>
+            <th class="mdl-data-table__cell--non-numeric">Enrampe</th>
+            <th class="mdl-data-table__cell--non-numeric">Comienza de carga</th>
+            <th class="mdl-data-table__cell--non-numeric">FULL</th>
+            <th class="mdl-data-table__cell--non-numeric">MIX</th>
+            <th class="mdl-data-table__cell--non-numeric">Termina Carga</th>
+            <th class="mdl-data-table__cell--non-numeric">Comienza Facturación</th>
+            <th class="mdl-data-table__cell--non-numeric">Termina Facturación</th>
+            <th class="mdl-data-table__cell--non-numeric">Sale de RDC</th>
+            <th class="mdl-data-table__cell--non-numeric">Llegada a déposito</th>
+            <th class="mdl-data-table__cell--non-numeric">STATUS</th>
+        </tr>
+    </thead>
+    <tbody>
 
+        <!--ngFor-->
+            <tr>
+                    <td class="mdl-data-table__cell--1">{{carga.camion}}</td>
+                    <td class="mdl-data-table__cell--2">{{carga.anden}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{carga.llegadaRDC}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{carga.enrampe}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{carga.empiezaCarga}}</td>
+                    <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
+                      <!-- diseñar componente porcentaje-->
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
+                      <!-- diseñar componente porcentaje-->
+                    </td>
+                    <td class="mdl-data-table__cell--non-numeric">{{carga.terminaCarga}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{carga.initFacturacion}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{carga.endFacturacion}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{carga.salidaRDC}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{carga.llegadaDeposito}}</td>
+                    <td class="mdl-data-table__cell--non-numeric celdaEstado">
+                      <!-- diseñar celda status -->
+                    </td>
+                  </tr>
+    </tbody>
+</table>
+</div>
