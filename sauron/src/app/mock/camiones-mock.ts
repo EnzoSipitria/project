@@ -1,6 +1,6 @@
-import { Carga } from "../model/carga";
+import { Carga } from '../model/carga';
 
-export const CAMIONES : Carga[] = [
+export const CAMIONES: Carga[] = [
 
 
 ];

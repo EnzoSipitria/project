@@ -1,13 +1,13 @@
-import { Camion } from "./camion";
+import { Camion } from './camion';
 
 export class Carga {
-    camion : Camion;
-    llegadaRDC : Date;
+    camion: Camion;
+    llegadaRDC: Date;
     enrampe: Date;
-    llegadaCarga : Date;
+    llegadaCarga: Date;
     terminaCarga: Date;
     initFacturacion: Date;
-    endFacturacion : Date;
-    salidaRDC : Date;
+    endFacturacion: Date;
+    salidaRDC: Date;
     llegadaDeposito: Date;
 }
