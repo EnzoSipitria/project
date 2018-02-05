@@ -27,7 +27,7 @@
     </thead>
     <tbody>
        <!--ngFor-->
-             <tr>
+             <tr *ngFor = "let carga of loads">
                     <td class="mdl-data-table__cell--1">{{carga.camion}}</td>
                     <td class="mdl-data-table__cell--2">{{carga.anden}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{carga.llegadaRDC}}</td>

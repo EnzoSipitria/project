@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CargaComponent } from './components/carga/carga.component';
 import { CeldaPorcentajeComponent } from './components/celda-porcentaje/celda-porcentaje.component';
 import { EstadoComponent } from './components/estado/estado.component';
+import { CamionesService } from './services/camiones.service';
 
 
 @NgModule({
@@ -18,7 +19,7 @@ import { EstadoComponent } from './components/estado/estado.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [CamionesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
