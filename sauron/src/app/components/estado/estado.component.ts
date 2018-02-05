@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstadoComponent implements OnInit {
 
+  status: boolean; 
+
   constructor() { }
 
   ngOnInit() {
+    this.status=false;
   }
 
 }

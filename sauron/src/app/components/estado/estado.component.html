@@ -2,5 +2,11 @@
     <!--<i class="material-icons">add</i> -->
   <!--</button>-->
  
-      <span class="mdl-chip__contact mdl-color--green"></span>
+ <!-- <div *ngIf="show; then thenBlock; else elseBlock">this is ignored</div>
+    <ng-template #primaryBlock>Primary text to show</ng-template>
+    <ng-template #secondaryBlock>Secondary text to show</ng-template>
+    <ng-template #elseBlock>Alternate text while primary text is hidden</ng-template> -->
+    <div *ngIf="status; else elseBlock"><div class="mdl-chip__contact mdl-color--green"></div></div>
+    <ng-template #elseBlock><div class="mdl-chip__contact mdl-color--red"></div></ng-template>
 
+    

@@ -20,6 +20,9 @@ export class AppComponent implements OnInit {
     this.getLoads();
   }
 
+
+  
+
   getLoads(){
     this.dataService.getCargas()
     .subscribe( cargas => this.loads = cargas);

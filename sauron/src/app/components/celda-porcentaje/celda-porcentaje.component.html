@@ -1,1 +1,7 @@
-<td id="p1" class="mdl-progress mdl-js-progress " style="width:150px" ></td>
+<td id="p1" class="mdl-progress mdl-js-progress " style="width:100px" >
+<script>
+        document.querySelector('#p1').addEventListener('mdl-componentupgraded', function() {
+          this.MaterialProgress.setProgress(45);
+        });
+      </script>-->
+</td>
