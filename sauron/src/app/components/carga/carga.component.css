@@ -5,3 +5,6 @@ td{
 .no-border{
     border: 0;
 }
+.mdl-data-table td, td {
+    padding: 0;
+}

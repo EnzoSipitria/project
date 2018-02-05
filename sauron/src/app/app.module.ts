@@ -8,6 +8,7 @@ import { CeldaPorcentajeComponent } from './components/celda-porcentaje/celda-po
 import { EstadoComponent } from './components/estado/estado.component';
 import { CamionesService } from './services/camiones.service';
 import { FechaPipe } from './pipes/fecha.pipe';
+import { TimeComponent } from './components/time/time.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FechaPipe } from './pipes/fecha.pipe';
     CargaComponent,
     CeldaPorcentajeComponent,
     EstadoComponent,
-    FechaPipe
+    FechaPipe,
+    TimeComponent
   ],
   imports: [
     BrowserModule
