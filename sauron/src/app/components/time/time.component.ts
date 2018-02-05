@@ -8,13 +8,9 @@ import { setInterval } from 'timers';
 })
 export class TimeComponent implements OnInit {
 
-  monthNames: string[];
   currentTime: string;
 
   constructor() {
-    this.monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio",
-      "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-    ];
 
   }
 
@@ -38,11 +34,12 @@ export class TimeComponent implements OnInit {
     var s = today.getSeconds();
     var y = today.getFullYear();
     var day = today.getUTCDate();
-    var month = today.getMonth();
+    var month = today.toLocaleString("es-AR", { month: "long" });
     // add a zero in front of numbers<10
     m = this.checkTime(m);
     s = this.checkTime(s);
-    this.currentTime = `${day} de ${this.monthNames[month]} del ${y}, ${h}:${m}:${s}`;
+    
+    this.currentTime = `${day} de ${month} del ${y}, ${h}:${m}:${s}`;
   }
 
 
