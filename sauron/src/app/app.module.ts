@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { CargaComponent } from './components/carga/carga.component';
 import { CeldaPorcentajeComponent } from './components/celda-porcentaje/celda-porcentaje.component';
 import { EstadoComponent } from './components/estado/estado.component';
+import { CamionesService } from './services/camiones.service';
+import { FechaPipe } from './pipes/fecha.pipe';
 
 
 @NgModule({
@@ -13,12 +15,13 @@ import { EstadoComponent } from './components/estado/estado.component';
     AppComponent,
     CargaComponent,
     CeldaPorcentajeComponent,
-    EstadoComponent
+    EstadoComponent,
+    FechaPipe
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [CamionesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

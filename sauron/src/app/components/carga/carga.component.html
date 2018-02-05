@@ -1,0 +1,15 @@
+<tr *ngFor="let carga of cargas">
+        <td class="mdl-data-table__cell--non-numeric no-border">{{carga.camion.nombre}}</td>
+        <td class="no-border">{{carga.anden}}</td>
+        <td >{{carga.llegadaRDC | fechahs}}</td>
+        <td >{{carga.enrampe | fechahs}}</td>
+        <td >{{carga.empiezaCarga | fechahs}}</td>
+        <td >    <!-- diseñar componente porcentaje-->  </td>
+        <td > <!-- diseñar componente porcentaje-->    </td>
+        <td >{{carga.terminaCarga | fechahs}}</td>
+        <td >{{carga.initFacturacion | fechahs}}</td>
+        <td >{{carga.endFacturacion | fechahs}}</td>
+        <td >{{carga.salidaRDC | fechahs}}</td>
+        <td >{{carga.llegadaDeposito | fechahs}}</td>
+        <td class="no-border">     <!-- diseñar celda status --> </td>
+</tr>

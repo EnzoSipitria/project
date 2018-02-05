@@ -1,0 +1,9 @@
+.full-width {
+    width: 100%;
+    table-layout:fixed;
+}
+th{
+    text-align: center;
+    vertical-align: middle;
+    white-space: initial;
+}
