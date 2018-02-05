@@ -10,8 +10,8 @@
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
     <thead>
         <tr>
-            <th class="mdl-data-table__cell--1"> </th>
-            <th class="mdl-data-table__cell--2">Andén</th>
+            <th class="mdl-data-table__cell--non-numeric" >camion </th>
+            <th class="mdl-data-table__cell--2non-numeric">Andén</th>
             <th class="mdl-data-table__cell--non-numeric">Llegada a RDC</th>
             <th class="mdl-data-table__cell--non-numeric">Enrampe</th>
             <th class="mdl-data-table__cell--non-numeric">Comienza de carga</th>
@@ -26,27 +26,26 @@
         </tr>
     </thead>
     <tbody>
-
-        <!--ngFor-->
-            <tr>
+       <!--ngFor-->
+             <tr>
                     <td class="mdl-data-table__cell--1">{{carga.camion}}</td>
                     <td class="mdl-data-table__cell--2">{{carga.anden}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{carga.llegadaRDC}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{carga.enrampe}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{carga.empiezaCarga}}</td>
+                    <td class="mdl-data-table__cell--non-numeric celdaPorcentaje" item-width="50"> 
+                      <app-celda-porcentaje></app-celda-porcentaje>
+                     </td>
                     <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
-                      <!-- diseñar componente porcentaje-->
-                    </td>
-                    <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
-                      <!-- diseñar componente porcentaje-->
-                    </td>
+                            <app-celda-porcentaje></app-celda-porcentaje>
+                  </td>
                     <td class="mdl-data-table__cell--non-numeric">{{carga.terminaCarga}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{carga.initFacturacion}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{carga.endFacturacion}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{carga.salidaRDC}}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{carga.llegadaDeposito}}</td>
                     <td class="mdl-data-table__cell--non-numeric celdaEstado">
-                      <!-- diseñar celda status -->
+                            <app-estado></app-estado>
                     </td>
                   </tr>
     </tbody>
