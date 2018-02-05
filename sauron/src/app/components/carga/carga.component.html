@@ -1,15 +1,17 @@
 <tr *ngFor="let carga of cargas">
         <td class="mdl-data-table__cell--non-numeric no-border">{{carga.camion.nombre}}</td>
         <td class="no-border">{{carga.anden}}</td>
-        <td >{{carga.llegadaRDC | fechahs}}</td>
-        <td >{{carga.enrampe | fechahs}}</td>
-        <td >{{carga.empiezaCarga | fechahs}}</td>
-        <td >    <!-- diseñar componente porcentaje-->  </td>
-        <td > <!-- diseñar componente porcentaje-->    </td>
-        <td >{{carga.terminaCarga | fechahs}}</td>
-        <td >{{carga.initFacturacion | fechahs}}</td>
-        <td >{{carga.endFacturacion | fechahs}}</td>
-        <td >{{carga.salidaRDC | fechahs}}</td>
-        <td >{{carga.llegadaDeposito | fechahs}}</td>
-        <td class="no-border">  <i class="material-icons">done</i> </td>
+        <td [class.active]="carga.llegadaRDC">{{carga.llegadaRDC | fechahs}}</td>
+        <td [class.active]="carga.enrampe">{{carga.enrampe | fechahs}}</td>
+        <td [class.active]="carga.empiezaCarga">{{carga.empiezaCarga | fechahs}}</td>
+        <td app-celda-porcentaje [show]="carga.mix" [carga]="carga"></td>
+        <td app-celda-porcentaje [show]="carga.full" [carga]="carga"></td>
+        <td [class.active]="carga.terminaCarga">{{carga.terminaCarga | fechahs}}</td>
+        <td [class.active]="carga.initFacturacion">{{carga.initFacturacion | fechahs}}</td>
+        <td [class.active]="carga.endFacturacion">{{carga.endFacturacion | fechahs}}</td>
+        <td [class.active]="carga.salidaRDC">{{carga.salidaRDC | fechahs}}</td>
+        <td [class.active]="carga.llegadaDeposito">{{carga.llegadaDeposito | fechahs}}</td>
+        <td class="no-border">
+                <i class="material-icons">done</i>
+        </td>
 </tr>

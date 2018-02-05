@@ -5,6 +5,8 @@ export class Carga {
     anden: string;
     llegadaRDC?: Date;
     enrampe?: Date;
+    full?: number;
+    mix?: number;
     empiezaCarga?: Date;
     terminaCarga?: Date;
     initFacturacion?: Date;

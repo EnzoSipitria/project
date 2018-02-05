@@ -1,10 +1,15 @@
 td{
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid transparent;
+    border-width: 1px 1px 0px 1px;
 }
 .no-border{
     border: 0;
 }
 .mdl-data-table td, td {
     padding: 0;
+}
+
+.active{
+    background-color: rgb(125, 207, 123);
 }

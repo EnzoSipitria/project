@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { setInterval } from 'timers';
 
 @Component({
   selector: 'app-time',
@@ -10,9 +9,7 @@ export class TimeComponent implements OnInit {
 
   currentTime: string;
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit() {
     setInterval(() => {
