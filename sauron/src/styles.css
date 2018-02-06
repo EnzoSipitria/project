@@ -1,8 +1,33 @@
-div.reloj{
-    text-align:center;
-    padding:1em 0;
+/*Colores*/
+/**/
+/*---Tabla---*/
+body{
+    position: relative;
 }
-.relog div h4 a{
-    text-decoration:none;
-    color:gray;
+tabla.tablaCargas{
+    display: inline-flex;
+    position: relative;
+    width: 90%;
+}
+
+td.celdaPorcentaje div{
+    display: inherit;
+}
+
+.celdaEstado div{
+    border: 1px grey solid;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    margin: auto;
+}
+
+.headerNav{
+    display: block;
+    width: 98%;
+    height: 75px;
+    top:0px;
+    left:0px;
+    margin-bottom: 25px;
+    padding: 10px 5px 20px 5px;
 }

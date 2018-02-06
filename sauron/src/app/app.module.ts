@@ -4,16 +4,17 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CargaComponent } from './components/carga/carga.component';
-import { CeldaPorcentajeComponent } from './components/celda-porcentaje/celda-porcentaje.component';
-import { EstadoComponent } from './components/estado/estado.component';
+import { HeaderComponent } from './components/header/header.component';
+import { TablaCargasComponent } from './components/tabla-cargas/tabla-cargas.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CargaComponent,
-    CeldaPorcentajeComponent,
-    EstadoComponent
+    HeaderComponent,
+    TablaCargasComponent
   ],
   imports: [
     BrowserModule

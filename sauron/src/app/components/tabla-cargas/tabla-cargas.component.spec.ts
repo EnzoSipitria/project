@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CeldaPorcentajeComponent } from './celda-porcentaje.component';
+import { TablaCargasComponent } from './tabla-cargas.component';
 
-describe('CeldaPorcentajeComponent', () => {
-  let component: CeldaPorcentajeComponent;
-  let fixture: ComponentFixture<CeldaPorcentajeComponent>;
+describe('TablaCargasComponent', () => {
+  let component: TablaCargasComponent;
+  let fixture: ComponentFixture<TablaCargasComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CeldaPorcentajeComponent ]
+      declarations: [ TablaCargasComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CeldaPorcentajeComponent);
+    fixture = TestBed.createComponent(TablaCargasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
