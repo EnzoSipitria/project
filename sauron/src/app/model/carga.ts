@@ -11,7 +11,4 @@ export class Carga {
     endFacturacion?: Date;
     salidaRDC?: Date;
     llegadaDeposito?: Date;
-    full: number;
-    mix: number;
-
 }

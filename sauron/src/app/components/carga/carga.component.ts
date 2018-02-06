@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Carga } from '../../model/carga';
+import { CAMIONES } from '../../mock/camiones-mock';
 
 @Component({
   selector: '[app-carga]',
