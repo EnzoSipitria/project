@@ -4,8 +4,7 @@
         <td [class.active]="carga.llegadaRDC">{{carga.llegadaRDC | fechahs}}</td>
         <td [class.active]="carga.enrampe">{{carga.enrampe | fechahs}}</td>
         <td [class.active]="carga.empiezaCarga">{{carga.empiezaCarga | fechahs}}</td>
-        <td app-celda-porcentaje [show]="carga.mix" [carga]="carga"></td>
-        <td app-celda-porcentaje [show]="carga.full" [carga]="carga"></td>
+        <td colspan="2" app-celda-porcentaje></td>
         <td [class.active]="carga.terminaCarga">{{carga.terminaCarga | fechahs}}</td>
         <td [class.active]="carga.initFacturacion">{{carga.initFacturacion | fechahs}}</td>
         <td [class.active]="carga.endFacturacion">{{carga.endFacturacion | fechahs}}</td>

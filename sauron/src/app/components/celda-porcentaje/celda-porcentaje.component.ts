@@ -8,25 +8,18 @@ import { Carga } from '../../model/carga';
 })
 export class CeldaPorcentajeComponent implements OnInit {
 
-  @Input() carga: Carga;
-  @Input() show: number;
-  percent: number;
+  carga: Carga;
+  mixPercent: number;
+  fullPercent: number;
 
   constructor() {
-
+    this.mixPercent = 50;
+    this.fullPercent = 10;
   }
 
   ngOnInit() {
-    setInterval(() => {
-      this.carga.mix = 21;
-      this.carga.full = 65;
 
-
-    }, 100);
   }
 
-  updateBar(){
-    
-  }
 
 }
