@@ -40,9 +40,9 @@ export const CAMIONES: Carga[] = [
         anden: "4",
         llegadaRDC: new Date(2018, 1, 1, 21, 10),
         enrampe: new Date(2018, 1, 1, 21, 15),
-        empiezaCarga: new Date(2018, 1, 21, 30),
-        terminaCarga: new Date(2018, 1, 22, 0),
-        initFacturacion: new Date(2018, 1, 22, 20)
+        empiezaCarga: new Date(2018, 1, 1, 21, 30),
+        terminaCarga: new Date(2018, 1, 1, 22, 0),
+        initFacturacion: new Date(2018, 1, 1, 22, 20)
     },
     {
         id: 5,

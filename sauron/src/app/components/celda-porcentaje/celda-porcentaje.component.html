@@ -1,8 +1,8 @@
 <div *ngIf="porcentajes">
-    <div class="percent-block" [ngStyle]="{ 'background': 'linear-gradient(90deg, rgb(125, 207, 123) ' + porcentajes.full + '%, white 0%)' }">
-        {{porcentajes.full}}%
-    </div>
-    <div class="percent-block" [ngStyle]="{ 'background': 'linear-gradient(90deg, rgb(125, 207, 123) ' + porcentajes.mix + '%, white 0%)' }">
-        {{porcentajes.mix}}%
+    <div class="percent-block right-border" [ngStyle]="{ 'background': 'linear-gradient(90deg, rgb(125, 207, 123) ' + porcentajes.full + '%, white 0%)' }">
+        <span class="percent-content"> {{porcentajes.full}}%</span>
+    </div><!--
+    --><div class="percent-block" [ngStyle]="{ 'background': 'linear-gradient(90deg, rgb(125, 207, 123) ' + porcentajes.mix + '%, white 0%)' }">
+        <span class="percent-content">{{porcentajes.mix}}%</span>
     </div>
 </div>

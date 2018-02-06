@@ -1,19 +1,16 @@
-/* :host{
-    background: linear-gradient(90deg, rgb(125, 207, 123) 25%, white 0%),
-    linear-gradient(90deg, white 0%, rgb(125, 207, 123) 85%);
-    
-} */
 div{
-    overflow: hidden;
     height: 47px;
 }
 .percent-block{
     display: inline-block;
     width: 50%;
 }
-/* .full{
-    background: linear-gradient(90deg, rgb(125, 207, 123) 75%, white 0%);
+.percent-content{
+    display: block;
+    padding-top: 13px;
 }
-.mix{
-    background: linear-gradient(90deg, rgb(125, 207, 123) 100%, white 0%);
-} */
+.right-border{
+    box-sizing: border-box;
+    border: solid white;
+    border-width: 0px 1px 0px 0px;
+}
