@@ -4,10 +4,10 @@ export const CAMIONES: Carga[] = [
     {
         camion: {
             id: 34,
-            nombre: "DP Macro 1",
-            conductor: ""
+            nombre: 'DP Macro 1',
+            conductor: ''
         },
-        anden: "1",
+        anden: '1',
         llegadaRDC: new Date(2018, 1, 1, 14, 30),
         enrampe: new Date(2018, 1, 1, 14, 45),
         empiezaCarga: new Date(2018, 1, 1, 15),
@@ -20,10 +20,10 @@ export const CAMIONES: Carga[] = [
     {
         camion: {
             id: 78,
-            nombre: "DP Monterrey 1",
-            conductor: ""
+            nombre: 'DP Monterrey 1',
+            conductor: ''
         },
-        anden: "4",
+        anden: '4',
         llegadaRDC: new Date(2018, 1, 1, 11, 30),
         enrampe: new Date(2018, 1, 1, 12, 0),
         empiezaCarga: new Date(2018, 1, 12, 15)
@@ -31,10 +31,10 @@ export const CAMIONES: Carga[] = [
     {
         camion: {
             id: 15,
-            nombre: "DP Monterrey 2",
-            conductor: ""
+            nombre: 'DP Monterrey 2',
+            conductor: ''
         },
-        anden: "4",
+        anden: '4',
         llegadaRDC: new Date(2018, 1, 1, 21, 10),
         enrampe: new Date(2018, 1, 1, 21, 15),
         empiezaCarga: new Date(2018, 1, 21, 30),
@@ -44,10 +44,10 @@ export const CAMIONES: Carga[] = [
     {
         camion: {
             id: 523,
-            nombre: "DP Macro 2",
-            conductor: ""
+            nombre: 'DP Macro 2',
+            conductor: ''
         },
-        anden: "24",
+        anden: '24',
         llegadaRDC: new Date(2018, 1, 1, 18, 0),
         enrampe: new Date(2018, 1, 1, 18, 15),
         empiezaCarga: new Date(2018, 1, 1, 18, 55),
@@ -61,10 +61,10 @@ export const CAMIONES: Carga[] = [
     {
         camion: {
             id: 24,
-            nombre: "Soriana 1",
-            conductor: ""
+            nombre: 'Soriana 1',
+            conductor: ''
         },
-        anden: "6",
+        anden: '6',
         llegadaRDC: new Date(2018, 1, 1, 8, 30),
         enrampe: new Date(2018, 1, 1, 8, 40),
         empiezaCarga: new Date(2018, 1, 1, 9, 0),
