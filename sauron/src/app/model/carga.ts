@@ -1,10 +1,11 @@
 import { Camion } from './camion';
+import { PorcentajeCarga } from './porcentajeCarga';
 
 export class Carga {
     id: number;
     camion: Camion;
     anden: string;
-    llegadaRDC?: Date;
+    llegadaRDC: Date;
     enrampe?: Date;
     empiezaCarga?: Date;
     terminaCarga?: Date;
