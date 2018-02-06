@@ -11,7 +11,9 @@ export class CargaComponent implements OnInit {
 
   constructor() { }
 
+  cargas: Carga[];
   ngOnInit() {
+    this.cargas = CAMIONES;
   }
 
 }
