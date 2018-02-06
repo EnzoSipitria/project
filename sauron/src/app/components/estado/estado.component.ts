@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Carga } from '../../model/carga';
 
 @Component({
   selector: 'app-estado',
@@ -7,12 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EstadoComponent implements OnInit {
 
-  status: boolean; 
+  @Input() carga: Carga; 
+  status: boolean;
 
   constructor() { }
 
+  setStatus(){
+    this.status=this.carga.estado;
+  }
+
   ngOnInit() {
-    this.status=false;
+
+    alert(this.carga.estado);
+    this.setStatus();
+    
   }
 
 }

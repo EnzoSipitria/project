@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CamionesService } from '../../services/camiones.service';
+import { Carga } from '../../model/carga';
 
 @Component({
   selector: 'app-carga',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CargaComponent implements OnInit {
 
-  constructor() { }
+  loads: Carga[];
 
-  ngOnInit() {
+  /**
+   *
+   */
+  constructor(private dataService:CamionesService) { }
+
+  ngOnInit(){
+    this.getLoads();
+
   }
+  
 
+  getLoads(){
+    this.dataService.getCargas()
+    .subscribe( cargas => this.loads = cargas);
+  }
 }

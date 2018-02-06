@@ -11,11 +11,14 @@ export const CAMIONES: Carga[] = [
         llegadaRDC: new Date(2018, 1, 1, 14, 30),
         enrampe: new Date(2018, 1, 1, 14, 45),
         empiezaCarga: new Date(2018, 1, 1, 15),
+        full:100,
+        mix:100,
         terminaCarga: new Date(2018, 1, 1, 15, 10),
         initFacturacion: new Date(2018, 1, 1, 15, 50),
         endFacturacion: new Date(2018, 1, 1, 16, 5),
         salidaRDC: new Date(2018, 1, 1, 16, 30),
         llegadaDeposito: new Date(2018, 1, 1, 17, 30),
+        estado:true
     },
     {
         camion: {
@@ -26,7 +29,10 @@ export const CAMIONES: Carga[] = [
         anden: "4",
         llegadaRDC: new Date(2018, 1, 1, 11, 30),
         enrampe: new Date(2018, 1, 1, 12, 0),
-        empiezaCarga: new Date(2018, 1, 12, 15)
+        empiezaCarga: new Date(2018, 1, 12, 15),
+        full:20,
+        mix:0,
+        estado:true
     },
     {
         camion: {
@@ -38,8 +44,11 @@ export const CAMIONES: Carga[] = [
         llegadaRDC: new Date(2018, 1, 1, 21, 10),
         enrampe: new Date(2018, 1, 1, 21, 15),
         empiezaCarga: new Date(2018, 1, 21, 30),
+        full:100,
+        mix:100,
         terminaCarga: new Date(2018, 1, 22, 0),
-        initFacturacion: new Date(2018, 1, 22, 20)
+        initFacturacion: new Date(2018, 1, 22, 20),
+        estado: false,
     },
     {
         camion: {
@@ -56,6 +65,7 @@ export const CAMIONES: Carga[] = [
         endFacturacion: new Date(2018, 1, 1, 19, 20),
         salidaRDC: new Date(2018, 1, 1, 20, 0),
         llegadaDeposito: new Date(2018, 1, 1, 20, 45),
+        estado:false
 
     },
     {
@@ -68,7 +78,10 @@ export const CAMIONES: Carga[] = [
         llegadaRDC: new Date(2018, 1, 1, 8, 30),
         enrampe: new Date(2018, 1, 1, 8, 40),
         empiezaCarga: new Date(2018, 1, 1, 9, 0),
-        terminaCarga: new Date(2018, 1, 1, 9, 15)
+        full:70,
+        mix:100,
+        terminaCarga: new Date(2018, 1, 1, 9, 15),
+        estado:false
 
     }
 

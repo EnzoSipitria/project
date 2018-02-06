@@ -9,7 +9,7 @@ import { CamionesService } from './services/camiones.service';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  loads: Carga[];
+ // loads: Carga[];
 
   /**
    *
@@ -17,16 +17,17 @@ export class AppComponent implements OnInit {
   constructor(private dataService:CamionesService) { }
 
   ngOnInit(){
-    this.getLoads();
+  //  this.getLoads();
+
   }
 
 
   
 
-  getLoads(){
-    this.dataService.getCargas()
-    .subscribe( cargas => this.loads = cargas);
-  }
+  // getLoads(){
+  //   this.dataService.getCargas()
+  //   .subscribe( cargas => this.loads = cargas);
+  // }
 
   
 }

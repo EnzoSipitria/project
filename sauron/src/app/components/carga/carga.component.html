@@ -1,0 +1,44 @@
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">camion</th>
+            <th class="mdl-data-table__cell--2non-numeric">Andén</th>
+            <th class="mdl-data-table__cell--non-numeric">Llegada a RDC</th>
+            <th class="mdl-data-table__cell--non-numeric">Enrampe</th>
+            <th class="mdl-data-table__cell--non-numeric">Comienza de carga</th>
+            <th class="mdl-data-table__cell--non-numeric">FULL</th>
+            <th class="mdl-data-table__cell--non-numeric">MIX</th>
+            <th class="mdl-data-table__cell--non-numeric">Termina Carga</th>
+            <th class="mdl-data-table__cell--non-numeric">Comienza Facturación</th>
+            <th class="mdl-data-table__cell--non-numeric">Termina Facturación</th>
+            <th class="mdl-data-table__cell--non-numeric">Sale de RDC</th>
+            <th class="mdl-data-table__cell--non-numeric">Llegada a déposito</th>
+            <th class="mdl-data-table__cell--non-numeric">STATUS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--ngFor-->
+        <tr *ngFor="let carga of loads">
+            <td class="mdl-data-table__cell--1">
+                <!--<span>{{carga.camion.id}} </span>-->{{carga.camion.nombre}}</td>
+            <td class="mdl-data-table__cell--2">{{carga.anden}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{carga.llegadaRDC | date:'mediumTime'}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{carga.enrampe | date:'mediumTime'}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{carga.empiezaCarga | date:'mediumTime'}}</td>
+            <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
+                <app-celda-porcentaje class="fullType" style="width:100px" [currentProgress]="50"></app-celda-porcentaje>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
+                <app-celda-porcentaje class="mixType" style="width:100px"></app-celda-porcentaje>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">{{carga.terminaCarga | date:'mediumTime'}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{carga.initFacturacion | date:'mediumTime'}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{carga.endFacturacion| date:'mediumTime'}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{carga.salidaRDC | date:'mediumTime'}}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{carga.llegadaDeposito | date:'mediumTime'}}</td>
+            <td class="mdl-data-table__cell--non-numeric celdaEstado">
+                <app-estado [carga]="carga"></app-estado>
+            </td>
+        </tr>
+    </tbody>
+</table>
