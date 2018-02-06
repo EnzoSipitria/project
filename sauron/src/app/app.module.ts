@@ -9,6 +9,7 @@ import { EstadoComponent } from './components/estado/estado.component';
 import { CamionesService } from './services/camiones.service';
 import { FechaPipe } from './pipes/fecha.pipe';
 import { TimeComponent } from './components/time/time.component';
+import { PorcentajeCargaService } from './services/porcentaje-carga.service';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { TimeComponent } from './components/time/time.component';
   imports: [
     BrowserModule
   ],
-  providers: [CamionesService],
+  providers: [CamionesService, PorcentajeCargaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

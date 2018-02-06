@@ -4,7 +4,7 @@
         <td [class.active]="carga.llegadaRDC">{{carga.llegadaRDC | fechahs}}</td>
         <td [class.active]="carga.enrampe">{{carga.enrampe | fechahs}}</td>
         <td [class.active]="carga.empiezaCarga">{{carga.empiezaCarga | fechahs}}</td>
-        <td colspan="2" app-celda-porcentaje></td>
+        <td colspan="2" app-celda-porcentaje [carga]="carga"></td>
         <td [class.active]="carga.terminaCarga">{{carga.terminaCarga | fechahs}}</td>
         <td [class.active]="carga.initFacturacion">{{carga.initFacturacion | fechahs}}</td>
         <td [class.active]="carga.endFacturacion">{{carga.endFacturacion | fechahs}}</td>
