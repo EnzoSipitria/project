@@ -1,4 +1,4 @@
 export class Porcentaje {
-    full: number;
-    mix: number;
+    full?: number;
+    mix?: number;
 }

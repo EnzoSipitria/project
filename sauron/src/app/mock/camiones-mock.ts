@@ -8,6 +8,10 @@ export const CAMIONES: Carga[] = [
             conductor: ''
         },
         anden: '1',
+        porcentajes: {
+            full: 45,
+            mix: 45,
+        },
         llegadaRDC: new Date(2018, 1, 1, 14, 30),
         enrampe: new Date(2018, 1, 1, 14, 45),
         empiezaCarga: new Date(2018, 1, 1, 15),
@@ -24,6 +28,10 @@ export const CAMIONES: Carga[] = [
             conductor: ''
         },
         anden: '4',
+        porcentajes: {
+            full: 78,
+            mix: 67,
+        },
         llegadaRDC: new Date(2018, 1, 1, 11, 30),
         enrampe: new Date(2018, 1, 1, 12, 0),
         empiezaCarga: new Date(2018, 1, 12, 15)
@@ -35,6 +43,10 @@ export const CAMIONES: Carga[] = [
             conductor: ''
         },
         anden: '4',
+        porcentajes: {
+            full: 35,
+            mix: 11,
+        },
         llegadaRDC: new Date(2018, 1, 1, 21, 10),
         enrampe: new Date(2018, 1, 1, 21, 15),
         empiezaCarga: new Date(2018, 1, 21, 30),
@@ -48,6 +60,10 @@ export const CAMIONES: Carga[] = [
             conductor: ''
         },
         anden: '24',
+        porcentajes: {
+            full: 85,
+            mix: 15,
+        },
         llegadaRDC: new Date(2018, 1, 1, 18, 0),
         enrampe: new Date(2018, 1, 1, 18, 15),
         empiezaCarga: new Date(2018, 1, 1, 18, 55),
@@ -65,6 +81,10 @@ export const CAMIONES: Carga[] = [
             conductor: ''
         },
         anden: '6',
+        porcentajes: {
+            full: 95,
+            mix: 37,
+        },
         llegadaRDC: new Date(2018, 1, 1, 8, 30),
         enrampe: new Date(2018, 1, 1, 8, 40),
         empiezaCarga: new Date(2018, 1, 1, 9, 0),

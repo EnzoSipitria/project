@@ -12,9 +12,13 @@ tabla.tablaCargas{
     display: inline-flex;
     position: relative;
     width: 90%;
+    margin:0;
 }
 th.mdl-data-table__cell--non-numeric{
     padding: 0 2.5px 8px 2.5px;
+}
+td.mdl-data-table__cell--non-numeric.celdaPorcentaje{
+    padding: 0%;
 }
 th, td {
     border-right: solid rgba(230, 227, 227, 0.459) 1px;
@@ -22,11 +26,12 @@ th, td {
 th.celdaPorcentaje{
     height: 20px;
     width: 120px;
-}
-th.barraProgreso{
-    background:rgba(18, 117, 9, 0.486);
-}
 
+}
+div.barraProgreso{
+    height: inherit;
+    
+}
 .celdaEstado div{
     border: 1px grey solid;
     border-radius: 100%;
@@ -48,10 +53,27 @@ td p, th p{
 /*---NavBar---*/
 .headerNav{
     display: block;
-    width: 98%;
+    width: 99%;
     height: 75px;
     top:0px;
     left:0px;
-    margin-bottom: 25px;
+    margin: 0 0 25px 0;
     padding: 10px 5px 20px 5px;
+    color:gray;
+    border-bottom: rgba(230, 227, 227, 0.623) solid 2.5px;
+
+}
+
+div.reloj p{
+    font-weight: bold;
+    font-size: larger;
+    float: right;
+    margin-right: 25px;
+}
+.headerNav img{
+    display: inline-flex;
+    margin: -10px 0 0 20px;
+    width: 200px;
+    height: 100px;
+    float:left;
 }
