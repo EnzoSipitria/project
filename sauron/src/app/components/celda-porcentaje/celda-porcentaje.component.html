@@ -1,9 +1,14 @@
-<td id="full" class="mdl-progress mdl-js-progress" style="width:100px"></td>
-<script language="javascript">
-        document.querySelector('#full').addEventListener('mdl-componentupgraded', function() {
-         this.MaterialProgress.setProgress(44);
-        });
-</script>
+<!--<td id="full" class="mdl-progress mdl-js-progress" style="width:100px"></td>-->
+<!--<div class="progress" style="width:100px">
+        <div class="progress-bar progress-bar-success" style="background-color: blue; width:24%">24%
 
-    
-
+        </div>
+</div>-->
+<!--<div> {{currentProgress}}</div>
+-->
+<!-- 'font-size': '20px' -->
+<div style="width:100px; background:white;border:1px solid">
+        <div class="contenido" style="background:rgb(45, 214, 45);" [style.width]="currentProgress + '%'">
+                       {{currentProgress}}%
+        </div>
+</div>

@@ -3,7 +3,7 @@
         <tr>
             <th class="mdl-data-table__cell--non-numeric">camion</th>
             <th class="mdl-data-table__cell--2non-numeric">Andén</th>
-            <th class="mdl-data-table__cell--non-numeric">Llegada a RDC</th>
+            <th class="mdl-data-table__cell--non-numeric mdl-data-table__header--sorted-ascending">Llegada a RDC</th>
             <th class="mdl-data-table__cell--non-numeric">Enrampe</th>
             <th class="mdl-data-table__cell--non-numeric">Comienza de carga</th>
             <th class="mdl-data-table__cell--non-numeric">FULL</th>
@@ -18,24 +18,42 @@
     </thead>
     <tbody>
         <!--ngFor-->
-        <tr *ngFor="let carga of loads">
-            <td class="mdl-data-table__cell--1">
-                <!--<span>{{carga.camion.id}} </span>-->{{carga.camion.nombre}}</td>
-            <td class="mdl-data-table__cell--2">{{carga.anden}}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{carga.llegadaRDC | date:'mediumTime'}}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{carga.enrampe | date:'mediumTime'}}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{carga.empiezaCarga | date:'mediumTime'}}</td>
-            <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
-                <app-celda-porcentaje class="fullType" style="width:100px" [currentProgress]="50"></app-celda-porcentaje>
+        <tr *ngFor="let carga of loads | orderby:'llegadaRDC'">
+            <td class="mdl-data-table__cell--non-numeric"><app-cell-content [cellValue]="carga.camion.nombre"></app-cell-content></td> 
+                <!--<span>{{carga.camion.id}} </span>-->
+            <td class="mdl-data-table__cell--non-numeric" >
+                <app-cell-content [cellValue]="carga.anden"></app-cell-content>
             </td>
-            <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
-                <app-celda-porcentaje class="mixType" style="width:100px"></app-celda-porcentaje>
+            <td id="llegadaRDC" class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.llegadaRDC)}" >
+                <app-cell-content [cellValue]="carga.llegadaRDC | date:'mediumTime'" style="padding:0;margin:0;"></app-cell-content>
             </td>
-            <td class="mdl-data-table__cell--non-numeric">{{carga.terminaCarga | date:'mediumTime'}}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{carga.initFacturacion | date:'mediumTime'}}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{carga.endFacturacion| date:'mediumTime'}}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{carga.salidaRDC | date:'mediumTime'}}</td>
-            <td class="mdl-data-table__cell--non-numeric">{{carga.llegadaDeposito | date:'mediumTime'}}</td>
+            <td id="enrampe" class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.enrampe)}" (click)="compareDates(carga) >
+                <app-cell-content [cellValue]="carga.enrampe | date:'mediumTime'"></app-cell-content>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.empiezaCarga)}">
+                <app-cell-content [cellValue]="carga.empiezaCarga | date:'mediumTime'"></app-cell-content>
+            </td>
+            <td clospan="2" style="width:100px" class="mdl-data-table__cell--non-numeric">
+               <app-celda-porcentaje class="fullType" [currentProgress]='carga.full'></app-celda-porcentaje>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <app-celda-porcentaje class="mixType" [currentProgress]='carga.mix'></app-celda-porcentaje>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.terminaCarga)}">
+                <app-cell-content [cellValue]="carga.terminaCarga | date:'mediumTime'"></app-cell-content>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric"[ngClass]="{'completed':checkValue(carga.initFacturacion)}" (ngModelChange)="stageStatus(carga.llegadaRDC,carga.initFacturacion)">
+                    <app-cell-content [cellValue]="carga.initFacturacion | date:'mediumTime'"></app-cell-content>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.endFacturacion)}">
+                    <app-cell-content [cellValue]="carga.endFacturacion | date:'mediumTime'"></app-cell-content>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.salidaRDC)}">
+                    <app-cell-content [cellValue]="carga.salidaRDC | date:'mediumTime'"></app-cell-content>
+            </td>
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.llegadaDeposito)}">
+                    <app-cell-content [cellValue]="carga.llegadaDeposito | date:'mediumTime'"></app-cell-content>
+            </td>
             <td class="mdl-data-table__cell--non-numeric celdaEstado">
                 <app-estado [carga]="carga"></app-estado>
             </td>

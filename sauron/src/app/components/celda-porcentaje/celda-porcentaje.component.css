@@ -1,0 +1,28 @@
+
+
+/* .cell {
+    border: 1px solid;
+    height: 20px;
+    position: relative;
+    text-indent: 10px;
+    width: 100px;
+  }
+  
+  .cell::after{
+      background: green;
+      content: ".";
+      color: green;
+      position: absolute;
+      left:0;
+      width:var(--actualProgress)'%';
+     
+  } */
+  /* .cell::after {
+    background: green;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 70%;
+    z-index: -1;
+  } */

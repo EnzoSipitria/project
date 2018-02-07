@@ -19,7 +19,7 @@ export class EstadoComponent implements OnInit {
 
   ngOnInit() {
 
-    alert(this.carga.estado);
+    //alert(this.carga.estado);
     this.setStatus();
     
   }
