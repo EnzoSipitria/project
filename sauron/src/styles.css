@@ -19,12 +19,12 @@ th.mdl-data-table__cell--non-numeric{
 th, td {
     border-right: solid rgba(230, 227, 227, 0.459) 1px;
 }
-td.celdaPorcentaje div{
-    display: inherit;
-    height: 20px;
-}
 th.celdaPorcentaje{
-    padding: 0 35px 0 35px
+    height: 20px;
+    width: 120px;
+}
+th.barraProgreso{
+    background:rgba(18, 117, 9, 0.486);
 }
 
 .celdaEstado div{
@@ -41,7 +41,7 @@ div.estadoFail {
 td.etapaCompletada{
     background:rgba(18, 117, 9, 0.486);
 }
-td p{
+td p, th p{
     margin:auto;
     text-align: center;
 }
