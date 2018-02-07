@@ -1,17 +1,30 @@
 /*Colores*/
-/**/
-/*---Tabla---*/
+/* verde celdas: rgba(18, 117, 9, 0.486)
+rojo status: rgba(182, 37, 18, 0.486)
+*/
+
 body{
     position: relative;
 }
+/*---Tabla---*/
+
 tabla.tablaCargas{
     display: inline-flex;
     position: relative;
     width: 90%;
 }
-
+th.mdl-data-table__cell--non-numeric{
+    padding: 0 2.5px 8px 2.5px;
+}
+th, td {
+    border-right: solid rgba(230, 227, 227, 0.459) 1px;
+}
 td.celdaPorcentaje div{
     display: inherit;
+    height: 20px;
+}
+th.celdaPorcentaje{
+    padding: 0 35px 0 35px
 }
 
 .celdaEstado div{
@@ -20,8 +33,19 @@ td.celdaPorcentaje div{
     width: 15px;
     height: 15px;
     margin: auto;
+    background:rgba(18, 117, 9, 0.486); 
 }
-
+div.estadoFail {
+    background: rgba(182, 37, 18, 0.486);
+}
+td.etapaCompletada{
+    background:rgba(18, 117, 9, 0.486);
+}
+td p{
+    margin:auto;
+    text-align: center;
+}
+/*---NavBar---*/
 .headerNav{
     display: block;
     width: 98%;

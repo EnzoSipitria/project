@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Carga } from '../../model/carga';
 import { CAMIONES } from '../../mock/camiones-mock';
 
@@ -16,4 +17,7 @@ export class CargaComponent implements OnInit {
     this.cargas = CAMIONES;
   }
 
+  //document.querySelector('#p1').addEventListener('mdl-componentupgraded', function() {
+  //  this.MaterialProgress.setProgress(44);
+  //});
 }
