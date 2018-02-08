@@ -10,22 +10,17 @@ export class EstadoComponent implements OnInit {
 
   @Input() carga: Carga;
   valido: boolean;
-  limite = {
-    horas: 2,
-    minutos: 30
-  };
+  limite : number = 9000000; // 2:30 hs en milisegundos
 
   constructor() { }
 
   ngOnInit() {
-    
     setInterval(() => this.checkProgress(), 1000);
   }
 
   checkProgress() {
     let lastStep = this.getLastStep();
-    this.valido = lastStep.getHours() - this.carga.llegadaRDC.getHours() <= this.limite.horas && 
-    Math.abs(this.getLastStep().getMinutes() - this.carga.llegadaRDC.getMinutes()) <= this.limite.minutos; 
+    this.valido = (lastStep.getTime() - this.carga.llegadaRDC.getTime()) <= this.limite; 
   }
 
   getLastStep() : Date{
