@@ -6,3 +6,19 @@ div.reloj{
     text-decoration:none;
     color:gray;
 }
+
+.completed{
+    background:rgba(38, 212, 38, 0.637);
+    align-content: center;
+    padding: 0;
+    width:100;
+    border-color: rgba(38, 212, 38, 0.637);
+    border:2px;
+
+}
+
+/* .delayed{
+    border: 1px;
+    border-color: rgb(219, 11, 11);
+    background:rgba(219, 11, 11,0.5);
+} */

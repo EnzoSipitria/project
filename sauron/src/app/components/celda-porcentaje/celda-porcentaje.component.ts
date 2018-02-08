@@ -14,18 +14,38 @@ export class CeldaPorcentajeComponent implements OnInit  {
   *
   **/
   @Input() currentProgress: number;
-
- 
- 
-      constructor() {
+  intervalIdF=0;
+  updateCargaFull(){
+    
+    console.log("startFUll Interval"+this.currentProgress);
+    if (this.currentProgress != null){
+    this.intervalIdF = window.setInterval(() => {
+      if (this.currentProgress >= 100) {
+        this.currentProgress=0;
+      } else {
+        if ((100-this.currentProgress)>5) {
+          this.currentProgress+=5;
+        } else {
+          this.currentProgress=100;
+        }
+      }
+    }, 7000);
+  }
+  }
+ stop(){
+  clearInterval(this.intervalIdF);
+ }    
+  constructor() {
 
        }
 
   ngOnInit() {
     if (typeof this.currentProgress === 'undefined') {
-      console.log(name + ' is undefined');
-      this.currentProgress=0;
-  }
+     // console.log(name + ' is undefined');
+     this.currentProgress=0;
+    }else{
+      this.updateCargaFull();
+    }
 
     
   }

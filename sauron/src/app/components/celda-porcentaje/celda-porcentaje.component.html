@@ -8,7 +8,7 @@
 -->
 <!-- 'font-size': '20px' -->
 <div style="width:100px; background:white;border:1px solid">
-        <div class="contenido" style="background:rgb(45, 214, 45);" [style.width]="currentProgress + '%'">
+        <div class="contenido" (click)="stop()" style="background:rgb(45, 214, 45);text-align:center " [style.width]="currentProgress + '%'">
                        {{currentProgress}}%
         </div>
 </div>

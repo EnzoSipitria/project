@@ -10,7 +10,6 @@ import { EstadoComponent } from './components/estado/estado.component';
 import { CamionesService } from './services/camiones.service';
 import { ClockComponent } from './components/clock/clock.component';
 import { CellContentComponent } from './components/cell-content/cell-content.component';
-import { AddCargasComponent } from './components/add-cargas/add-cargas.component';
 import { OrderByPipe } from './pipes/order-by.pipe';
 
 
@@ -22,7 +21,6 @@ import { OrderByPipe } from './pipes/order-by.pipe';
     EstadoComponent,
     ClockComponent,
     CellContentComponent,
-    AddCargasComponent,
     OrderByPipe
   ],
   imports: [

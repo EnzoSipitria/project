@@ -13,5 +13,5 @@ export class Carga {
     endFacturacion?: Date;
     salidaRDC?: Date;
     llegadaDeposito?: Date;
-    estado:boolean;
+    estado?:boolean;
 }

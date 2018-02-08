@@ -1,60 +1,73 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { CamionesService } from '../../services/camiones.service';
 import { Carga } from '../../model/carga';
-import { ConsoleReporter } from 'jasmine';
+import { EstadoComponent } from '../estado/estado.component';
 
 @Component({
   selector: 'app-carga',
   templateUrl: './carga.component.html',
   styleUrls: ['./carga.component.css']
 })
-export class CargaComponent implements OnInit {
+export class CargaComponent implements OnInit, AfterViewInit {
 
   loads: Carga[];
-  completedStage: boolean;
+  @Input() delayedStage: boolean;
+  carga:Carga;
+  intervalIdF=0;
+  intervalIdM=1;
 
-
-  //se pueden agregar boolean por cada stage?? eso puede servir para que funicione el control
-
-  addCarga() { }
-
-
-  stageStatus(llegada: Date, timeActualStage: Date) {
-
-    if (this.compareDates(llegada, timeActualStage)) {
-      alert("la comparacion es buena" + llegada + "    nnnnnn     " + timeActualStage);
-      this.completedStage = true;
-    } else {
-      alert("bad comparison");
-      this.completedStage = false;
-    }
-  }
-
-
- compareDates(ingreso: Date, stage: Date): boolean {
-    console.log(ingreso+"  "+stage);
-    
-    var horasNow = ingreso.getUTCHours();
-    var minutosNow = ingreso.getUTCMinutes();
-    var horasStage = stage.getUTCHours();
-    var minutesStage = stage.getUTCMinutes();
-    if (horasNow + 2.5 > horasStage) {
-      return true;
-    } else {
-      if (horasNow + 2.5 == horasStage) {
-        if (minutosNow >= minutesStage) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    }
  
 
-
+  @ViewChild(EstadoComponent) status:EstadoComponent;
+  
+  
+  ngAfterViewInit() {
+    // this.updateCargaFull();
+    // this.updateCargaMix();
+    this.delayedStage=this.status.status;
   }
 
 
+
+ stopInterval(){
+   console.log("stoped interval");
+  clearInterval(this.intervalIdF);
+  clearInterval(this.intervalIdM);
+ }
+  
+  updateCargaFull(){
+    console.log("startFUll Interval"+this.carga);
+    if (this.carga != null){
+    this.intervalIdF = window.setInterval(() => {
+      if (this.carga.full === 100) {
+        this.carga.full=0;
+      } else {
+        this.carga.full+=5;
+      }
+    }, 15000);
+  }
+  }
+  updateCargaMix(){
+    console.log("start mix Interval");
+    if (this.carga != null){
+    this.intervalIdM = window.setInterval(() => {
+      if (this.carga.mix === 100) {
+        console.log("reset the percentage");
+        this.carga.mix=0;
+      } else {
+        console.log("adde charge");
+        this.carga.mix+=5;
+      }
+    }, 1000);
+  }
+ 
+  }
+
+  startInterval(){
+    // this.updateCargaFull();
+    // this.updateCargaMix();
+    
+  }
 
   /**
    *
@@ -63,7 +76,7 @@ export class CargaComponent implements OnInit {
 
   ngOnInit() {
     this.getLoads();
-    
+   
   }
 
   /*
