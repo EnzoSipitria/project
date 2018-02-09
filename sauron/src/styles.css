@@ -69,6 +69,7 @@ div.reloj p{
     font-size: larger;
     float: right;
     margin-right: 25px;
+    margin-top: 15px;
 }
 .headerNav img{
     display: inline-flex;

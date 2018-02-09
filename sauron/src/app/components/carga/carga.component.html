@@ -17,7 +17,6 @@
     <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.salidaRDC]!='' }"><p>{{carga.salidaRDC | date:'HH:mm'}}</p></td>
     <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.llegadaDeposito]!='' }" ><p>{{carga.llegadaDeposito | date:'HH:mm'}}</p></td>
     <td class="mdl-data-table__cell--non-numeric celdaEstado">
-        <!-- verificar que desde el ultimo dato no nulo no pasaron mas de dos horas -->
         <div [class.estadoFail]="getStatus(carga)"></div>
     </td>
 </tr>
