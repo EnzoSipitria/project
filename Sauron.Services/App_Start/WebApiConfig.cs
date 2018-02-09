@@ -13,6 +13,9 @@ namespace Sauron.Services
             // Web API configuration and services
 
             // Web API routes
+
+            config.EnableCors();
+            
             config.MapHttpAttributeRoutes();
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html")); //get json on most queries, but you can get xml when you send text/xml.
 
