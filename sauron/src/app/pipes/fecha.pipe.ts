@@ -5,12 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FechaPipe implements PipeTransform {
 
-  transform(value: Date, args?: any): any {
+  transform(value: string, args?: any): any {
     if(value){
-      let mins = value.getMinutes();
+      let date = new Date(Date.parse(value));
+      let mins = date.getMinutes();
       let minString = mins.toString();
       if(mins < 10) minString = "0" + mins.toString();
-      return value.getHours().toString() + ":" + minString;
+      return date.getHours().toString() + ":" + minString;
     }
     return "";
   }

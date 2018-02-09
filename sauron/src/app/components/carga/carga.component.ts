@@ -16,7 +16,10 @@ export class CargaComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.camionesService.getCargas().subscribe(cargas => this.cargas = cargas);
+    this.camionesService.getCargas().subscribe(cargas =>  {
+      console.log(cargas);
+    this.cargas = cargas}
+  );
   }
 
 }

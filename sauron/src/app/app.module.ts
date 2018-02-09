@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CargaComponent } from './components/carga/carga.component';
@@ -22,7 +22,8 @@ import { PorcentajeCargaService } from './services/porcentaje-carga.service';
     TimeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [CamionesService, PorcentajeCargaService],
   bootstrap: [AppComponent]
