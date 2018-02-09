@@ -9,6 +9,7 @@ import { Carga } from '../../model/carga';
 export class MyRowComponent implements OnInit, OnChanges {
 
   @Input('data') carga:Carga;
+  // idCarga:number=this.carga.id;
   rowStatus:boolean=true;
   _counter:number=0;
 
@@ -69,7 +70,7 @@ export class MyRowComponent implements OnInit, OnChanges {
     for (let prop of Object.keys(this.carga)) {
       console.log("========" + prop + "========");
       //if (this.status != false) {
-        if (prop != null && prop != "anden" && prop != "llegadaRDC" && prop != "camion" && prop != "estado" && prop != "full" && prop != "mix") {
+        if (prop != null && prop != "anden" && prop != "id" && prop != "llegadaRDC" && prop != "camion" && prop != "estado" && prop != "full" && prop != "mix") {
           var stage: Date = this.carga[prop]
           console.log(llegada + " ////// " + stage)
           if (!this.compareDates(llegada, stage)) {

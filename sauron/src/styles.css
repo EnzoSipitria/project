@@ -20,5 +20,17 @@ div.reloj{
 .delayed{
     border: 2px;
     border-color: rgb(219, 11, 11);
-   // background:rgba(219, 11, 11,0.5);
+    background:rgba(219, 11, 11,0.5);
+}
+
+.header{
+    text-align: center;
+    border: black;
+    border-left: 3px solid;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
+    
+}
+.header:hover{
+    background: rgba(17, 237, 171, 0.1)
 }

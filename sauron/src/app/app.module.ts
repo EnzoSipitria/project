@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
@@ -13,6 +15,7 @@ import { CellContentComponent } from './components/cell-content/cell-content.com
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { MyRowComponent } from './components/my-row/my-row.component';
 import { AppRoutingModule } from './components/app-routing.module';
+import { AddCargaFormComponent } from './components/add-carga-form/add-carga-form.component';
 
 
 @NgModule({
@@ -24,11 +27,13 @@ import { AppRoutingModule } from './components/app-routing.module';
     ClockComponent,
     CellContentComponent,
     OrderByPipe,
-    MyRowComponent
+    MyRowComponent,
+    AddCargaFormComponent
   ],
   imports: [
     BrowserModule,
     MatProgressBarModule,
+    HttpClientModule,
     AppRoutingModule,
   ],
   providers: [CamionesService],

@@ -2,10 +2,14 @@
     <div>
         <app-clock></app-clock>
     </div>
-    <div style="float: left">
-        <!-- <app-add-cargas></app-add-cargas> -->
-    </div>
     <div>
-        <app-carga></app-carga>
+            <nav >
+                <a routerLink="/addCarga">Nueva Carga</a>
+                <a routerLink="/mainBoard">Board</a>
+                <br>
+            </nav>
     </div>
 </div>
+    <div>
+            <router-outlet></router-outlet>   
+    </div>

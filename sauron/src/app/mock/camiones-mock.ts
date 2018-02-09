@@ -2,6 +2,7 @@ import { Carga } from '../model/carga';
 
 export const CAMIONES: Carga[] = [
     {
+        // id:1,
         camion: {
             id: 34,
             nombre: "DP Macro 1",
@@ -21,6 +22,7 @@ export const CAMIONES: Carga[] = [
        estado:true
     },
     {
+        // // id:2,
         camion: {
             id: 78,
             nombre: "DP Monterrey 1",
@@ -35,6 +37,7 @@ export const CAMIONES: Carga[] = [
        estado:true
     },
     {
+        // id:3,
         camion: {
             id: 15,
             nombre: "DP Monterrey 2",
@@ -52,6 +55,7 @@ export const CAMIONES: Carga[] = [
         estado: true,
     },
     {
+        // id:4,
         camion: {
             id: 523,
             nombre: "DP Macro 2",
@@ -71,6 +75,7 @@ export const CAMIONES: Carga[] = [
 
     },
     {
+        // id:5,
         camion: {
             id: 65,
             nombre: "Soriana 2",
@@ -83,6 +88,7 @@ export const CAMIONES: Carga[] = [
         //    estado:false
     },
     {
+        // id:6,
         camion: {
             id: 24,
             nombre: "Soriana 1",
@@ -100,6 +106,7 @@ export const CAMIONES: Carga[] = [
         // estado:false
     },
     {
+        // id:7,
     camion: {
         id: 17,
         nombre: "DP Macro 3",
@@ -121,6 +128,7 @@ export const CAMIONES: Carga[] = [
     // estado:false,
 },
 {
+    // id:8,
     camion: {
         id: 17,
         nombre: "DP Macro 3",

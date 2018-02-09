@@ -11,7 +11,7 @@ import { EstadoComponent } from '../estado/estado.component';
 export class CargaComponent implements OnInit, OnChanges {
 
   loads: Carga[];
-  carga: Carga;
+
 
 
 
