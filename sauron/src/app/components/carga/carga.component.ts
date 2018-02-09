@@ -18,6 +18,7 @@ export class CargaComponent implements OnInit {
 
   ngOnInit() {
     this.cargas = CAMIONES;
+    console.log(this.cargas);
   }
 
   getStatus(carga): boolean {
@@ -26,22 +27,18 @@ export class CargaComponent implements OnInit {
     let lastTime;
     let prop;
 
-    for (prop in carga) {
-      if (carga[prop] instanceof Date && !firstTime) {
+    for (prop in carga)
+      if (carga[prop] instanceof Date && !firstTime)
         firstTime = carga[prop];
-      }
-    }
-
-    if (prop === 'llegadaDeposito') {
+    
+    if (prop === 'llegadaDeposito')
       lastTime = carga['salidaRDC'];
-    } else {
+    else
       lastTime = carga[prop];
-    }
 
-    if (firstTime && lastTime) {
+    if (firstTime && lastTime)
       return (lastTime.getTime() - firstTime.getTime() > 7200000);
-    } else {
+    else
       return false;
-    }
-  }
+  } 
 }

@@ -10,7 +10,6 @@
     <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
             <div class="barraProgreso" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(18, 117, 9, 0.486) '+ carga.porcentajes.mix +'%, rgba(255,255,255,1) 0%)'}"><p>{{carga.porcentajes.mix}}%</p></div>
     </td>
-    <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.empiezaCarga]!='' }"><p>{{carga.empiezaCarga | date:'HH:mm'}}</p></td>
     <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.terminaCarga]!='' }"><p>{{carga.terminaCarga | date:'HH:mm'}}</p></td>
     <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.initFacturacion]!='' }"><p>{{carga.initFacturacion | date:'HH:mm'}}</p></td>
     <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.endFacturacion]!='' }"><p>{{carga.endFacturacion | date:'HH:mm'}}</p></td>
@@ -19,4 +18,4 @@
     <td class="mdl-data-table__cell--non-numeric celdaEstado">
         <div [class.estadoFail]="getStatus(carga)"></div>
     </td>
-</tr>
+</tr> 

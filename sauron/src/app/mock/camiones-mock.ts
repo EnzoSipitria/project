@@ -90,6 +90,61 @@ export const CAMIONES: Carga[] = [
         empiezaCarga: new Date(2018, 1, 1, 9, 0),
         terminaCarga: new Date(2018, 1, 1, 9, 15)
 
+    },
+    {
+        camion: {
+            id: 54,
+            nombre: 'DP Macro 3',
+            conductor: ''
+        },
+        anden: '7',
+        porcentajes: {
+            full: 100,
+            mix: 85,
+        },
+        llegadaRDC: new Date(2018, 1, 1, 14, 30),
+        enrampe: new Date(2018, 1, 1, 14, 45),
+        empiezaCarga: new Date(2018, 1, 1, 15),
+        terminaCarga: new Date(2018, 1, 1, 15, 10),
+        initFacturacion: new Date(2018, 1, 1, 16, 50)
+    },
+    {
+        camion: {
+            id: 225,
+            nombre: 'DP Macro 4',
+            conductor: ''
+        },
+        anden: '21',
+        porcentajes: {
+            full: 100,
+            mix: 100,
+        },
+        llegadaRDC: new Date(2018, 1, 1, 18, 0),
+        enrampe: new Date(2018, 1, 1, 18, 15),
+        empiezaCarga: new Date(2018, 1, 1, 18, 55),
+        terminaCarga: new Date(2018, 1, 1, 19, 0),
+        initFacturacion: new Date(2018, 1, 1, 19, 5),
+        endFacturacion: new Date(2018, 1, 1, 19, 20),
+        salidaRDC: new Date(2018, 1, 1, 20, 35),
+        llegadaDeposito: new Date(2018, 1, 1, 20, 45),
+
+    },
+    {
+        camion: {
+            id: 34,
+            nombre: 'DP Monterrey 5',
+            conductor: ''
+        },
+        anden: '15',
+        porcentajes: {
+            full: 35,
+            mix: 99,
+        },
+        llegadaRDC: new Date(2018, 1, 1, 8, 10),
+        enrampe: new Date(2018, 1, 1, 8, 15),
+        empiezaCarga: new Date(2018, 1, 9, 30),
+        terminaCarga: new Date(2018, 1, 9, 45),
+        initFacturacion: new Date(2018, 1, 1, 10, 5)
     }
 
 ];
