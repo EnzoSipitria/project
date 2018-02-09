@@ -52,9 +52,7 @@ namespace Sauron.Services.Controllers {
         [HttpGet]
         public IList<WarehouseModel> All() {
 
-            SQLConnector.Query();
-            // Console.ReadLine();
-
+        
 
             return warehouses.All();
         }

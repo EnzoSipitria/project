@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -17,34 +19,53 @@ namespace Sauron.Services.App_Start {
             };
         }
 
-        public static void CreateQuery(string sqlQuery) {
-
+        public static void Query(SqlCommand command) {
             SqlConnectionStringBuilder builder = GetConnectionBuilder();
 
             try {
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString)) {
                     connection.Open();
-                    connection.BeginTransaction();
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append("SELECT * FROM carga");
-                    String sql = sb.ToString();
 
-                    using (SqlCommand command = new SqlCommand(sql, connection)) {
-                        using (SqlDataReader reader = command.ExecuteReader()) {
-
-                            while (reader.Read()) {
-                                string s = String.Format("{0} - {1}", reader.GetInt32(0), reader.GetString(2));
-
-                            }
-                        }
-                    }
+                    command.Connection = connection;
+                    SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
                     
                 }
             }
             catch (SqlException e) {
                 Console.WriteLine(e.ToString());
             }
+
         }
 
+        public static DataSet CreateQuery(string sqlQuery) {
+
+            SqlConnectionStringBuilder builder = GetConnectionBuilder();
+
+            try {
+                using (SqlConnection connection = new SqlConnection(builder.ConnectionString)) {
+                    connection.Open();
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery, connection);
+                    DataSet resultQuery = new DataSet();
+                    adapter.Fill(resultQuery, "Query");
+
+                    connection.Close();
+                    return resultQuery;
+
+                }
+            }
+            catch (SqlException e) {
+                Console.WriteLine(e.ToString());
+            }
+            return null;
+        }
+
+        // Returns a single row
+        public static DataRow CreateQuerySingle(string sqlQuery) {
+
+            DataSet data = CreateQuery(sqlQuery);
+
+            return data.Tables[0].Rows[0];
+        }
     }
 }
