@@ -18,53 +18,56 @@
     </thead>
     <tbody>
         <!--ngFor-->
-        <tr *ngFor="let carga of loads | orderby:'llegadaRDC'">
-            <td class="mdl-data-table__cell--non-numeric" (click)="stopInterval()"><p>{{carga.camion.nombre}} </p></td> 
-                <!--<span>{{carga.camion.id}} </span>-->
-            <td class="mdl-data-table__cell--non-numeric">
+        <tr *ngFor="let carga of loads | orderby:'llegadaRDC'" my-row [data]="carga">
+            <!-- <td class="mdl-data-table__cell--non-numeric" (click)="stopInterval()">
+                <p>{{carga.camion.nombre}} </p>
+            </td> -->
+            <!--<span>{{carga.camion.id}} </span>-->
+            <!-- <td class="mdl-data-table__cell--non-numeric">
                 <p>{{carga.anden}}</p>
             </td>
-            <td id="llegadaRDC" class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.llegadaRDC)}">
-                <p>{{carga.llegadaRDC | date:'mediumTime'}} </p>
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.llegadaRDC)}">
+                <p>{{carga.llegadaRDC | date:'mediumTime'}} </p> -->
                 <!-- <app-cell-content [cellValue]="carga.llegadaRDC | date:'mediumTime'" style="padding:0;margin:0;"></app-cell-content> -->
+            <!-- </td> -->
+            <!-- <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':enrampe.finished}"> -->
+                <!-- <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.enrampe)}"> -->
+                <!-- <p>{{carga.enrampe | date:'mediumTime'}} </p> -->
+                <!-- <app-cell-content #enrampe [cellValue]="carga.enrampe" [inicio]="carga.llegadaRDC"></app-cell-content>
             </td>
-            <td id="enrampe" class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.enrampe)}">
-                    <p>{{carga.enrampe | date:'mediumTime'}} </p>
-                <!-- <app-cell-content [cellValue]="carga.enrampe" [inicio]="carga.llegadaRDC" (delayStage)="delayChange($event)"></app-cell-content> -->
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.empiezaCarga)}"> -->
+                <!-- <p>{{carga.empiezaCarga | date:'mediumTime'}} </p>  -->
+                <!-- <app-cell-content #empiezaCarga [cellValue]="carga.empiezaCarga" [inicio]="carga.llegadaRDC"></app-cell-content>
             </td>
-            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.empiezaCarga)}">
-                    <p>{{carga.empiezaCarga | date:'mediumTime'}} </p> 
-                    <!-- <app-cell-content [cellValue]="carga.empiezaCarga" [inicio]="carga.llegadaRDC"  (delayStage)="delayChange($event)"  ></app-cell-content> -->
-            </td>
-            <td clospan="2" style="width:100px" class="mdl-data-table__cell--non-numeric">
-               <app-celda-porcentaje class="fullType" [currentProgress]='carga.full' ></app-celda-porcentaje>
+            <td style="width:100px" class="mdl-data-table__cell--non-numeric">
+                <app-celda-porcentaje class="fullType" [currentProgress]='carga.full'></app-celda-porcentaje>
             </td>
             <td class="mdl-data-table__cell--non-numeric">
-                <app-celda-porcentaje class="mixType" [currentProgress]='carga.mix'></app-celda-porcentaje>
+                <app-celda-porcentaje #porcentajeFull class="mixType" [currentProgress]='carga.mix'></app-celda-porcentaje>
             </td>
-            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.terminaCarga)}">
-                    <p>{{carga.terminaCarga | date:'mediumTime'}} </p>
-                <!-- <app-cell-content [cellValue]="carga.terminaCarga" [inicio]="carga.llegadaRDC"  (delayStage)="delayChange($event)"></app-cell-content> -->
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.terminaCarga)}"> -->
+                <!-- <p>{{carga.terminaCarga | date:'mediumTime'}} </p> -->
+                <!-- <app-cell-content #porcentajeMix [cellValue]="carga.terminaCarga" [inicio]="carga.llegadaRDC"></app-cell-content>
             </td>
-            <td class="mdl-data-table__cell--non-numeric"[ngClass]="{'completed':checkValue(carga.initFacturacion)}">
-                    <p>{{carga.initFacturacion | date:'mediumTime'}} </p>
-                    <!-- <app-cell-content [cellValue]="carga.initFacturacion" [inicio]="carga.llegadaRDC"  (delayStage)="delayChange($event)"></app-cell-content> -->
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.initFacturacion)}"> -->
+                <!-- <p>{{carga.initFacturacion | date:'mediumTime'}} </p> -->
+                <!-- <app-cell-content #initFacturacion [cellValue]="carga.initFacturacion" [inicio]="carga.llegadaRDC"></app-cell-content> -->
+            <!-- </td>
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.endFacturacion)}"> -->
+                <!-- <p>{{carga.endFacturacion | date:'mediumTime'}} </p> -->
+                <!-- <app-cell-content #endFacturacion [cellValue]="carga.endFacturacion" [inicio]="carga.llegadaRDC"></app-cell-content>
             </td>
-            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.endFacturacion)}">
-                    <p>{{carga.endFacturacion | date:'mediumTime'}} </p>
-                    <!-- <app-cell-content [cellValue]="carga.endFacturacion" [inicio]="carga.llegadaRDC"  (delayStage)="delayChange($event)"></app-cell-content> -->
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.salidaRDC)}"> -->
+                <!-- <p>{{carga.salidaRDC | date:'mediumTime'}} </p> -->
+                <!-- <app-cell-content #salidaRDC [cellValue]="carga.salidaRDC" [inicio]="carga.llegadaRDC"></app-cell-content>
             </td>
-            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.salidaRDC)}">
-                    <p>{{carga.salidaRDC | date:'mediumTime'}} </p>
-                    <!-- <app-cell-content [cellValue]="carga.salidaRDC" [inicio]="carga.llegadaRDC"  (delayStage)="delayChange($event)"></app-cell-content> -->
-            </td>
-            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.llegadaDeposito)}">
-                    <p>{{carga.llegadaDeposito | date:'mediumTime'}} </p> 
-                <!-- <app-cell-content [cellValue]="carga.llegadaDeposito" [inicio]="carga.llegadaRDC"  (delayStage)="delayChange($event)"></app-cell-content> -->
+            <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.llegadaDeposito)}"> -->
+                <!-- <p>{{carga.llegadaDeposito | date:'mediumTime'}} </p>  -->
+                <!-- <app-cell-content #llegadaDeposito [cellValue]="carga.llegadaDeposito" [inicio]="carga.llegadaRDC"></app-cell-content>
             </td>
             <td class="mdl-data-table__cell--non-numeric celdaEstado">
-                <app-estado [carga]="carga"></app-estado>
-            </td>
+                <app-estado #estado [carga]="carga"></app-estado>
+            </td> -->
         </tr>
     </tbody>
 </table>

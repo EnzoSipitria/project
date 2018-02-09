@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { CamionesService } from '../../services/camiones.service';
 import { Carga } from '../../model/carga';
 import { EstadoComponent } from '../estado/estado.component';
@@ -8,66 +8,23 @@ import { EstadoComponent } from '../estado/estado.component';
   templateUrl: './carga.component.html',
   styleUrls: ['./carga.component.css']
 })
-export class CargaComponent implements OnInit, AfterViewInit {
+export class CargaComponent implements OnInit, OnChanges {
 
   loads: Carga[];
-  @Input() delayedStage: boolean;
-  carga:Carga;
-  intervalIdF=0;
-  intervalIdM=1;
+  carga: Carga;
 
- 
 
-  @ViewChild(EstadoComponent) status:EstadoComponent;
-  
-  
-  ngAfterViewInit() {
-    // this.updateCargaFull();
-    // this.updateCargaMix();
-    this.delayedStage=this.status.status;
+
+  @ViewChild(EstadoComponent) status: EstadoComponent;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    throw new Error("Method not implemented.");
   }
 
 
 
- stopInterval(){
-   console.log("stoped interval");
-  clearInterval(this.intervalIdF);
-  clearInterval(this.intervalIdM);
- }
-  
-  updateCargaFull(){
-    console.log("startFUll Interval"+this.carga);
-    if (this.carga != null){
-    this.intervalIdF = window.setInterval(() => {
-      if (this.carga.full === 100) {
-        this.carga.full=0;
-      } else {
-        this.carga.full+=5;
-      }
-    }, 15000);
-  }
-  }
-  updateCargaMix(){
-    console.log("start mix Interval");
-    if (this.carga != null){
-    this.intervalIdM = window.setInterval(() => {
-      if (this.carga.mix === 100) {
-        console.log("reset the percentage");
-        this.carga.mix=0;
-      } else {
-        console.log("adde charge");
-        this.carga.mix+=5;
-      }
-    }, 1000);
-  }
- 
-  }
 
-  startInterval(){
-    // this.updateCargaFull();
-    // this.updateCargaMix();
-    
-  }
+
 
   /**
    *
@@ -76,7 +33,7 @@ export class CargaComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getLoads();
-   
+
   }
 
   /*

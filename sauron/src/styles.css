@@ -12,13 +12,13 @@ div.reloj{
     align-content: center;
     padding: 0;
     width:100;
-    border-color: rgba(38, 212, 38, 0.637);
-    border:2px;
+    border-color: rgb(0, 0, 0);
+    border-right:3px solid;
 
 }
 
-/* .delayed{
-    border: 1px;
+.delayed{
+    border: 2px;
     border-color: rgb(219, 11, 11);
-    background:rgba(219, 11, 11,0.5);
-} */
+   // background:rgba(219, 11, 11,0.5);
+}

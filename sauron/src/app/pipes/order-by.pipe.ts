@@ -17,7 +17,6 @@ export class OrderByPipe implements PipeTransform {
 
       let orderByValue = args[0];
       let byVal = 1
-      console.log("orderByValue pre condition",orderByValue);
       // check if exclamation point 
 
       if(orderByValue.charAt(0) == "!") {
@@ -27,8 +26,6 @@ export class OrderByPipe implements PipeTransform {
         byVal = -1
         orderByValue = orderByValue.substring(1)
       }
-      console.log("byVal",byVal);
-      console.log("orderByValue",orderByValue);
       if (orderByValue=='l') {
       orderByValue="llegadaRDC";
         

@@ -11,6 +11,8 @@ import { CamionesService } from './services/camiones.service';
 import { ClockComponent } from './components/clock/clock.component';
 import { CellContentComponent } from './components/cell-content/cell-content.component';
 import { OrderByPipe } from './pipes/order-by.pipe';
+import { MyRowComponent } from './components/my-row/my-row.component';
+import { AppRoutingModule } from './components/app-routing.module';
 
 
 @NgModule({
@@ -21,11 +23,13 @@ import { OrderByPipe } from './pipes/order-by.pipe';
     EstadoComponent,
     ClockComponent,
     CellContentComponent,
-    OrderByPipe
+    OrderByPipe,
+    MyRowComponent
   ],
   imports: [
     BrowserModule,
     MatProgressBarModule,
+    AppRoutingModule,
   ],
   providers: [CamionesService],
   bootstrap: [AppComponent]
