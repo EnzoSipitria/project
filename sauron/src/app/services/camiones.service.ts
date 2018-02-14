@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { CAMIONES } from '../mock/camiones-mock';
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +11,7 @@ export class CamionesService {
 
   cargasURL: string = 'http://localhost:51907/api/Cargas/All';
 
-  constructor(private http: Http ) { }
+  constructor(private http: HttpClient ) { }
 
   getCargas() {
     return this.http.get(this.cargasURL);

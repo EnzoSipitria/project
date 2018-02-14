@@ -1,20 +1,20 @@
-<tr *ngFor="let k of cargas | keys">
-        <td class="mdl-data-table__cell--non-numeric "><p>{{cargas[k].nombre}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric"><p>{{cargas[k].anden}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.llegadaRDC]!='' }"><p>{{cargas[k].llegadaRDC | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.enrampe]!='' }"><p>{{cargas[k].enrampe | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.empiezaCarga]!='' }"><p>{{cargas[k].empiezaCarga | date:'HH:mm'}}</p></td>
+<tr *ngFor="let carga of cargas">
+        <td class="mdl-data-table__cell--non-numeric "><p>{{carga.nombre}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric"><p>{{carga.anden}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.llegadaRDC]!='' }"><p>{{carga.llegadaRDC | date:'HH:mm'}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.enrampe]!='' }"><p>{{carga.enrampe | date:'HH:mm'}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.empiezaCarga]!='' }"><p>{{cargas.empiezaCarga | date:'HH:mm'}}</p></td>
         <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
                 <div class="barraProgreso" [ngStyle]="{'background' : '-webkit-linear-gradient(left, rgba(18, 117, 9, 0.486) '+ carga.porcentajes.full +'%, rgba(255,255,255,1) 0%)'}"><p><!-- {{carga.porcentajes.full}}% --></p></div>
         </td>
         <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
                 <div class="barraProgreso" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(18, 117, 9, 0.486) '+ carga.porcentajes.mix +'%, rgba(255,255,255,1) 0%)'}"><p><!-- {{carga.porcentajes.mix}}% --></p></div>
         </td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.terminaCarga]!='' }"><p>{{cargas[k].terminaCarga | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.initFacturacion]!='' }"><p>{{cargas[k].initFacturacion | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.endFacturacion]!='' }"><p>{{cargas[k].endFacturacion | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.salidaRDC]!='' }"><p>{{cargas[k].salidaRDC | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.llegadaDeposito]!='' }" ><p>{{cargas[k].llegadaDeposito | date:'HH:mm'}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.terminaCarga]!='' }"><p>{{carga.terminaCarga | date:'HH:mm'}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.initFacturacion]!='' }"><p>{{carga.initFacturacion | date:'HH:mm'}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.endFacturacion]!='' }"><p>{{carga.endFacturacion | date:'HH:mm'}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.salidaRDC]!='' }"><p>{{carga.salidaRDC | date:'HH:mm'}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.llegadaDeposito]!='' }" ><p>{{carga.llegadaDeposito | date:'HH:mm'}}</p></td>
         <td class="mdl-data-table__cell--non-numeric celdaEstado">
             <div [class.estadoFail]="getStatus(carga)"></div>
         </td>
