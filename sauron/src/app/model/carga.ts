@@ -2,6 +2,7 @@ import { Camion } from './camion';
 import { Porcentaje} from './porcentaje';
 
 export class Carga {
+    id?: Number;
     camion: Camion;
     anden: string;
     porcentajes?: Porcentaje;

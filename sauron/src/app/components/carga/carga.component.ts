@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { CamionesService } from '../../services/camiones.service';
 import { DatePipe } from '@angular/common';
 import { Carga } from '../../model/carga';
+
+
 import { CAMIONES } from '../../mock/camiones-mock';
 
 
@@ -12,11 +16,12 @@ import { CAMIONES } from '../../mock/camiones-mock';
 export class CargaComponent implements OnInit {
 
   date: Date = new Date();
-  cargas: Carga[];
+  cargas: any[] = [];
 
-  constructor() { }
+  constructor(private _camionesService: CamionesService) { }
 
   ngOnInit() {
+    this._camionesService.getCargas().subscribe(cargas => this.cargas = cargas);
     this.cargas = CAMIONES;
     console.log(this.cargas);
   }
@@ -40,5 +45,5 @@ export class CargaComponent implements OnInit {
       return (lastTime.getTime() - firstTime.getTime() > 7200000);
     else
       return false;
-  } 
+  }
 }
