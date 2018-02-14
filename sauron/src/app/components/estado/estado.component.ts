@@ -20,17 +20,18 @@ export class EstadoComponent implements OnInit {
 
   checkProgress() {
     let lastStep = this.getLastStep();
-    this.valido = (lastStep.getTime() - this.carga.llegadaRDC.getTime()) <= this.limite; 
+    let firstStep = new Date(Date.parse(this.carga.llegadaRDC.toString()));
+    this.valido = (lastStep.getTime() - firstStep.getTime()) <= this.limite; 
   }
 
   getLastStep() : Date{
     let lastStepTime;
     for (var property in this.carga) {
-      if (this.carga.hasOwnProperty(property)) {
+      if (this.carga.hasOwnProperty(property) && this.carga[property]) {
         lastStepTime = this.carga[property];
       }
     }
-    return lastStepTime;
+    return new Date(Date.parse(lastStepTime));
   }
 
 }

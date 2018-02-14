@@ -10,6 +10,7 @@ import { CamionesService } from './services/camiones.service';
 import { FechaPipe } from './pipes/fecha.pipe';
 import { TimeComponent } from './components/time/time.component';
 import { PorcentajeCargaService } from './services/porcentaje-carga.service';
+import { WebsocketService } from './services/web-socket.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { PorcentajeCargaService } from './services/porcentaje-carga.service';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [CamionesService, PorcentajeCargaService],
+  providers: [CamionesService, PorcentajeCargaService, WebsocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

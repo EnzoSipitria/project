@@ -91,7 +91,7 @@ export const CAMIONES: Carga[] = [
     {
         id: 12,
         camion: {
-            id: 24,
+            id: 85,
             nombre: "Alguno 01",
             conductor: ""
         },

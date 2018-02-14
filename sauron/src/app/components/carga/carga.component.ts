@@ -9,17 +9,21 @@ import { CamionesService } from '../../services/camiones.service';
 })
 export class CargaComponent implements OnInit {
 
-  cargas : Carga[];
+  cargas: Carga[];
 
-  constructor(private camionesService : CamionesService) {
+  constructor(private camionesService: CamionesService) {
     this.cargas = [];
-   }
+    camionesService.messages.subscribe(data => {
+      console.log(data);
+      this.cargas.unshift(data);
+    });
+  }
 
   ngOnInit() {
-    this.camionesService.getCargas().subscribe(cargas =>  {
-      console.log(cargas);
-    this.cargas = cargas}
-  );
+    this.camionesService.getCargas().subscribe(cargas => {
+      this.cargas = cargas
+    }
+    );
   }
 
 }
