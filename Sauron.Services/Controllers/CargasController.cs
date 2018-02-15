@@ -1,4 +1,7 @@
-﻿using Sauron.Services.App_Start;
+﻿using Microsoft.Web.WebSockets;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Sauron.Services.App_Start;
 using Sauron.Services.Models;
 using System;
 using System.Collections.Generic;
@@ -6,8 +9,10 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using WebSocketSharp;
 
 namespace Sauron.Services.Controllers {
 
@@ -16,16 +21,7 @@ namespace Sauron.Services.Controllers {
         // .. /api/Cargas/All 
         [HttpGet]
         public List<CargaModel> All() {
-            DataSet data = SQLConnector.CreateQuery("SELECT * FROM carga");
-            List<CargaModel> cargas = new List<CargaModel>();
-
-            for (int i = 0; i < data.Tables[0].Rows.Count; i++) {
-                CargaModel carga = CargaModel.Map(data.Tables[0].Rows[i]);
-                cargas.Add(carga);
-            }
-            
-            return cargas;
-
+            return SQLConnector.GetListFromQuery<CargaModel>("SELECT * FROM carga");
         }
 
         // .. /api/Cargas/Unfinished 
@@ -37,12 +33,43 @@ namespace Sauron.Services.Controllers {
 
         // api/Cargas/create
         [HttpPost]
-        public HttpResponseMessage Create([FromBody] CargaModel carga) {
+        public CargaModel Create([FromBody] CargaModel carga) {
             var response = new HttpResponseMessage(HttpStatusCode.OK);
 
             carga.Insert().Execute();
-            response.Content = new StringContent("Created carga: " + carga.ID);
-            return response;
+
+            CargaModel added = SQLConnector.FromQuery<CargaModel>("SELECT * FROM carga WHERE id = " + carga.ID);
+
+            response.Content = new StringContent("Created carga: " + added.ID);
+
+
+            using (var ws = new WebSocket("ws://localhost:51907/api/cargas/subscribe")) {
+                ws.Connect();
+                ws.Send(JsonConvert.SerializeObject(added, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
+            }
+
+
+            return added;
         }
+
+        [HttpGet]
+        public HttpResponseMessage Subscribe() {
+            WebSocketHandler socket = new ChatWebSocketHandler();
+            HttpContext.Current.AcceptWebSocketRequest(socket);
+            return Request.CreateResponse(HttpStatusCode.SwitchingProtocols);
+        }
+
+        class ChatWebSocketHandler : WebSocketHandler {
+            private static WebSocketCollection _chatClients = new WebSocketCollection();
+
+            public override void OnOpen() {
+                _chatClients.Add(this);
+            }
+
+            public override void OnMessage(string message) {
+                _chatClients.Broadcast(message);
+            }
+        }
+
     }
 }

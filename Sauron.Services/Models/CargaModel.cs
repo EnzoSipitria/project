@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Sauron.Services.Models {
 
-    public class CargaModel{
+    public class CargaModel : Model {
 
         public int ID { get; set; }
         public CamionModel Camion{ get; set; }
@@ -23,14 +23,13 @@ namespace Sauron.Services.Models {
         public DateTime? LlegadaDeposito { get; set; }
 
       
-        public static CargaModel Map(DataRow row) {
-
+        public override Model Map(DataRow row) {
             object[] rowData = row.ItemArray;
             int idCamion = (int)rowData[1];
-       
+
             DataRow data = SQLConnector.CreateQuerySingle("SELECT * FROM camion WHERE id = " + idCamion);
 
-            CamionModel camion = CamionModel.Map(data);
+            CamionModel camion = new CamionModel().Map(data) as CamionModel;
 
             CargaModel carga = new CargaModel() {
                 ID = (int)rowData[0],
@@ -49,7 +48,7 @@ namespace Sauron.Services.Models {
             return carga;
         }
 
-        public SQLQuery Insert() {
+        public override SQLQuery Insert() {
             string query = "INSERT INTO carga VALUES(@id , @id_camion, @anden, @llegadaRdc, @enrampe, @empiezaCarga, @terminaCarga, @initFacturacion, @endFacturacion, @salidaRdc, @llegadaDeposito)";
             SQLQuery sql = new SQLQuery(query);
 
@@ -67,5 +66,6 @@ namespace Sauron.Services.Models {
 
             return sql;
         }
+
     }
 }
