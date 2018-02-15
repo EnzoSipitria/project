@@ -34,5 +34,9 @@ namespace Sauron.Services.Models {
 
             return sql;
         }
+
+        public override SQLQuery Update() {
+            throw new NotImplementedException();
+        }
     }
 }

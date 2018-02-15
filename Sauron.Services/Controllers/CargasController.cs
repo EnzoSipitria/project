@@ -46,7 +46,7 @@ namespace Sauron.Services.Controllers {
                 CargaModel added = SQLConnector.FromQuery<CargaModel>(query);
                 response.Content = new StringContent("Created carga: " + added.ID);
 
-                using (var ws = new WebSocket("ws://localhost:51907/api/cargas/subscribe")) {
+                using (var ws = new WebSocket("ws://localhost:51907/api/cargas/subscribeNew")) {
                     ws.Connect();
                     ws.Send(JsonConvert.SerializeObject(added, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
                 }
@@ -56,8 +56,37 @@ namespace Sauron.Services.Controllers {
             return response;
         }
 
+        // api/cargas/update
+        [HttpPut]
+        public HttpResponseMessage Update([FromBody] CargaModel carga) {
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+
+            bool success = carga.Update().Execute();
+
+            if (success) {
+                response.Content = new StringContent("Carga " + carga.ID + " updated successfully");
+
+                using (var ws = new WebSocket("ws://localhost:51907/api/cargas/subscribeUpdates")) {
+                    ws.Connect();
+                    ws.Send(JsonConvert.SerializeObject(carga, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
+                }
+            }
+            else response.Content = new StringContent("There was an error updating carga.");
+
+            return response;
+        }
+
+
+
         [HttpGet]
-        public HttpResponseMessage Subscribe() {
+        public HttpResponseMessage SubscribeNew() {
+            WebSocketHandler socket = new ChatWebSocketHandler();
+            HttpContext.Current.AcceptWebSocketRequest(socket);
+            return Request.CreateResponse(HttpStatusCode.SwitchingProtocols);
+        }
+
+        [HttpGet]
+        public HttpResponseMessage SubscribeUpdates() {
             WebSocketHandler socket = new ChatWebSocketHandler();
             HttpContext.Current.AcceptWebSocketRequest(socket);
             return Request.CreateResponse(HttpStatusCode.SwitchingProtocols);

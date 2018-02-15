@@ -11,6 +11,7 @@ namespace Sauron.Services.Models {
 
         public abstract Model Map(DataRow row);
         public abstract SQLQuery Insert();
+        public abstract SQLQuery Update();
 
     }
 }
