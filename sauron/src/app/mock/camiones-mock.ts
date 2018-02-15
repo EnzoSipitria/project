@@ -1,17 +1,16 @@
 import { Carga } from '../model/carga';
+import {PORCENTAJES} from './porcentajes-mock';
 
 export const CAMIONES: Carga[] = [
     {
+        // id: 5,
         camion: {
             id: 34,
             nombre: 'DP Macro 1',
             conductor: ''
         },
         anden: '1',
-        porcentajes: {
-            full: 45,
-            mix: 45,
-        },
+        // porcentajes: for(let p in PORCENTAJES){ p.id_carga === this.id => porcentajes = p;},
         llegadaRDC: new Date(2018, 1, 1, 14, 30),
         enrampe: new Date(2018, 1, 1, 14, 45),
         empiezaCarga: new Date(2018, 1, 1, 15),
