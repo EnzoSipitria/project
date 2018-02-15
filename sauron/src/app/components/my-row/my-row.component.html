@@ -6,7 +6,7 @@
   <p>{{carga.anden}}</p>
 </td>
 <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.llegadaRDC)}">
-  <p>{{carga.llegadaRDC | date:'mediumTime'}} </p>
+  <p>{{carga.llegadaRDC | date:'HH:mm:ss'}} </p>
   <!-- <app-cell-content [cellValue]="carga.llegadaRDC | date:'mediumTime'" style="padding:0;margin:0;"></app-cell-content> -->
 </td>
 <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.enrampe)}">
@@ -18,14 +18,14 @@
   <app-cell-content #empiezaCarga [cellValue]="carga.empiezaCarga" [inicio]="carga.llegadaRDC" (delayStage)="onDelayStage($event)"></app-cell-content>
 </td>
 <td style="width:100px" class="mdl-data-table__cell--non-numeric">
-  <app-celda-porcentaje class="fullType" [currentProgress]='carga.full' (delayStage)="onDelayStage($event)"></app-celda-porcentaje>
+  <app-celda-porcentaje class="fullType" [currentProgress]="getFullValue()" (delayStage)="onDelayStage($event)"></app-celda-porcentaje>
 </td>
 <td class="mdl-data-table__cell--non-numeric">
-  <app-celda-porcentaje #porcentajeFull class="mixType" [currentProgress]='carga.mix' (delayStage)="onDelayStage($event)"></app-celda-porcentaje>
+  <app-celda-porcentaje  class="mixType" [currentProgress]="getMixValue()" (delayStage)="onDelayStage($event)"></app-celda-porcentaje>
 </td>
 <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.terminaCarga)}">
   <!-- <p>{{carga.terminaCarga | date:'mediumTime'}} </p> -->
-  <app-cell-content #porcentajeMix [cellValue]="carga.terminaCarga" [inicio]="carga.llegadaRDC" (delayStage)="onDelayStage($event)"></app-cell-content>
+  <app-cell-content #terminaCarga [cellValue]="carga.terminaCarga" [inicio]="carga.llegadaRDC" (delayStage)="onDelayStage($event)"></app-cell-content>
 </td>
 <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'completed':checkValue(carga.initFacturacion)}">
   <!-- <p>{{carga.initFacturacion | date:'mediumTime'}} </p> -->

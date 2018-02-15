@@ -1,15 +1,18 @@
 <div class="content-grid mdl-grid">
-    <div>
-        <app-clock></app-clock>
+    <div style="display:inline-block;width:50%;height:160px">
+        LOGO
     </div>
     <div>
-            <nav >
-                <a routerLink="/addCarga">Nueva Carga</a>
-                <a routerLink="/mainBoard">Board</a>
-                <br>
-            </nav>
+        <nav>
+            <a routerLink="/addCarga">Nueva Carga</a>
+            <a routerLink="/mainBoard">Board</a>
+            <br>
+        </nav>
+    </div>
+    <div style="float:right">
+        <app-clock> </app-clock>
     </div>
 </div>
-    <div>
-            <router-outlet></router-outlet>   
-    </div>
+<div class="main">
+    <router-outlet></router-outlet>
+</div>

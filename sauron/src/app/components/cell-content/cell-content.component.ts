@@ -15,16 +15,28 @@ export class CellContentComponent implements OnInit, OnChanges {
     // console.log("cell comp onchanges called >D"+this.cellValue);
     // setTimeout(() => this.seconds = () => this.sec , 0);
     this.checkFinished();
+    // console.log(this._finished + " finished value");
     if (this._finished) {
-      this.compareDates(this.horaLlegada, this.cellValue);
+      // this._estado=false;
+      // this.delayStage.emit(false);
+     
+      console.log("compareDates call: " +this.horaLlegada + " //  " + this.cellValue);
+      this.compareDates(this.parseDate(this.horaLlegada), this.parseDate(this.cellValue));
     }
   }
 
+  parseDate(value): string[] {
+    var index = value.indexOf('T');
+    var aux = value.substring(index + 1);
+    aux= aux.split(':');
+   
+    return aux;
+  }
 
   @Input() cellValue: Date;
   @Output() delayStage = new EventEmitter<boolean>();
   @Input('inicio') horaLlegada: Date;
-  private _estado:boolean;
+  private _estado: boolean;
 
 
   /**
@@ -33,12 +45,12 @@ export class CellContentComponent implements OnInit, OnChanges {
    */
   private _finished: boolean;
 
-  @Output()
-  get finished(): boolean {
+
+  get Finished(): boolean {
     return this._finished;
   }
 
-  set finished(v: boolean) {
+  set Finished(v: boolean) {
     this._finished = v;
   }
 
@@ -50,7 +62,7 @@ export class CellContentComponent implements OnInit, OnChanges {
 
 
   checkFinished() {
-    if (this.cellValue == null && typeof this.cellValue ==='undefined') {
+    if (this.cellValue == null || typeof this.cellValue === 'undefined') {
       this._finished = false;
       // console.log(this._finished+" finished value null or undefined");
     }
@@ -60,33 +72,41 @@ export class CellContentComponent implements OnInit, OnChanges {
     }
   }
 
-  compareDates(ingreso: Date, stage: Date)/*: boolean*/ {
-    // console.log(ingreso.getHours() + " comparacion H " + stage.getHours());
-    if ((ingreso.getHours() + 2.5) > stage.getHours()) {
-      console.log("no hay retraso en la carga");
-      this._estado=false;
+  compareDates(ingreso, stage)/*: boolean*/ {
+    /*los array siguientes contiene el tiempo, [0] horas [1] minutos [2]segundos
+     */
+   var aux= +ingreso[0]+1;
+   var horasEtapa= +stage[0];
+   var minIngreso = +ingreso[1];
+   var minEtapa = +stage[1];
+    //console.log(typeof aux +" . "+aux+ " comparacion H cell comp " + stage);
+
+    if (aux > horasEtapa) {
+      // if ((ingreso.getHours() + 2.5) > stage.getHours()) {
+     // console.log("no hay retraso en la carga"+ ingreso[0] + "  //  " +stage[0] );
+      this._estado = false;
       this.delayStage.emit(false);
       // return true;
 
     } else {
       // console.log(ingreso.getHours() + " comparacion 2H " + stage.getHours());
-      if (ingreso.getHours() + 2.5 == stage.getHours()) {
+      if ( aux == horasEtapa) {
         // console.log(ingreso.getMinutes() + " comparacion M " + stage.getMinutes());
-        if (ingreso.getMinutes() >= stage.getMinutes()) {
-          console.log("no hay retraso en la carga x mnutos");
+        if (minIngreso >= minEtapa) {
+          // console.log("no hay retraso en la carga x mnutos"+ ingreso[1] + "  //  " +stage[1] );
           // return true;
-          this._estado=false;
+          this._estado = false;
           this.delayStage.emit(false);
         } else {
-          console.log("LA CARGA ESTA RETRASADA");
-          this._estado=true;
+          // console.log("LA CARGA ESTA RETRASADA"+ ingreso[1] + "  //  " +stage[1] );
+          this._estado = true;
           this.delayStage.emit(true);
           // return false;//esta retrasada la carga
         }
       } else {
-        this._estado=true;
+        this._estado = true;
         this.delayStage.emit(true);
-        console.log("LA CARGA ESTA RETRASADA");
+        // console.log("LA CARGA ESTA RETRASADA");
         // return false;//esta retrasada la carga
       }
     }

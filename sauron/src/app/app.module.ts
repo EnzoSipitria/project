@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { CargaComponent } from './components/carga/carga.component';
@@ -16,6 +16,7 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { MyRowComponent } from './components/my-row/my-row.component';
 import { AppRoutingModule } from './components/app-routing.module';
 import { AddCargaFormComponent } from './components/add-carga-form/add-carga-form.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AddCargaFormComponent } from './components/add-carga-form/add-carga-for
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     MatProgressBarModule,
     HttpClientModule,
     AppRoutingModule,

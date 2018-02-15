@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 //import {  } from '@angular/core';
 //import { AfterViewInit, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
@@ -8,7 +8,16 @@ import { Component, OnInit, Input, Output } from '@angular/core';
   templateUrl: './celda-porcentaje.component.html',
   styleUrls: ['./celda-porcentaje.component.css']
 })
-export class CeldaPorcentajeComponent implements OnInit {
+export class CeldaPorcentajeComponent implements OnInit, OnChanges {
+  @Output()
+  isfinished(): any {
+      return this.currentProgress==100;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isfinished();
+  }
+  
   /*
   * quizas hay que agregar otra variable para el progreso del MIX
   *
@@ -24,11 +33,11 @@ export class CeldaPorcentajeComponent implements OnInit {
     this._finished = v;
   }
 
-
+  @Input() idCarga: number;
   @Input() currentProgress: number;
   intervalIdF = 0;
-  updateCarga() {
 
+  updateCarga() {
     // console.log("startFUll Interval" + this.currentProgress);
     if (this.currentProgress != null) {
       this.intervalIdF = window.setInterval(() => {
@@ -52,11 +61,12 @@ export class CeldaPorcentajeComponent implements OnInit {
   }
   constructor() {
 
+
   }
 
   ngOnInit() {
-    if (typeof this.currentProgress === 'undefined') {
-      // console.log(name + ' is undefined');
+    if (typeof this.currentProgress === 'undefined' || this.currentProgress == -1) {
+      console.log(this.currentProgress + ' is undefined');
       this.currentProgress = 0;
     } else {
       this.updateCarga();

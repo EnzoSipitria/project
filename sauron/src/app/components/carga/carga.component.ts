@@ -10,6 +10,7 @@ import { EstadoComponent } from '../estado/estado.component';
 })
 export class CargaComponent implements OnInit, OnChanges {
 
+  selectedCol: string;
   loads: Carga[];
 
 
@@ -18,11 +19,13 @@ export class CargaComponent implements OnInit, OnChanges {
   @ViewChild(EstadoComponent) status: EstadoComponent;
 
   ngOnChanges(changes: SimpleChanges): void {
-    throw new Error("Method not implemented.");
   }
 
 
-
+  orderByCol(column: string) {
+    console.log("click event on column");
+    this.selectedCol = column;
+  }
 
 
 
@@ -33,27 +36,13 @@ export class CargaComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.getLoads();
-
+    this.selectedCol='llegadaRDC';
   }
 
-  /*
-  *sirve para chekear que un stage este completado o no, considerando que undefined or null como false y solo 
-  *completa el background si tiene algun valor
-  */
-  checkValue(value): boolean {
-    if (typeof value === "undefined") {
-      // console.log(value + "class carga componente undefined");
-      return false;
-    } else if (value === null) {
-      // console.log("class carga componente null");
-      return false;
-    } else {
-      // console.log("fue verdadero");
-      return true;
-    }
-  }
+
   getLoads() {
     this.dataService.getCargas()
       .subscribe(cargas => this.loads = cargas);
   }
+
 }
