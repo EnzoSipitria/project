@@ -43,5 +43,23 @@ namespace Sauron.Services.Controllers {
             response.Content = new StringContent("Created carga: " + carga.ID);
             return response;
         }
+
+        //// .. /api/Cargas/porcentaje
+        //[HttpGet]
+        //public List<CargaModel> Porcentaje()
+        //{
+        //    DataSet data = SQLConnector.CreateQuery("SELECT * FROM carga");
+        //    List<CargaModel> cargas = new List<CargaModel>();
+
+        //    for (int i = 0; i < data.Tables[0].Rows.Count; i++)
+        //    {
+        //        CargaModel carga = CargaModel.Map(data.Tables[0].Rows[i]);
+        //        cargas.Add(carga);
+        //    }
+
+        //    return cargas;
+
+        //}
+
     }
 }
