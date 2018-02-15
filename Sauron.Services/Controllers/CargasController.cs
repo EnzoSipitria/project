@@ -6,6 +6,7 @@ using Sauron.Services.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,7 +22,8 @@ namespace Sauron.Services.Controllers {
         // .. /api/Cargas/All 
         [HttpGet]
         public List<CargaModel> All() {
-            return SQLConnector.GetListFromQuery<CargaModel>("SELECT * FROM carga");
+            SqlCommand query = new SqlCommand("SELECT * FROM carga");
+            return SQLConnector.GetListFromQuery<CargaModel>(query);
         }
 
         // .. /api/Cargas/Unfinished 
@@ -33,23 +35,25 @@ namespace Sauron.Services.Controllers {
 
         // api/Cargas/create
         [HttpPost]
-        public CargaModel Create([FromBody] CargaModel carga) {
+        public HttpResponseMessage Create([FromBody] CargaModel carga) {
             var response = new HttpResponseMessage(HttpStatusCode.OK);
 
-            carga.Insert().Execute();
+            bool success = carga.Insert().Execute();
 
-            CargaModel added = SQLConnector.FromQuery<CargaModel>("SELECT * FROM carga WHERE id = " + carga.ID);
+            if (success) {
+                SqlCommand query = new SqlCommand("SELECT * FROM carga WHERE id = @carga");
+                query.Parameters.Add(new SqlParameter("@carga", carga.ID));
+                CargaModel added = SQLConnector.FromQuery<CargaModel>(query);
+                response.Content = new StringContent("Created carga: " + added.ID);
 
-            response.Content = new StringContent("Created carga: " + added.ID);
-
-
-            using (var ws = new WebSocket("ws://localhost:51907/api/cargas/subscribe")) {
-                ws.Connect();
-                ws.Send(JsonConvert.SerializeObject(added, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
+                using (var ws = new WebSocket("ws://localhost:51907/api/cargas/subscribe")) {
+                    ws.Connect();
+                    ws.Send(JsonConvert.SerializeObject(added, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
+                }
             }
+            else response.Content = new StringContent("There was an error creating carga.");
 
-
-            return added;
+            return response;
         }
 
         [HttpGet]

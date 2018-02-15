@@ -22,7 +22,7 @@ namespace Sauron.Services.App_Start {
             };
         }
 
-        public static void Query(SqlCommand command) {
+        public static bool Query(SqlCommand command) {
             SqlConnectionStringBuilder builder = GetConnectionBuilder();
 
             try {
@@ -33,21 +33,23 @@ namespace Sauron.Services.App_Start {
                     SqlDataReader reader = command.ExecuteReader(CommandBehavior.CloseConnection);
                     
                 }
+                return true;
             }
             catch (SqlException e) {
                 Console.WriteLine(e.ToString());
+                return false;
             }
 
         }
 
-        public static T FromQuery<T>(string query) where T : Model, new() { // unsafe query string
+        public static T FromQuery<T>(SqlCommand query) where T : Model, new() { 
             DataRow data = CreateQuerySingle(query);
             T queryItem = new T().Map(data) as T;
             return queryItem;
         }
 
 
-        public static List<T> GetListFromQuery<T>(string query) where T : Model, new() { // unsafe query string
+        public static List<T> GetListFromQuery<T>(SqlCommand query) where T : Model, new() { 
             DataSet data = CreateQuery(query);
             List<T> queryList = new List<T>();
 
@@ -61,15 +63,15 @@ namespace Sauron.Services.App_Start {
 
 
 
-        public static DataSet CreateQuery(string sqlQuery) { // unsafe query string
+        public static DataSet CreateQuery(SqlCommand sqlQuery) { 
 
             SqlConnectionStringBuilder builder = GetConnectionBuilder();
 
             try {
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString)) {
                     connection.Open();
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery, connection);
+                    sqlQuery.Connection = connection;
+                    SqlDataAdapter adapter = new SqlDataAdapter(sqlQuery);
                     DataSet resultQuery = new DataSet();
                     adapter.Fill(resultQuery, "Query");
 
@@ -85,7 +87,7 @@ namespace Sauron.Services.App_Start {
         }
 
         // Returns a single row
-        public static DataRow CreateQuerySingle(string sqlQuery) {// unsafe query string
+        public static DataRow CreateQuerySingle(SqlCommand sqlQuery) { 
 
             DataSet data = CreateQuery(sqlQuery);
 

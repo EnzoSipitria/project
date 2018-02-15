@@ -19,14 +19,14 @@ namespace Sauron.Services.App_Start {
             queryParams.Add(param, value == null ? DBNull.Value : value);
         }
 
-        public void Execute() {
+        public bool Execute() {
             SqlCommand cmd = new SqlCommand(query);
 
             foreach (var param in queryParams) {
                 cmd.Parameters.AddWithValue(param.Key, param.Value);
             }
 
-            SQLConnector.Query(cmd);
+            return SQLConnector.Query(cmd);
         }
 
         

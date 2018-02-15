@@ -27,7 +27,10 @@ namespace Sauron.Services.Models {
             object[] rowData = row.ItemArray;
             int idCamion = (int)rowData[1];
 
-            DataRow data = SQLConnector.CreateQuerySingle("SELECT * FROM camion WHERE id = " + idCamion);
+            SqlCommand query = new SqlCommand("SELECT * FROM camion WHERE id = @camion");
+            query.Parameters.Add(new SqlParameter("@camion", idCamion));
+
+            DataRow data = SQLConnector.CreateQuerySingle(query);
 
             CamionModel camion = new CamionModel().Map(data) as CamionModel;
 
