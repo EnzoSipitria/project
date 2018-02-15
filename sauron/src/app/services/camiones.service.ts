@@ -9,18 +9,22 @@ import { WebsocketService } from './web-socket.service';
 @Injectable()
 export class CamionesService {
 
-  public messages: Subject<Carga>;
-  
-  constructor(private http : HttpClient, wsService: WebsocketService) {
-    this.messages = <Subject<Carga>>wsService
-			.connect("ws://localhost:51907/api/cargas/subscribe")
-			.map((response: MessageEvent): Carga => {
-				return JSON.parse(response.data);
-			});
+  public newCargas: Subject<Carga>;
+  public updateCargas: Subject<Carga>;
+
+  constructor(private http: HttpClient, private wsService: WebsocketService) {
+    this.newCargas = this.getSocket("ws://localhost:51907/api/cargas/subscribeNew");
+    this.updateCargas = this.getSocket("ws://localhost:51907/api/cargas/subscribeUpdates");
   }
 
   getCargas(): Observable<Carga[]> {
     return this.http.get<Carga[]>("http://localhost:51907/api/Cargas/All");
+  }
+
+  private getSocket(socketUri) {
+    return <Subject<Carga>>this.wsService.connect(socketUri).map((response: MessageEvent): Carga => {
+      return JSON.parse(response.data);
+    });
   }
 
 }

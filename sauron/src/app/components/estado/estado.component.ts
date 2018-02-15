@@ -15,7 +15,7 @@ export class EstadoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    setInterval(() => this.checkProgress(), 1000);
+    this.checkProgress();
   }
 
   checkProgress() {

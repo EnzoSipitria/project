@@ -13,9 +13,12 @@ export class CargaComponent implements OnInit {
 
   constructor(private camionesService: CamionesService) {
     this.cargas = [];
-    camionesService.messages.subscribe(data => {
-      console.log(data);
+    camionesService.newCargas.subscribe(data => {
       this.cargas.unshift(data);
+    });
+    camionesService.updateCargas.subscribe(data => {
+      let carga = this.cargas.findIndex(carga => carga.id == data.id);
+      this.cargas[carga] = data;
     });
   }
 
