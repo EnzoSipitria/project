@@ -1,14 +1,18 @@
 <tr *ngFor="let carga of cargas">
-        <td class="mdl-data-table__cell--non-numeric "><p>{{carga.nombre}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric "><p>{{carga.camion.nombre}}</p></td>
         <td class="mdl-data-table__cell--non-numeric"><p>{{carga.anden}}</p></td>
         <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.llegadaRDC]!='' }"><p>{{carga.llegadaRDC | date:'HH:mm'}}</p></td>
         <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.enrampe]!='' }"><p>{{carga.enrampe | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.empiezaCarga]!='' }"><p>{{cargas.empiezaCarga | date:'HH:mm'}}</p></td>
+        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.empiezaCarga]!='' }"><p>{{carga.empiezaCarga | date:'HH:mm'}}</p></td>
         <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
-                <div class="barraProgreso" [ngStyle]="{'background' : '-webkit-linear-gradient(left, rgba(18, 117, 9, 0.486) '+ carga.porcentajes.full +'%, rgba(255,255,255,1) 0%)'}"><p><!-- {{carga.porcentajes.full}}% --></p></div>
+                <div class="barraProgreso" [ngStyle]="{'background' : '-webkit-linear-gradient(left, rgba(18, 117, 9, 0.486) '+ getFull(carga)+'%, rgba(255,255,255,1) 0%)'}">
+                        <p [class.textoVisible]="getPorcentajes(carga)">{{getFull(carga)}}%</p>
+                </div>
         </td>
         <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
-                <div class="barraProgreso" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(18, 117, 9, 0.486) '+ carga.porcentajes.mix +'%, rgba(255,255,255,1) 0%)'}"><p><!-- {{carga.porcentajes.mix}}% --></p></div>
+                <div class="barraProgreso" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(18, 117, 9, 0.486) '+getMix(carga)+'%, rgba(255,255,255,1) 0%)'}">
+                        <p [class.textoVisible]="getPorcentajes(carga)">{{getMix(carga)}}%</p>
+                </div>
         </td>
         <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.terminaCarga]!='' }"><p>{{carga.terminaCarga | date:'HH:mm'}}</p></td>
         <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.initFacturacion]!='' }"><p>{{carga.initFacturacion | date:'HH:mm'}}</p></td>

@@ -28,6 +28,10 @@ th.celdaPorcentaje{
     width: 120px;
 
 }
+p.textoVisible{
+    visibility: hidden;
+
+}
 div.barraProgreso{
     height: inherit;
     

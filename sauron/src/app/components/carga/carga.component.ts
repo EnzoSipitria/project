@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CamionesService } from '../../services/camiones.service';
 import { DatePipe } from '@angular/common';
 import { Carga } from '../../model/carga';
+import { Porcentaje } from '../../model/porcentaje';
 
 
-import { CAMIONES } from '../../mock/camiones-mock';
+import { PORCENTAJES } from '../../mock/porcentajes-mock';
 
 
 @Component({
@@ -15,33 +16,66 @@ import { CAMIONES } from '../../mock/camiones-mock';
 export class CargaComponent implements OnInit {
 
   date: Date = new Date();
-  cargas: any = [];
+  cargas: Carga[];
+  porcentajes: any[] = PORCENTAJES;
 
-  constructor(private _camionesService: CamionesService) { }
+  constructor(private _camionesService: CamionesService) {
+
+  }
 
   ngOnInit() {
-    this._camionesService.getCargas().subscribe(cargas =>  this.cargas = cargas);
-    // console.log(cargas);
+    this._camionesService.getCargas().subscribe(cargas => {
+       this.cargas = cargas;
+      });
+
+  }
+  getPorcentajes(carga) {
+
+    let result = true;
+    for (let i of this.porcentajes) {
+
+      if (carga['id'] === i.id_carga ) {
+        result = false;
+      }
+    }
+    return result;
   }
 
+  getFull(carga) {
+    let result;
+    for (let i of this.porcentajes) {
+      if (carga['id'] === i.id_carga ) {
+        result = i.full;
+      }
+    }
+    return result;
+  }
+  getMix(carga) {
+    let result;
+    for (let i of this.porcentajes) {
+      if (carga['id'] === i.id_carga ) {
+        result = i.mix;
+      }
+    }
+    return result;
+  }
   getStatus(carga): boolean {
 
-    let firstTime;
+    let firstTime = carga.llegadaRDC;
     let lastTime;
     let prop;
+    let result;
 
-    for (prop in carga)
-      if (carga[prop] instanceof Date && !firstTime)
-        firstTime = carga[prop];
-    
-    if (prop === 'llegadaDeposito')
-      lastTime = carga['salidaRDC'];
-    else
-      lastTime = carga[prop];
+    for (prop in carga) {
 
-    if (firstTime && lastTime)
-      return (lastTime.getTime() - firstTime.getTime() > 7200000);
-    else
-      return false;
+      if (carga[prop] !== null && prop !== 'id' && prop !== 'camion' && prop !== 'anden' && prop !== 'llegadaDeposito') {
+
+        lastTime = carga[prop];
+        console.log(prop);
+      }
+    }
+    return (Date.parse(lastTime) - Date.parse(firstTime) > 7200000);
   }
 }
+
+
