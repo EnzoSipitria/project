@@ -8,18 +8,10 @@ import { identifierName, identifierModuleUrl } from '@angular/compiler';
 })
 export class CellContentComponent implements OnInit, OnChanges {
 
-  // sec; 
-  // seconds() { return 0; }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log("cell comp onchanges called >D"+this.cellValue);
-    // setTimeout(() => this.seconds = () => this.sec , 0);
     this.checkFinished();
-    // console.log(this._finished + " finished value");
     if (this._finished) {
-      // this._estado=false;
-      // this.delayStage.emit(false);
-     
       console.log("compareDates call: " +this.horaLlegada + " //  " + this.cellValue);
       this.compareDates(this.parseDate(this.horaLlegada), this.parseDate(this.cellValue));
     }
@@ -79,59 +71,29 @@ export class CellContentComponent implements OnInit, OnChanges {
    var horasEtapa= +stage[0];
    var minIngreso = +ingreso[1];
    var minEtapa = +stage[1];
-    //console.log(typeof aux +" . "+aux+ " comparacion H cell comp " + stage);
 
     if (aux > horasEtapa) {
-      // if ((ingreso.getHours() + 2.5) > stage.getHours()) {
-     // console.log("no hay retraso en la carga"+ ingreso[0] + "  //  " +stage[0] );
       this._estado = false;
       this.delayStage.emit(false);
-      // return true;
 
     } else {
-      // console.log(ingreso.getHours() + " comparacion 2H " + stage.getHours());
       if ( aux == horasEtapa) {
-        // console.log(ingreso.getMinutes() + " comparacion M " + stage.getMinutes());
         if (minIngreso >= minEtapa) {
-          // console.log("no hay retraso en la carga x mnutos"+ ingreso[1] + "  //  " +stage[1] );
-          // return true;
           this._estado = false;
           this.delayStage.emit(false);
         } else {
-          // console.log("LA CARGA ESTA RETRASADA"+ ingreso[1] + "  //  " +stage[1] );
           this._estado = true;
           this.delayStage.emit(true);
-          // return false;//esta retrasada la carga
         }
       } else {
         this._estado = true;
         this.delayStage.emit(true);
-        // console.log("LA CARGA ESTA RETRASADA");
-        // return false;//esta retrasada la carga
       }
     }
   }
 
-  // calculateDelay() {
-  //   if (this.cellValue != null) {
-  //     // console.log("estoy comparandco las fechas");
-  //     if (this.compareDates(this.horaLlegada, this.cellValue)) {
-
-  //       //this.delayStage.emit(true);
-  //       console.log("no cambio el estado")
-  //     } else {
-  //       console.log("EMITIENDO EL FALSE Y CAMBIANDO E ESTADO A")
-  //       this.delayStage.emit(false);
-  //     }
-  //   }
-  //   else {
-  //     console.log("no compare ;)")
-  //   }
-  // }
 
   ngOnInit() {
-    // console.log("hello estoy en OnInit" + this.cellValue + " y " + this.horaLlegada)
-    // this.calculateDelay();
   }
 }
 

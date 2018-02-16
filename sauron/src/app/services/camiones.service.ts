@@ -16,6 +16,8 @@ export class CamionesService {
   /**
    *
    */
+
+   cargas:Carga[];
   constructor(private http: HttpClient) {
 
   }
@@ -34,6 +36,9 @@ export class CamionesService {
     return of(porcentaje);
 
 
+  }
+  public getCargasOnService(){
+    
   }
 
   public getCargas(): Observable<Carga[]> {

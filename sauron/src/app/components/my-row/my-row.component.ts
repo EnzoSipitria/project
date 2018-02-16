@@ -13,7 +13,6 @@ export class MyRowComponent implements OnInit, OnChanges {
 
 
   @Input('data') carga: Carga;
-  // idCarga:number=this.carga.id;
   rowStatus: boolean = true;
   _counter: number = 0;
   porcentaje: Porcentaje;
@@ -53,8 +52,6 @@ ngOnInit() {
 
 
 ngOnChanges(changes: SimpleChanges): void {
-
-  // console.log("call on the row component");
 
 }
 

@@ -1,18 +1,74 @@
-<form>
-  <div class="floating">
-    <label>Anden </label>
-    <input placeholder="Nro. Anden" class="elements" />
-    <br>
-    <label>Camion </label>
-    <select class="camiones">
-      <!-- el option se opuede generar con *ngFor -->
-      <option *ngFor="let camion of camiones" [value]="camion"> {{camion.nombre}}</option>
-    </select>
-    <br>
-    <label>Hora de Llegada</label>
-    <input placeholder="HH:mm:ss" class="elements" />
-    <br>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--6-col">
+    <form #formNewCarga>
+      <div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" id="sample1">
+          <label class="mdl-textfield__label" for="sample1">Id Carga</label>
+        </div>
+        <div class="selectItem">
+          <mat-form-field>
+            <mat-select placeholder="camiones">
+              <mat-option *ngFor="let camion of camiones" [value]="camion.nombre">
+                {{ camion.nombre }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="sample1" pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]">
+            <label class="mdl-textfield__label" for="sample1">HH:mm:ss</label>
+          </div>
+        </div>
+        <div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="sample1">
+            <label class="mdl-textfield__label" for="sample1">Anden</label>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" (click)="onSubmit()" style="width:40%">submit</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="reset" (click)="onReset()" style="width:15%">reset</button>
+      </div>
+    </form>
   </div>
-  <button>clickme</button>
 
-</form>
+  <div class="mdl-cell mdl-cell--6-col">
+    <form #updateCarga>
+      <div class="selectItem">
+        <mat-form-field>
+
+          <mat-select placeholder="some carga">
+            <mat-option [value]="123">123</mat-option>
+            <mat-option [value]="233">233</mat-option>
+            <mat-option [value]="322">322</mat-option>
+            <mat-option [value]="124">124</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="selectItem">
+        <mat-form-field>
+          <mat-select placeholder="some carga">
+            <mat-option [value]="123">Enrampe</mat-option>
+            <mat-option [value]="233">Empieza carga</mat-option>
+            <mat-option [value]="322">Termina carga</mat-option>
+            <mat-option [value]="124">inicio facturacion</mat-option>
+            <mat-option [value]="124">Termina facturacion</mat-option>
+            <mat-option [value]="124">salida RDC</mat-option>
+            <mat-option [value]="124">Llegada Deposito</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <button class="mdl-button mdl-js-button mdl-button--colored" type="submit" (click)="onSubmitUpdate()" style="width:40%">submit</button>
+        <button class="mdl-button mdl-js-button mdl-button--accent" type="reset" (click)="onResetUpdate()" style="width:15%">reset</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

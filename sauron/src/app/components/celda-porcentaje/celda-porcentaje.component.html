@@ -1,6 +1,6 @@
 <!-- <mat-progress-bar class="progress" [value]="currentProgress" [bufferValue]="currentProgress"></mat-progress-bar> -->
-<div style="width:100px; background:white;border:1px solid">
-        <div class="contenido" (click)="stop()" style="background:rgb(45, 214, 45);text-align:center " [style.width]="currentProgress + '%'">
+<div>
+        <div class="contenido" (click)="stop()" [style.width]="currentProgress + '%'">
                        {{currentProgress}}% {{_finished}} {{idCarga}}
         </div>
 </div>

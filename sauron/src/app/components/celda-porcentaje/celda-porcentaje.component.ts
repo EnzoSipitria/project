@@ -18,10 +18,7 @@ export class CeldaPorcentajeComponent implements OnInit, OnChanges {
     this.isfinished();
   }
   
-  /*
-  * quizas hay que agregar otra variable para el progreso del MIX
-  *
-  **/
+
 
   private _finished: boolean = false;
 
@@ -38,7 +35,6 @@ export class CeldaPorcentajeComponent implements OnInit, OnChanges {
   intervalIdF = 0;
 
   updateCarga() {
-    // console.log("startFUll Interval" + this.currentProgress);
     if (this.currentProgress != null) {
       this.intervalIdF = window.setInterval(() => {
         if (this.currentProgress >= 100) {

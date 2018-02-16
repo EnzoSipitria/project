@@ -1,0 +1,9 @@
+div .selectItem{
+     display: flex;
+     flex-direction: column;
+     width:55%;
+}
+div .mdl-textfield{
+    width:55%;
+}
+

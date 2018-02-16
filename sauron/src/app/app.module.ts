@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+
 
 import { AppComponent } from './app.component';
 import { CargaComponent } from './components/carga/carga.component';
@@ -37,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatProgressBarModule,
     HttpClientModule,
     AppRoutingModule,
+    MatSelectModule
   ],
   providers: [CamionesService],
   bootstrap: [AppComponent]
