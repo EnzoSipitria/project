@@ -71,10 +71,10 @@ export class CargaComponent implements OnInit {
       if (carga[prop] !== null && prop !== 'id' && prop !== 'camion' && prop !== 'anden' && prop !== 'llegadaDeposito') {
 
         lastTime = carga[prop];
-        console.log(prop);
       }
     }
-    return (Date.parse(lastTime) - Date.parse(firstTime) > 7200000);
+    // 5400000 = 1 !/2 hs
+    return (Date.parse(lastTime) - Date.parse(firstTime) > 5400000);
   }
 }
 

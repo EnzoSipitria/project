@@ -1,25 +1,27 @@
 <tr *ngFor="let carga of cargas">
-        <td class="mdl-data-table__cell--non-numeric "><p>{{carga.camion.nombre}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric"><p>{{carga.anden}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.llegadaRDC]!='' }"><p>{{carga.llegadaRDC | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.enrampe]!='' }"><p>{{carga.enrampe | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.empiezaCarga]!='' }"><p>{{carga.empiezaCarga | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
-                <div class="barraProgreso" [ngStyle]="{'background' : '-webkit-linear-gradient(left, rgba(18, 117, 9, 0.486) '+ getFull(carga)+'%, rgba(255,255,255,1) 0%)'}">
+        <td class="celdaCamion"><p>{{carga.camion.nombre}}</p></td>
+        <td><p>{{carga.anden}}</p></td>
+        <td [ngClass]="{'etapaCompletada': [carga.llegadaRDC]!='' }"><p>{{carga.llegadaRDC | date:'HH:mm'}}</p></td>
+        <td [ngClass]="{'etapaCompletada': [carga.enrampe]!='' }"><p>{{carga.enrampe | date:'HH:mm'}}</p></td>
+        <td [ngClass]="{'etapaCompletada': [carga.empiezaCarga]!='' }"><p>{{carga.empiezaCarga | date:'HH:mm'}}</p></td>
+        <td class="celdaPorcentaje">
+                <div class="barraProgreso" [ngStyle]="{'background' : '-webkit-linear-gradient(left, rgba(24, 194, 8, 0.473) '+ getFull(carga)+'%, rgba(255, 255, 255,0) 0%)'}">
                         <p [class.textoVisible]="getPorcentajes(carga)">{{getFull(carga)}}%</p>
                 </div>
         </td>
-        <td class="mdl-data-table__cell--non-numeric celdaPorcentaje">
-                <div class="barraProgreso" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(18, 117, 9, 0.486) '+getMix(carga)+'%, rgba(255,255,255,1) 0%)'}">
+        <td class="celdaPorcentaje">
+                <div class="barraProgreso" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(24, 194, 8, 0.473) '+getMix(carga)+'%, rgba(255,255,255,0) 0%)'}">
                         <p [class.textoVisible]="getPorcentajes(carga)">{{getMix(carga)}}%</p>
                 </div>
         </td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.terminaCarga]!='' }"><p>{{carga.terminaCarga | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.initFacturacion]!='' }"><p>{{carga.initFacturacion | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.endFacturacion]!='' }"><p>{{carga.endFacturacion | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.salidaRDC]!='' }"><p>{{carga.salidaRDC | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric" [ngClass]="{'etapaCompletada': [carga.llegadaDeposito]!='' }" ><p>{{carga.llegadaDeposito | date:'HH:mm'}}</p></td>
-        <td class="mdl-data-table__cell--non-numeric celdaEstado">
-            <div [class.estadoFail]="getStatus(carga)"></div>
+        <td [ngClass]="{'etapaCompletada': [carga.terminaCarga]!='' }"><p>{{carga.terminaCarga | date:'HH:mm'}}</p></td>
+        <td [ngClass]="{'etapaCompletada': [carga.initFacturacion]!='' }"><p>{{carga.initFacturacion | date:'HH:mm'}}</p></td>
+        <td [ngClass]="{'etapaCompletada': [carga.endFacturacion]!='' }"><p>{{carga.endFacturacion | date:'HH:mm'}}</p></td>
+        <td [ngClass]="{'etapaCompletada': [carga.salidaRDC]!='' }"><p>{{carga.salidaRDC | date:'HH:mm'}}</p></td>
+        <td [ngClass]="{'etapaCompletada': [carga.llegadaDeposito]!='' }" ><p>{{carga.llegadaDeposito | date:'HH:mm'}}</p></td>
+        <td class="celdaEstado">
+                <div class="estadoFallo" *ngIf="(getStatus(carga))"><i class="fas fa-2x fa-times-circle"></i></div>
+                <div *ngIf="!(getStatus(carga))"><i class="fas fa-2x fa-check-circle"></i></div>
+            
         </td>
     </tr>

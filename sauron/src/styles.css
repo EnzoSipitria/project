@@ -1,33 +1,37 @@
 /*Colores*/
-/* verde celdas: rgba(18, 117, 9, 0.486)
-rojo status: rgba(182, 37, 18, 0.486)
+/* verde celdas: rgba(24, 194, 8, 0.473)
+rojo status:  rgba(247, 40, 12, 0.637)
+verde status: rgba(30, 240, 11, 0.637)
 */
 
 body{
     position: relative;
+    background-color: black;
+    padding:10px 20px 5px 20px;
 }
 /*---Tabla---*/
+.table td, .table th {
+    padding: 0.5rem;
+}
 
-tabla.tablaCargas{
-    display: inline-flex;
-    position: relative;
-    width: 90%;
-    margin:0;
-}
-th.mdl-data-table__cell--non-numeric{
-    padding: 0 2.5px 8px 2.5px;
-}
-td.mdl-data-table__cell--non-numeric.celdaPorcentaje{
-    padding: 0%;
-}
-th, td {
-    border-right: solid rgba(230, 227, 227, 0.459) 1px;
+th.celdaCamion{
+    width: 140px;
 }
 th.celdaPorcentaje{
     height: 20px;
-    width: 120px;
+    width: 110px;
 
 }
+td.celdaPorcentaje {
+    padding: 0.5rem 0.2rem;
+}
+td.celdaPorcentaje div{
+    display: flex;
+}
+td.celdaCamion p{
+    font-weight:bold;
+}
+
 p.textoVisible{
     visibility: hidden;
 
@@ -37,22 +41,22 @@ div.barraProgreso{
     
 }
 .celdaEstado div{
-    border: 1px grey solid;
-    border-radius: 100%;
-    width: 15px;
-    height: 15px;
+    color:rgba(30, 240, 11, 0.637);
+    width: 20px;
+    height: 20px;
     margin: auto;
-    background:rgba(18, 117, 9, 0.486); 
+
 }
-div.estadoFail {
-    background: rgba(182, 37, 18, 0.486);
+div.estadoFallo {
+    color: rgba(247, 40, 12, 0.637);
 }
 td.etapaCompletada{
-    background:rgba(18, 117, 9, 0.486);
+    background:rgba(24, 194, 8, 0.473);
 }
 td p, th p{
     margin:auto;
     text-align: center;
+    font-weight: 600;
 }
 /*---NavBar---*/
 .headerNav{
@@ -61,16 +65,15 @@ td p, th p{
     height: 75px;
     top:0px;
     left:0px;
-    margin: 0 0 25px 0;
+    margin: 0 0 40px 0;
     padding: 10px 5px 20px 5px;
-    color:gray;
-    border-bottom: rgba(230, 227, 227, 0.623) solid 2.5px;
+    color:rgb(255, 255, 255);
 
 }
 
 div.reloj p{
-    font-weight: bold;
-    font-size: larger;
+    font-weight: 800;
+    font-size: xx-large;
     float: right;
     margin-right: 25px;
     margin-top: 15px;
