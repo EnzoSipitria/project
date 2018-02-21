@@ -13,7 +13,6 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using WebSocketSharp;
 
 namespace Sauron.Services.Controllers {
 
@@ -46,10 +45,7 @@ namespace Sauron.Services.Controllers {
                 CargaModel added = SQLConnector.FromQuery<CargaModel>(query);
                 response.Content = new StringContent("Created carga: " + added.ID);
 
-                using (var ws = new WebSocket("ws://localhost:51907/api/cargas/subscribeNew")) {
-                    ws.Connect();
-                    ws.Send(JsonConvert.SerializeObject(added, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
-                }
+                SocketController.Send(added, SocketType.NEW_CARGA);
             }
             else response.Content = new StringContent("There was an error creating carga.");
 
@@ -65,43 +61,11 @@ namespace Sauron.Services.Controllers {
 
             if (success) {
                 response.Content = new StringContent("Carga " + carga.ID + " updated successfully");
-
-                using (var ws = new WebSocket("ws://localhost:51907/api/cargas/subscribeUpdates")) {
-                    ws.Connect();
-                    ws.Send(JsonConvert.SerializeObject(carga, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }));
-                }
+                SocketController.Send(carga, SocketType.UPDATE_CARGA);
             }
             else response.Content = new StringContent("There was an error updating carga.");
 
             return response;
-        }
-
-
-
-        [HttpGet]
-        public HttpResponseMessage SubscribeNew() {
-            WebSocketHandler socket = new ChatWebSocketHandler();
-            HttpContext.Current.AcceptWebSocketRequest(socket);
-            return Request.CreateResponse(HttpStatusCode.SwitchingProtocols);
-        }
-
-        [HttpGet]
-        public HttpResponseMessage SubscribeUpdates() {
-            WebSocketHandler socket = new ChatWebSocketHandler();
-            HttpContext.Current.AcceptWebSocketRequest(socket);
-            return Request.CreateResponse(HttpStatusCode.SwitchingProtocols);
-        }
-
-        class ChatWebSocketHandler : WebSocketHandler {
-            private static WebSocketCollection _chatClients = new WebSocketCollection();
-
-            public override void OnOpen() {
-                _chatClients.Add(this);
-            }
-
-            public override void OnMessage(string message) {
-                _chatClients.Broadcast(message);
-            }
         }
 
     }
