@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { identifierName, identifierModuleUrl } from '@angular/compiler';
+import { emit } from 'cluster';
 
 @Component({
   selector: 'app-cell-content',
@@ -10,10 +11,12 @@ export class CellContentComponent implements OnInit, OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.checkFinished();
-    if (this._finished) {
-      console.log("compareDates call: " +this.horaLlegada + " //  " + this.cellValue);
-      this.compareDates(this.parseDate(this.horaLlegada), this.parseDate(this.cellValue));
+    if (this.allowControl){
+      this.checkFinished();
+      if (this._finished) {
+        console.log("compareDates call: " +this.horaLlegada + " //  " + this.cellValue);
+        this.compareDates(this.parseDate(this.horaLlegada), this.parseDate(this.cellValue));
+      }
     }
   }
 
@@ -29,8 +32,9 @@ export class CellContentComponent implements OnInit, OnChanges {
   @Output() delayStage = new EventEmitter<boolean>();
   @Input('inicio') horaLlegada: Date;
   private _estado: boolean;
-
-
+  @Input('allow') allowControl:boolean;
+  
+  @Output() estadoCelda = new EventEmitter<boolean>();
   /**
    * indica si la estapa esta finalizada, en el caso de las celdas comunes 
    * solo indica si tiene valor la celda o no
@@ -74,19 +78,23 @@ export class CellContentComponent implements OnInit, OnChanges {
 
     if (aux > horasEtapa) {
       this._estado = false;
+      this.estadoCelda.emit(this._estado);
       this.delayStage.emit(false);
 
     } else {
       if ( aux == horasEtapa) {
         if (minIngreso >= minEtapa) {
           this._estado = false;
+          this.estadoCelda.emit(this._estado);
           this.delayStage.emit(false);
         } else {
           this._estado = true;
+          this.estadoCelda.emit(this._estado);
           this.delayStage.emit(true);
         }
       } else {
         this._estado = true;
+        this.estadoCelda.emit(this._estado);
         this.delayStage.emit(true);
       }
     }

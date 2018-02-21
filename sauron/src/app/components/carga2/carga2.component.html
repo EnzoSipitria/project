@@ -1,0 +1,85 @@
+<mat-table #table [dataSource]="loads">
+
+  <!-- camion Column -->
+  <ng-container matColumnDef="camion.nombre">
+    <mat-header-cell *matHeaderCellDef>Camion</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.camion.nombre}} </mat-cell>
+  </ng-container>
+
+  <!-- Anden Column -->
+  <ng-container matColumnDef="anden">
+    <mat-header-cell *matHeaderCellDef>Anden</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.anden}} </mat-cell>
+  </ng-container>
+
+  <!-- llegadaRDC Column -->
+  <ng-container matColumnDef="llegadaRDC">
+    <mat-header-cell *matHeaderCellDef>LLegada RDC</mat-header-cell>
+    <mat-cell *matCellDef="let carga">
+      <!-- {{carga.llegadaRDC}} -->
+      <app-cell-content [cellValue]="carga.llegadaRDC" [inicio]="carga.llegadaRDC"></app-cell-content>
+    </mat-cell>
+  </ng-container>
+  <!-- enrampe Column -->
+  <ng-container matColumnDef="enrampe">
+    <mat-header-cell *matHeaderCellDef>Enrampe</mat-header-cell>
+    <mat-cell *matCellDef="let carga">
+      <app-cell-content #enrampe [cellValue]="carga.enrampe" [inicio]="carga.llegadaRDC"></app-cell-content>
+    </mat-cell>
+  </ng-container>
+  <!-- empiezaCarga Column -->
+  <ng-container matColumnDef="empiezaCarga">
+    <mat-header-cell *matHeaderCellDef>Empieza Carga</mat-header-cell>
+    <mat-cell *matCellDef="let carga">
+      <app-cell-content #empiezaCarga [cellValue]="carga.empiezaCarga" [inicio]="carga.llegadaRDC"></app-cell-content>
+    </mat-cell>
+  </ng-container>
+  <!-- full Column -->
+  <ng-container matColumnDef="full">
+    <mat-header-cell *matHeaderCellDef>full</mat-header-cell>
+    <mat-cell *matCellDef><!--<app-celda-porcentaje class="fullType" [currentProgress]="getFullValue()"></app-celda-porcentaje>--> </mat-cell>
+  </ng-container>
+  <!-- mix Column -->
+  <ng-container matColumnDef="mix">
+    <mat-header-cell *matHeaderCellDef>mix</mat-header-cell>
+    <mat-cell *matCellDef><!--<app-celda-porcentaje  class="mixType" [currentProgress]="getMixValue()"></app-celda-porcentaje>--></mat-cell>
+  </ng-container>
+  <!-- termina Carga Column -->
+  <ng-container matColumnDef="terminaCarga">
+    <mat-header-cell *matHeaderCellDef>Termina Carga</mat-header-cell>
+    <mat-cell *matCellDef="let carga">
+      <app-cell-content #terminaCarga [cellValue]="carga.terminaCarga" [inicio]="carga.llegadaRDC"></app-cell-content>
+    </mat-cell>
+  </ng-container>
+  <!-- init facturacion Column -->
+  <ng-container matColumnDef="initFacturacion">
+    <mat-header-cell *matHeaderCellDef>init Facturacion</mat-header-cell>
+    <mat-cell *matCellDef="let carga">
+      <app-cell-content #initFacturacion [cellValue]="carga.initFacturacion" [inicio]="carga.llegadaRDC"></app-cell-content>
+    </mat-cell>
+  </ng-container>
+  <!-- end facturacion Column -->
+  <ng-container matColumnDef="endFacturacion">
+    <mat-header-cell *matHeaderCellDef>end Facturacion</mat-header-cell>
+    <mat-cell *matCellDef="let carga">
+      <app-cell-content #endFacturacion [cellValue]="carga.endFacturacion" [inicio]="carga.llegadaRDC"></app-cell-content>
+    </mat-cell>
+  </ng-container>
+  <!-- salidaRDC Column -->
+  <ng-container matColumnDef="salidaRDC">
+    <mat-header-cell *matHeaderCellDef>salida RDC</mat-header-cell>
+    <mat-cell *matCellDef="let carga">
+      <app-cell-content #salidaRDC [cellValue]="carga.salidaRDC" [inicio]="carga.llegadaRDC"></app-cell-content>
+    </mat-cell>
+  </ng-container>
+  <!-- llegada deposito Column -->
+  <ng-container matColumnDef="LLegadaDeposito">
+    <mat-header-cell *matHeaderCellDef>llegada Deposito</mat-header-cell>
+    <mat-cell *matCellDef="let carga">
+      <app-cell-content #llegadaDeposito [cellValue]="carga.llegadaDeposito" [inicio]="carga.llegadaRDC"></app-cell-content>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

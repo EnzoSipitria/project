@@ -1,0 +1,28 @@
+mat-table {
+  background:white
+}
+
+mat-header-row{
+    background: black;    
+}
+mat-header-cell{
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    text-align: center;
+    
+}
+
+mat-cell {
+    padding: 0;
+    margin: 0;
+    line-height: unset;
+    text-align: center;
+    font-size: 1em;
+}
+mat-row:nth-child(even){
+     background: rgba(128, 128, 244, 0.619)
+ }
+ mat-row:nth-child(odd){
+    background: rgba(128, 128, 244, 0.215)
+}

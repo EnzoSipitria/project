@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from "@angular/forms";
 
 
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -19,6 +20,9 @@ import { MyRowComponent } from './components/my-row/my-row.component';
 import { AppRoutingModule } from './components/app-routing.module';
 import { AddCargaFormComponent } from './components/add-carga-form/add-carga-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UpdateCargaComponent } from './components/add-carga-form/update-carga/update-carga.component';
+import { MatTableModule } from '@angular/material/table';
+import { Carga2Component } from './components/carga2/carga2.component';
 
 
 @NgModule({
@@ -31,7 +35,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CellContentComponent,
     OrderByPipe,
     MyRowComponent,
-    AddCargaFormComponent
+    AddCargaFormComponent,
+    UpdateCargaComponent,
+    Carga2Component,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +45,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatProgressBarModule,
     HttpClientModule,
     AppRoutingModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule,
+    MatTableModule
   ],
   providers: [CamionesService],
   bootstrap: [AppComponent]

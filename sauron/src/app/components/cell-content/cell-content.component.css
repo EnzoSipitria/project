@@ -1,0 +1,11 @@
+p {
+    margin: inherit;
+    padding: inherit;
+    border: inherit;
+    height: inherit;
+    width: inherit;
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align: center;
+}

@@ -4,21 +4,35 @@ import { Component, OnInit, Input, Output, OnChanges, SimpleChanges } from '@ang
 //import { AfterViewInit, OnChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
-  selector: 'app-celda-porcentaje',
+  selector: '[app-celda-porcentaje]',
   templateUrl: './celda-porcentaje.component.html',
   styleUrls: ['./celda-porcentaje.component.css']
 })
 export class CeldaPorcentajeComponent implements OnInit, OnChanges {
   @Output()
   isfinished(): any {
-      return this.currentProgress==100;
+    return this.currentProgress == 100;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.isfinished();
   }
-  
 
+  @Input('selector') classSelector: boolean;
+
+  getClassCont(): string {
+    if (this.classSelector) {
+       return "contenido"
+    }
+    return "contenidoRetrasado"
+  }
+
+  getClassExt(): string {
+    if (this.classSelector) {
+       return "externo"
+    }
+    return "externoRetrasado"
+  }
 
   private _finished: boolean = false;
 

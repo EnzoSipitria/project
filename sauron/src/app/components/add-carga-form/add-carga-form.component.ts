@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CamionesService } from '../../services/camiones.service';
 import { Camion } from '../../model/camion';
+import { Carga } from '../../model/carga';
 // import { MatSelectModule } from '@angular/material/select';
 
 @Component({
@@ -9,31 +10,41 @@ import { Camion } from '../../model/camion';
   styleUrls: ['./add-carga-form.component.css']
 })
 export class AddCargaFormComponent implements OnInit {
-  camionSelected: string;
+  // IdCargaList: Number[];
+  camionSelected: Camion;
   camiones: Camion[];
-  constructor(private dataService:CamionesService) { }
+  //
+  modelCarga: Carga = new Carga(new Camion(),"",0,new Date());
 
 
 
-  getCamiones(){
-      this.dataService.getCamiones()
+  constructor(private dataService: CamionesService) { }
+
+
+
+  getCamiones() {
+    this.dataService.getCamiones()
       .subscribe(camiones => this.camiones = camiones)
   }
 
   ngOnInit() {
-    this.camionSelected="";
     this.getCamiones();
+    // this.modelCarga.anden = "0";
+    // this.modelCarga.camion.id=0;
+    // this.modelCarga.camion.nombre="generic";
+    // this.modelCarga.id=0;
   }
 
-  onSubmit(){
-    alert("submited form");
-  }
-  onReset(){
-    alert("reseted Form")
+  onSubmit() {
+   this.modelCarga.camion=this.camionSelected;
+   this.dataService.postNewCarga(this.modelCarga);
+    //call endpoint here
+    //se agrega una carga con los datos necesarios
+    alert("submited form \n"+this.modelCarga.anden+"\n"+this.modelCarga.id
+  +"\n"+this.modelCarga.camion.id+" -- "+this.modelCarga.camion.nombre);
   }
 
-  selectedItem(item:string){
-    this.camionSelected=item;
-    alert(item);
+  onReset() {
+    alert("reseted Form");
   }
 }

@@ -1,0 +1,30 @@
+p {
+    /* background: black; */
+    color: white;
+    font-weight: bold;
+    vertical-align: middle;
+    margin: 0px;
+    text-align: center;
+}
+
+td .mdl-data-table__cell--non-numeric .mdl-data-table__cell--non-numeric {
+    text-align: center;
+}
+
+.full.mdl-data-table__cell--non-numeric{
+    border: 2px 2px solid;
+    border-collapse: collapse;
+}
+.anden{
+    border-right: 2px solid;
+}
+
+
+/* .mix{
+    position: absolute;
+    padding: 0px;
+    border-right: 2px solid;
+    margin: 0px;
+    vertical-align: middle;
+
+} */

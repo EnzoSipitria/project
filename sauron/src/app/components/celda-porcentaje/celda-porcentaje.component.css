@@ -1,11 +1,42 @@
-div {
-  width:100px; 
-  background:white;
-  border:1px solid
+/* div {
+  /* vertical-align: middle; */
+  /* margin:0px;
+  border: 0px; */
+  
+/* } */
+div .externo{
+ 
+  height: inherit; 
+  /* background:white; */
+  /* border: 2px white; */
+  vertical-align: middle;
+  text-align:left;
+  
 }
 
 div .contenido{
-  background:rgb(45, 214, 45);
-  text-align:center; 
-  border:0px solid
+  /* display: table-cell; */
+  /* background:rgb(45, 214, 45); */
+
+  background: rgba(9,115,13,0.7);
+  /* border: 2px white; */
+  vertical-align: middle;
+  text-align:left; 
+  height: 40px;
+}
+
+div .contenidoRetrasado{
+  background: rgba(115, 9, 9, 0.7);
+  /* border: 2px white; */
+  vertical-align: middle;
+  text-align:left; 
+  height: 40px;
+}
+
+div .externoRetrasado{
+  height: inherit; 
+  /* background:white; */
+  /* border: 2px white; */
+  vertical-align: middle;
+  text-align:left;
 }

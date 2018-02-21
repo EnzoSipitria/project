@@ -11,11 +11,17 @@ import { CellContentComponent } from '../cell-content/cell-content.component';
 })
 export class MyRowComponent implements OnInit, OnChanges {
 
+  /***
+   * agregar control WARNING para los retrasos de los minutos solicitados
+   * 
+   */
 
+   warning:boolean=false;
   @Input('data') carga: Carga;
   rowStatus: boolean = true;
   _counter: number = 0;
   porcentaje: Porcentaje;
+  cellStatus:boolean;
 
 
   constructor(private dataService: CamionesService) {
@@ -55,20 +61,47 @@ ngOnChanges(changes: SimpleChanges): void {
 
 }
 
+getClassName():string{
+  if ( !this.warning && !this.rowStatus ){
+    return "completed";
+  }
+  //  if (this.warning) {return "warning";}
+  if (this.rowStatus)  {return "delayed";}
+ // if (this.cellStatus){return "delayed"}
 
+  // if (this.cellStatus){
+  //   console.log("hjgvjhgvhjgvhjgvjhgvjghvghvgh");
+  //   return "delayed";
+  // }
+  return "completed";
+}
 
 /**
  * eventHandler for delayStage
  * @param retraso estado de la celda proveniente del evento @output del comp cell
  */
 onDelayStage(retraso: boolean) {
+  
+  this.warning=!retraso;
   this._counter += 1;
   console.log(this._counter + " cantidad de actualizaciones de esta row")
   if (retraso) {
     console.log("get value of retraso to pass it to the component " + retraso);
     this.rowStatus = !retraso;
+    this.warning=retraso;
   }
 }
+
+
+/***
+ * para ver que etapo retraso  la ruta
+   * _estado en cell component es la que indica cual fue la etapa que se retraso 
+ */
+onEstadoCelda(status:boolean){
+  console.log("evento del estado"+status);
+  this.cellStatus=status;
+}
+
 
 /** 
  * this method checks the existence of value on the cell 

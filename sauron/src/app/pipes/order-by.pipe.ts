@@ -28,10 +28,10 @@ export class OrderByPipe implements PipeTransform {
         // reverse the array
         byVal = -1
       }
-      console.log(array);
+      // console.log("order by this column"+array);
       if (orderByValue=='anden'){
         array.sort((a: any, b: any) => {
-          console.log(a[orderByValue] + "  criterio de comparacion " + b[orderByValue])
+          // console.log(a[orderByValue] + " anden  criterio de comparacion " + b[orderByValue])
           if (parseInt(a[orderByValue]) === null) {
             return 1;
           } else if (parseInt(b[orderByValue]) === null) {
@@ -46,7 +46,7 @@ export class OrderByPipe implements PipeTransform {
         });
       }else
       array.sort((a: any, b: any) => {
-        console.log(a[orderByValue] + "  criterio de comparacion " + b[orderByValue])
+        // console.log(a[orderByValue] + "  criterio de comparacion " + b[orderByValue])
         if (a[orderByValue] === null) {
           return 1;
         } else if (b[orderByValue] === null) {

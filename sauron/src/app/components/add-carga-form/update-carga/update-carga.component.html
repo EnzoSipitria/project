@@ -1,0 +1,34 @@
+<div class="container">
+  <form #updateCarga="ngForm">
+    <div class="selectItem">
+      <mat-form-field>
+
+        <mat-select placeholder="Seleccionar carga">
+          <mat-option *ngFor="let idCarga of IdCargaList" [value]="idCarga">{{idCarga}}</mat-option>
+          <!-- <mat-option [value]="233">233</mat-option>
+          <mat-option [value]="322">322</mat-option>
+          <mat-option [value]="124">124</mat-option> -->
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="selectItem">
+      <mat-form-field>
+        <mat-select placeholder="Etapa">
+          <mat-option *ngFor="let etapa of etapas" [value]="etapa">{{etapa}}</mat-option>
+          <!-- <mat-option [value]="233">Empieza carga</mat-option>
+          <mat-option [value]="322">Termina carga</mat-option>
+          <mat-option [value]="124">inicio facturacion</mat-option>
+          <mat-option [value]="124">Termina facturacion</mat-option>
+          <mat-option [value]="124">salida RDC</mat-option>
+          <mat-option [value]="124">Llegada Deposito</mat-option> -->
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <button class="mdl-button mdl-js-button mdl-button--colored" type="submit" (click)="onSubmitUpdate()" style="width:40%">submit</button>
+      <button class="mdl-button mdl-js-button mdl-button--accent" type="reset" (click)="onResetUpdate()" style="width:15%">reset</button>
+    </div>
+
+  </form>
+
+</div>

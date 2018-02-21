@@ -1,4 +1,46 @@
 td.mdl-data-table__cell--non-numeric {
-    width: 100px;
+    padding:unset;
+    width: 10%;
 }
-    
+
+.mdl-data-table__cell--non-numeric.mdl-data-table__cell--non-numeric {
+    text-align: center;
+}
+
+td .mdl-data-table {
+    border-bottom: 0;
+    border-top: 0;
+}
+th {
+    /* background: black; */
+    width:100px;
+    background: rgba(0, 0, 0, 0.653);
+    color: white;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+
+
+table {
+    background: rgb(66, 179, 250);
+    color: white;
+    border-collapse: unset;
+    border:unset;
+
+}
+.bodyTable:nth-child(odd) {
+    padding: 0;
+    height: fit-content;
+    /* border-bottom: 5px white solid; */
+    margin: 0;
+    background: rgba(0, 0, 0, 0.653)
+}
+
+.bodyTable:nth-child(even){
+    padding: 0;
+    height: fit-content;
+    /* border-bottom: 5px white solid;  */
+    margin: 0;
+    background: rgba(0, 0, 0, 0.304)
+}

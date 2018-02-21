@@ -1,24 +1,24 @@
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" cellpadding="0" cellspacing="0">
     <thead>
         <tr>
             <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}">camion</th>
-            <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('anden')">Andén</th>
+            <th class="anden mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('anden')">Andén</th>
             <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('llegadaRDC')">Llegada a RDC</th>
             <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('enrampe')">Enrampe</th>
             <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('empiezaCarga')">Comienza Carga</th>
-            <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}">FULL</th>
-            <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}">MIX</th>
+            <th class="thFull mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}">FULL</th>
+            <th class="thMix mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}">MIX</th>
             <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('terminaCarga')">Termina Carga</th>
-            <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}"(click)="orderByCol('initFacturacion')">Inicio Facturación</th>
+            <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('initFacturacion')">Inicio Facturación</th>
             <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('endFacturacion')">Fin Facturación</th>
             <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('salidaRDC')">Sale de RDC</th>
             <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}" (click)="orderByCol('llegadaDeposito')">Llegada a déposito</th>
-            <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}">Estado</th>
+            <!-- <th class="mdl-data-table__cell--non-numeric" [ngClass]="{'header':true}">Estado</th> -->
         </tr>
     </thead>
     <tbody>
         <!--ngFor-->
-        <tr *ngFor="let carga of loads | orderby:selectedCol" my-row [data]="carga">
+        <tr class="bodyTable" *ngFor="let carga of loads | orderby:selectedCol" my-row [data]="carga">
             <!-- <td class="mdl-data-table__cell--non-numeric" (click)="stopInterval()">
                 <p>{{carga.camion.nombre}} </p>
             </td> -->

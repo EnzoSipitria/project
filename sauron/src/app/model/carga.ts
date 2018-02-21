@@ -15,4 +15,14 @@ export class Carga {
     salidaRDC?: Date;
     llegadaDeposito?: Date;
     estado?:boolean;
+    /**
+     *
+     */
+    constructor(camion:Camion,anden:string,id:number,llegadaHora:Date) {
+        this.anden=anden;
+        this.camion=camion;
+        this.id=id;
+        this.llegadaRDC=llegadaHora;
+            
+    }
 }

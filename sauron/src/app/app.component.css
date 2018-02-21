@@ -1,3 +1,50 @@
+div {
+    background: rgb(6, 36, 68);
+}
+
 div .routing{
     display:inline-flex;
 }   
+
+div .logo {
+    /* background: rgba(0, 0, 0, 0.653); */
+    width: 40%;
+}
+div .clock {
+    /* background: rgba(0, 0, 0, 0.653); */
+    vertical-align: middle;
+    width: 30%;
+}
+
+div .routing{
+    width: 30%;
+    /* background: rgba(0, 0, 0, 0.653); */
+}
+
+tr .bodyTable:nth-child(odd) {
+    padding: 0;
+    height: fit-content;
+    border: 0;
+    margin: 0;
+    background: rgba(255, 255, 255, 0)
+}
+
+tr .bodyTable:nth-child(even){
+    padding: 0;
+    height: fit-content;
+    border: 0;
+    margin: 0;
+    background: rgb(255, 255, 255)
+}
+
+nav a {
+    color: white;
+    font-weight: 400;
+    padding: 5px 10px;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    background-color:  rgb(3,83,255);
+    border-radius: 4px;
+  }

@@ -1,6 +1,7 @@
 <!-- <mat-progress-bar class="progress" [value]="currentProgress" [bufferValue]="currentProgress"></mat-progress-bar> -->
-<div>
-        <div class="contenido" (click)="stop()" [style.width]="currentProgress + '%'">
-                       {{currentProgress}}% {{_finished}} {{idCarga}}
+<div class="getClassExt()">
+        <div *ngIf="currentProgress!=0" class="getClassCont()" (click)="stop()" [style.width]="currentProgress + '%'">
+                {{currentProgress}}%
         </div>
+
 </div>
