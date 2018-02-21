@@ -58,18 +58,20 @@ export class CargaComponent implements OnInit {
     let step = this.getLastUnfinishedStep(carga);
     let lastStep = this.getLastFinishedStep(carga);
 
-    if (step == 'terminaCarga' && !carga.porcentaje) {
-      carga.porcentaje = {
-        id: carga.id,
-        full: 0,
-        mix: 0,
-      };
+    if (step == 'terminaCarga' && (!carga.porcentaje || carga.porcentaje.mix != 100 && carga.porcentaje.full != 100)) {
+      if(!carga.porcentaje){
+        carga.porcentaje = {
+          id: carga.id,
+          full: 0,
+          mix: 0,
+        };
+      }
     }
     else {
       if (step) {
         let newDate = null; // 5 
         lastStep.setFullYear(2018, 1, 1);
-        while (newDate == null || newDate.getTime() - lastStep.getTime() < 0) {
+        while (newDate == null || newDate.getTime() - lastStep.getTime() <= 0) {
           newDate = new Date(2018, 1, 1, lastStep.getHours() + this.randomRange(0, 2), (lastStep.getMinutes() + this.randomRange(0, 30)) % 59);
         }
         carga[step] = newDate;
