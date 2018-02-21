@@ -11,6 +11,4 @@ div{
 }
 .right-border{
     box-sizing: border-box;
-    border: solid rgb(110, 110, 110);
-    border-width: 0px 1px 0px 0px;
 }

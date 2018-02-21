@@ -33,7 +33,8 @@ export class CargaComponent implements OnInit {
 
   ngOnInit() {
     this.camionesService.getCargas().subscribe(cargas => {
-      this.cargas = cargas
+      this.cargas = cargas;
+      this.start();
     }
     );
   }
@@ -55,11 +56,37 @@ export class CargaComponent implements OnInit {
   // generation code
   nextStep(carga) {
     let step = this.getLastUnfinishedStep(carga);
-     
-    if(false){
-      carga[step] = new Date(2018, 1, 1, this.randomRange(1, 24), this.randomRange(0, 60));
-      setTimeout(() => this.nextStep(carga) ,this.randomRange(0, 10000));
+    let lastStep = this.getLastFinishedStep(carga);
+
+    if (step == 'terminaCarga' && !carga.porcentaje) {
+      carga.porcentaje = {
+        id: carga.id,
+        full: 0,
+        mix: 0,
+      };
     }
+    else {
+      if (step) {
+        let newDate = null; // 5 
+        lastStep.setFullYear(2018, 1, 1);
+        while (newDate == null || newDate.getTime() - lastStep.getTime() < 0) {
+          newDate = new Date(2018, 1, 1, lastStep.getHours() + this.randomRange(0, 2), (lastStep.getMinutes() + this.randomRange(0, 30)) % 59);
+        }
+        carga[step] = newDate;
+
+        setTimeout(() => this.nextStep(carga), this.randomRange(2000, 3000));
+      }
+    }
+
+
+  }
+
+  start() {
+    setTimeout(() => {
+      this.cargas.forEach(carga => {
+        this.nextStep(carga);
+      });
+    }, 1000);
   }
 
   getLastUnfinishedStep(carga) {
@@ -70,8 +97,17 @@ export class CargaComponent implements OnInit {
       }
     }
   }
+  getLastFinishedStep(carga): Date {
+    let finished = null;
+    for (let property in carga) {
+      if (carga.hasOwnProperty(property) && carga[property] && property != 'porcentaje') {
+        finished = property;
+      }
+    }
+    return new Date(Date.parse(carga[finished]));;
+  }
 
-  randomRange(min, max){
+  randomRange(min, max) {
     return Math.random() * (max - min) + min;
   }
 

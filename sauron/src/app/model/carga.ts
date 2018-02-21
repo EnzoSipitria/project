@@ -8,6 +8,7 @@ export class Carga {
     llegadaRDC: Date;
     enrampe?: Date;
     empiezaCarga?: Date;
+    porcentaje?: PorcentajeCarga;
     terminaCarga?: Date;
     initFacturacion?: Date;
     endFacturacion?: Date;
