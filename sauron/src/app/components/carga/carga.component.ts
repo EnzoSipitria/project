@@ -54,13 +54,12 @@ export class CargaComponent implements OnInit {
 
   // generation code
   nextStep(carga) {
-    // let step = this.getLastUnfinishedStep(carga);
+    let step = this.getLastUnfinishedStep(carga);
      
-    // if(step){
-    //   carga[step] = new Date(2018, 1, 1, this.randomRange(1, 24), this.randomRange(0, 60));
-    //   setTimeout(() => this.nextStep(carga) ,this.randomRange(0, 10000));
-    // }
-    //    for
+    if(false){
+      carga[step] = new Date(2018, 1, 1, this.randomRange(1, 24), this.randomRange(0, 60));
+      setTimeout(() => this.nextStep(carga) ,this.randomRange(0, 10000));
+    }
   }
 
   getLastUnfinishedStep(carga) {

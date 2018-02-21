@@ -1,18 +1,19 @@
 <div class="content-grid mdl-grid">
 
-    <div class="mdl-cell mdl-cell--6-col">
-        Logo
+    <div class="mdl-cell mdl-cell--12-col">
+        <img class="logo" src="assets/images/118x118.png" alt="Logo Danone">
     </div>
-    <div class="mdl-cell mdl-cell--6-col text-right">
-        <span class="date">{{currentTime | date: 'HH:mm:ss'}}</span>
+    <div class="mdl-cell  mdl-cell--12-col text-center">
+        <div class="date">
+            <i class="material-icons clock">schedule</i> {{currentTime | date: 'HH:mm:ss'}}
+        </div>
     </div>
-
     <div class="mdl-cell mdl-cell--12-col">
         <table class="mdl-data-table mdl-js-data-table full-width no-border mdl-shadow--2dp">
             <thead>
                 <tr>
-                    <th class="mdl-data-table__cell--non-numeric text-center border-bottom">Camion</th>
-                    <th class=" border-bottom">Andén</th>
+                    <th class="mdl-data-table__cell--non-numeric text-center border-bottom"></th>
+                    <th class="border-bottom">Andén</th>
                     <th>Llegada a RDC</th>
                     <th>Enrampe</th>
                     <th>Comienza de carga</th>

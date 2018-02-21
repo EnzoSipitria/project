@@ -12,13 +12,17 @@
 
 }
 
-body{
+.mdl-data-table th, body {
     background-color: #303030;   
+}
+
+body{
     color: white;
 }
 .mdl-data-table{
     background-color: #424242;
 }
+
 .mdl-data-table th {
     color: rgb(238, 238, 238);
 }
@@ -46,4 +50,9 @@ body{
 }
 .mdl-data-table td:first-of-type{
     padding: 0 10px 0 10px;
+}
+.material-icons {display: inline-flex; vertical-align: top; line-height: inherit;}
+.clock{
+    font-size: 30px;
+    padding-right: 5px;
 }
