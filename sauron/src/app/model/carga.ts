@@ -1,7 +1,7 @@
 import { Camion } from './camion';
 
 export class Carga {
-    id?: Number;
+    id: Number;
     camion: Camion;
     anden: string;
     llegadaRDC?: Date;

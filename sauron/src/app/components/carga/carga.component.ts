@@ -18,7 +18,7 @@ import { CARGAS } from '../../mock/cargas-mock';
 export class CargaComponent implements OnInit {
 
   date: Date = new Date();
-  cargas: Carga[] ; // = CARGAS;
+  cargas: Carga[] = CARGAS;
   mensajes: Mensaje[] = MENSAJES;
   i = 0;
   porcentaje: number;
@@ -29,9 +29,9 @@ export class CargaComponent implements OnInit {
 }
 
   ngOnInit() {
-    this._camionesService.getCargas().subscribe(cargas => {
-       this.cargas = cargas;
-      });
+    // this._camionesService.getCargas().subscribe(cargas => {
+    //    this.cargas = cargas;
+    //   });
   }
   // Carga automatica de horarios
   horarios(carga) {
