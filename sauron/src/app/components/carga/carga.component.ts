@@ -74,7 +74,7 @@ export class CargaComponent implements OnInit {
         }
         carga[step] = newDate;
 
-        setTimeout(() => this.nextStep(carga), this.randomRange(2000, 3000));
+        setTimeout(() => this.nextStep(carga), this.randomRange(0, 10000));
       }
     }
 
