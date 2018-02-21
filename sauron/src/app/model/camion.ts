@@ -1,6 +1,6 @@
 export class Camion {
 
-    id: number;
+    id: string;
     nombre: string;
     conductor?: string;
 

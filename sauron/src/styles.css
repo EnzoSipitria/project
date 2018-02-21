@@ -6,21 +6,81 @@ verde status: rgba(30, 240, 11, 0.637)
 
 body{
     position: relative;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 1);
     padding:10px 20px 5px 20px;
 }
-/*---Tabla---*/
-.table td, .table th {
-    padding: 0.5rem;
+
+/* header */
+div.header{
+    background-color: rgba(10, 10, 214, 0.73);
+    width: 120%;
+    height: 80px;
+    height: 80px;
+    z-index: 100;
+    position: absolute;
+    left: -10px;
+    overflow: hidden;
+}
+div.reloj{
+    display: flex;
+    position: absolute;
+    left: 37%;
+}
+div.reloj p{
+    color:rgb(255, 255, 255);
+    font-weight: 800;
+    font-size: xx-large;
+    margin-right: 25px;
+    margin-top: 20px;
+}
+img.imgRight{
+    display: inline-flex;
+    margin: 0 0 0 20px;
+    width: 105px;
+    height: 105px;
+    position: absolute;
+    left: 76.5%;
+}
+img.imgLeft{
+    display: inline-flex;
+    margin: 10px 0 0 20px;
+    width: 120px;
+    height: 60px;
+    position: absolute;
 }
 
+
+/*---Tabla---*/
+.table-dark.table-striped tbody tr:nth-of-type(odd){
+    background-color: rgba(128, 126, 126, 0.61);
+}
+.table-dark{
+    background-color: rgba(0, 0, 0, 0.74);
+}
+table.table{
+    position: relative;
+    z-index: 0;
+    margin-top:100px;
+}
+.table thead tr{
+    margin-bottom: 10px
+}
+.table td{
+    padding: 0;
+}
+.table th{
+    border-top: none;
+    padding: 0.6rem;
+}
 th.celdaCamion{
     width: 140px;
 }
 th.celdaPorcentaje{
     height: 20px;
     width: 110px;
-
+}
+div.porcentajeVisible{
+    visibility: hidden;
 }
 td.celdaPorcentaje {
     padding: 0.5rem 0.2rem;
@@ -31,57 +91,74 @@ td.celdaPorcentaje div{
 td.celdaCamion p{
     font-weight:bold;
 }
-
 p.textoVisible{
     visibility: hidden;
-
 }
 div.barraProgreso{
     height: inherit;
-    
 }
 .celdaEstado div{
-    color:rgba(30, 240, 11, 0.637);
+    color:rgba(45, 224, 0, 0.90);
     width: 20px;
     height: 20px;
     margin: auto;
 
 }
 div.estadoFallo {
-    color: rgba(247, 40, 12, 0.637);
+    color: rgba(233, 33, 7, 0.98);
+}
+div.estadoMensaje{
+    color: rgba(233, 229, 7, 0.98);
 }
 td.etapaCompletada{
-    background:rgba(24, 194, 8, 0.473);
+    background:rgba(45, 224, 0, 0.589);
+}
+td.etapaCompletada p {
+    font-weight: 600;
+    font-size: 19px;
+
 }
 td p, th p{
     margin:auto;
     text-align: center;
     font-weight: 600;
 }
-/*---NavBar---*/
-.headerNav{
-    display: inline-table;
-    width: 99%;
-    height: 75px;
-    top:0px;
-    left:0px;
-    margin:0;
-    padding: 10px 5px 20px 5px;
-    color:rgb(255, 255, 255);
-
+.svg-inline--fa{
+    font-size: 25px;
+    padding: 0;
 }
 
-div.reloj p{
-    font-weight: 800;
-    font-size: xx-large;
-    float: right;
-    margin-right: 25px;
-    margin-top: 35px;
-}
-.headerNav img{
-    display: inline-flex;
-    margin: -10px 0 0 20px;
-    width: 150px;
-    height: 150px;
-    float:left;
-}
+/* Animación tooltip*/
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    50%{
+        opacity:1;
+    }
+  
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  
+  div.fadeIn {
+    animation: 6s fadeIn infinite;
+    animation-name: fadeIn;
+    animation-delay: -6s;
+    background-color: rgba(233, 33, 7, 0.98);
+    width: 80%;
+    z-index: 0;
+    position: absolute;
+    text-align: center;
+    left: 206px;
+    padding: 0.3rem;
+  }
+  div.fadeIn p{
+      font-weight:500;
+      font-size:20px;
+      margin: 0;
+      padding: 0;
+  }

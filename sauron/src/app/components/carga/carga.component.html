@@ -1,17 +1,21 @@
 <tr *ngFor="let carga of cargas">
-        <td class="celdaCamion"><p>{{carga.camion.nombre}}</p></td>
+        
+        <td class="celdaCamion">        
+                <div class="mensaje" [ngClass]="{'fadeIn': getStatusMenssage(carga) === true }"><p>{{getMenssage(carga)}}</p></div>
+                <p>{{carga.camion.nombre}}</p>
+        </td>
         <td><p>{{carga.anden}}</p></td>
         <td [ngClass]="{'etapaCompletada': [carga.llegadaRDC]!='' }"><p>{{carga.llegadaRDC | date:'HH:mm'}}</p></td>
         <td [ngClass]="{'etapaCompletada': [carga.enrampe]!='' }"><p>{{carga.enrampe | date:'HH:mm'}}</p></td>
         <td [ngClass]="{'etapaCompletada': [carga.empiezaCarga]!='' }"><p>{{carga.empiezaCarga | date:'HH:mm'}}</p></td>
         <td class="celdaPorcentaje">
-                <div class="barraProgreso" [ngStyle]="{'background' : '-webkit-linear-gradient(left, rgba(24, 194, 8, 0.473) '+ getFull(carga)+'%, rgba(255, 255, 255,0) 0%)'}">
-                        <p [class.textoVisible]="getPorcentajes(carga)">{{getFull(carga)}}%</p>
+                <div class="barraProgreso" [class.porcentajeVisible]="!([carga.empiezaCarga]!='')" [ngStyle]="{'background' : '-webkit-linear-gradient(left, rgba(45, 224, 0, 0.589) '+ obtenerPorcentaje()+'%, rgba(255, 255, 255,0) 0%)'}">
+                        <p>{{obtenerPorcentaje()}}%</p>
                 </div>
         </td>
         <td class="celdaPorcentaje">
-                <div class="barraProgreso" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(24, 194, 8, 0.473) '+getMix(carga)+'%, rgba(255,255,255,0) 0%)'}">
-                        <p [class.textoVisible]="getPorcentajes(carga)">{{getMix(carga)}}%</p>
+                <div class="barraProgreso" [class.porcentajeVisible]="!([carga.empiezaCarga]!='')" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(45, 224, 0, 0.589) '+obtenerPorcentaje()+'%, rgba(255,255,255,0) 0%)'}">
+                        <p>{{obtenerPorcentaje()}}%</p>
                 </div>
         </td>
         <td [ngClass]="{'etapaCompletada': [carga.terminaCarga]!='' }"><p>{{carga.terminaCarga | date:'HH:mm'}}</p></td>
@@ -20,8 +24,8 @@
         <td [ngClass]="{'etapaCompletada': [carga.salidaRDC]!='' }"><p>{{carga.salidaRDC | date:'HH:mm'}}</p></td>
         <td [ngClass]="{'etapaCompletada': [carga.llegadaDeposito]!='' }" ><p>{{carga.llegadaDeposito | date:'HH:mm'}}</p></td>
         <td class="celdaEstado">
-                <div class="estadoFallo" *ngIf="(getStatus(carga))"><i class="fas fa-2x fa-times-circle"></i></div>
-                <div *ngIf="!(getStatus(carga))"><i class="fas fa-2x fa-check-circle"></i></div>
-            
+                <div class="estadoFallo iconoEstado" *ngIf="(getStatus(carga))&&!(getStatusMenssage(carga))"><i class="fas fa-times-circle"></i></div>
+                <div class="iconoEstado" *ngIf="!(getStatus(carga))&&!(getStatusMenssage(carga))"><i class="fas fa-check-circle"></i></div>
+                <div class="estadoMensaje iconoEstado" *ngIf="(getStatusMenssage(carga))"><i class="fas fa-exclamation-circle"></i></div>
         </td>
     </tr>

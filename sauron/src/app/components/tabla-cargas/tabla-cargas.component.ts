@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TablaCargasComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
