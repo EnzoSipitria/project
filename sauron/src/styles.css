@@ -15,11 +15,11 @@ body{
 div.header{
     background-color: rgba(10, 10, 214, 0.73);
     width: 120%;
-    height: 80px;
-    height: 80px;
+    height: 84px;
     z-index: 100;
     position: absolute;
     left: -10px;
+    top: -1px;
     overflow: hidden;
 }
 div.reloj{
@@ -36,7 +36,7 @@ div.reloj p{
 }
 img.imgRight{
     display: inline-flex;
-    margin: 0 0 0 20px;
+    margin: 5px 0 0 20px;
     width: 105px;
     height: 105px;
     position: absolute;
@@ -44,7 +44,7 @@ img.imgRight{
 }
 img.imgLeft{
     display: inline-flex;
-    margin: 10px 0 0 20px;
+    margin: 13px 0 0 20px;
     width: 120px;
     height: 60px;
     position: absolute;
@@ -61,7 +61,7 @@ img.imgLeft{
 table.table{
     position: relative;
     z-index: 0;
-    margin-top:100px;
+    margin-top:76px;
 }
 .table thead tr{
     margin-bottom: 10px
@@ -154,7 +154,7 @@ td p, th p{
     z-index: 0;
     position: absolute;
     text-align: center;
-    left: 206px;
+    left: 204px;
     padding: 0.3rem;
   }
   div.fadeIn p{
