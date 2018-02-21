@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+ 
+  private currentTime : Date;
+  
+  ngOnInit(){
+    setInterval(() => {
+      this.currentTime = new Date();
+    }, 500);
+  }
 }

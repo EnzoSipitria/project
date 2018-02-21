@@ -9,7 +9,6 @@ import { CeldaPorcentajeComponent } from './components/celda-porcentaje/celda-po
 import { EstadoComponent } from './components/estado/estado.component';
 import { CamionesService } from './services/camiones.service';
 import { FechaPipe } from './pipes/fecha.pipe';
-import { TimeComponent } from './components/time/time.component';
 import { PorcentajeCargaService } from './services/porcentaje-carga.service';
 import { WebsocketService } from './services/web-socket.service';
 
@@ -21,7 +20,6 @@ import { WebsocketService } from './services/web-socket.service';
     CeldaPorcentajeComponent,
     EstadoComponent,
     FechaPipe,
-    TimeComponent
   ],
   imports: [
     BrowserModule,

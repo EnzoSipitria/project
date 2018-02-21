@@ -1,8 +1,17 @@
 <div *ngIf="porcentajes">
-    <div class="percent-block right-border" [ngStyle]="{ 'background': 'linear-gradient(90deg, ' + (this.rowIndex % 2 == 0 ? ' rgb(92, 187, 91) ' : 'rgb(113, 212, 111)') + porcentajes.full + '%, ' + (this.rowIndex % 2 == 0 ? 'rgb(236, 236, 236)' : 'white') + ' 0%)' }">
+    <div class="percent-block right-border" [ngStyle]="{ 'background': 'linear-gradient(90deg, ' + (this.rowIndex % 2 == 0 ? ' rgb(80, 132, 79) ' : 'rgb(43, 97, 43)') + porcentajes.full + '%, ' + (this.rowIndex % 2 == 0 ? '#2c3034' : '#424242') + ' 0%)' }">
         <span class="percent-content"> {{porcentajes.full}}%</span>
     </div><!--
-    --><div class="percent-block" [ngStyle]="{ 'background': 'linear-gradient(90deg, ' + (this.rowIndex % 2 == 0 ? ' rgb(92, 187, 91) ' : 'rgb(113, 212, 111)') + porcentajes.full + '%, ' + (this.rowIndex % 2 == 0 ? 'rgb(236, 236, 236)' : 'white') + ' 0%)' }">
+    --><div class="percent-block" [ngStyle]="{ 'background': 'linear-gradient(90deg, ' + (this.rowIndex % 2 == 0 ? ' rgb(80, 132, 79) ' : 'rgb(43, 97, 43)') + porcentajes.mix + '%, ' + (this.rowIndex % 2 == 0 ? '#2c3034' : '#424242') + ' 0%)' }">
         <span class="percent-content">{{porcentajes.mix}}%</span>
+    </div>
+</div>
+
+<div *ngIf="!porcentajes">
+    <div class="percent-block right-border">
+        <span class="percent-content">-</span>
+    </div><!--
+    --><div class="percent-block">
+        <span class="percent-content">-</span>
     </div>
 </div>

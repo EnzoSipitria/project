@@ -1,15 +1,24 @@
 .full-width {
     width: 100%;
-    table-layout:fixed;
+    /* table-layout:fixed; */
 }
 tr th{
     text-align: center;
     vertical-align: middle;
     white-space: initial;
+    font-size: 14px;
+    color: rgb(223, 223, 223);
 }
 .border-bottom{
-    border-bottom: 1px solid rgb(165, 165, 165);
+    border-bottom: 1px solid rgb(110, 110, 110);
 }
-.border-r{
-    border-right: 1px solid  rgb(165, 165, 165);
+
+.date{
+    font-size: 24px;
+    font-weight: bold;
 }
+
+.mdl-data-table tbody tr{
+    height: 30px;;
+}
+

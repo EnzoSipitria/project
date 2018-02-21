@@ -13,7 +13,7 @@ export class FechaPipe implements PipeTransform {
       if(mins < 10) minString = "0" + mins.toString();
       return date.getHours().toString() + ":" + minString;
     }
-    return "";
+    return "-";
   }
 
 }

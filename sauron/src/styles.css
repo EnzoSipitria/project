@@ -7,6 +7,43 @@
 .text-left{
     text-align: center;
 }
-.mdl-data-table tbody tr:hover{
-    /* background-color: rgba(165, 201, 202, 1); */
+.mdl-data-table tbody tr, .mdl-data-table td{
+    height: 35px;;
+
+}
+
+body{
+    background-color: #303030;   
+    color: white;
+}
+.mdl-data-table{
+    background-color: #424242;
+}
+.mdl-data-table th {
+    color: rgb(238, 238, 238);
+}
+.mdl-data-table tbody tr:hover {
+    background-color: inherit;
+}
+
+.mdl-data-table tbody tr .data-text {
+    font-size: 17px;
+}
+
+.bold{
+ font-weight: bold;
+}
+.mdl-data-table td:last-of-type{
+    padding-right: 0;
+}
+.mdl-data-table th:last-of-type{
+    padding: 0 5px 0 5px;
+}
+
+.mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type{
+    text-align: center;
+    padding: 0;
+}
+.mdl-data-table td:first-of-type{
+    padding: 0 10px 0 10px;
 }

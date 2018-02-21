@@ -1,5 +1,5 @@
 div{
-    height: 47px;
+    height: 35px;
 }
 .percent-block{
     display: inline-block;
@@ -7,10 +7,10 @@ div{
 }
 .percent-content{
     display: block;
-    padding-top: 13px;
+    padding-top: 7px;
 }
 .right-border{
     box-sizing: border-box;
-    border: solid white;
+    border: solid rgb(110, 110, 110);
     border-width: 0px 1px 0px 0px;
 }
