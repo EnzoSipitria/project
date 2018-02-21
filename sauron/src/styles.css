@@ -8,6 +8,7 @@ body{
     position: relative;
     background-color: rgba(0, 0, 0, 1);
     padding:10px 20px 5px 20px;
+    overflow: hidden;
 }
 
 /* header */
