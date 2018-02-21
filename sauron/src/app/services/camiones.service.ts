@@ -9,12 +9,10 @@ import { WebsocketService } from './web-socket.service';
 @Injectable()
 export class CamionesService {
 
-  public newCargas: Subject<Carga>;
-  public updateCargas: Subject<Carga>;
+  public cargas: Subject<Carga>;
 
   constructor(private http: HttpClient, private wsService: WebsocketService) {
-    this.newCargas = this.getSocket("ws://localhost:51907/api/cargas/subscribeNew");
-    this.updateCargas = this.getSocket("ws://localhost:51907/api/cargas/subscribeUpdates");
+    this.cargas = this.getSocket("ws://localhost:51907/api/socket/subscribe");
   }
 
   getCargas(): Observable<Carga[]> {

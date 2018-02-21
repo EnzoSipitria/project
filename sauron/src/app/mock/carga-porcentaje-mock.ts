@@ -30,5 +30,10 @@ export const PORCENTAJE_CARGA : PorcentajeCarga[] = [
         id: 12,
         full: 40,
         mix: 10
+    },
+    {
+        id: 53,
+        full: 100,
+        mix: 100
     }
 ]; 

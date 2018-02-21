@@ -1,10 +1,10 @@
-<tr *ngFor="let carga of cargas">
+<tr [@smoothchange]="carga.state" *ngFor="let carga of cargas; let i = index">
         <td class="mdl-data-table__cell--non-numeric no-border">{{carga.camion.nombre}}</td>
         <td class="no-border">{{carga.anden}}</td>
         <td [class.active]="carga.llegadaRDC">{{carga.llegadaRDC | fechahs}}</td>
         <td [class.active]="carga.enrampe">{{carga.enrampe | fechahs}}</td>
         <td [class.active]="carga.empiezaCarga">{{carga.empiezaCarga | fechahs}}</td>
-        <td colspan="2" app-celda-porcentaje [carga]="carga"></td>
+        <td colspan="2" app-celda-porcentaje [carga]="carga" (onComplete)="nextStep($event)" [rowIndex]="i"></td>
         <td [class.active]="carga.terminaCarga">{{carga.terminaCarga | fechahs}}</td>
         <td [class.active]="carga.initFacturacion">{{carga.initFacturacion | fechahs}}</td>
         <td [class.active]="carga.endFacturacion">{{carga.endFacturacion | fechahs}}</td>

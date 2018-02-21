@@ -7,3 +7,9 @@ tr th{
     vertical-align: middle;
     white-space: initial;
 }
+.border-bottom{
+    border-bottom: 1px solid rgb(165, 165, 165);
+}
+.border-r{
+    border-right: 1px solid  rgb(165, 165, 165);
+}

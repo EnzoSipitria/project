@@ -7,3 +7,6 @@
 .text-left{
     text-align: center;
 }
+.mdl-data-table tbody tr:hover{
+    /* background-color: rgba(165, 201, 202, 1); */
+}
