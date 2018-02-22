@@ -23,33 +23,48 @@ export class CargaComponent implements OnInit {
   i = 0;
   porcentaje: number;
 
-  constructor(private _camionesService: CamionesService) {
-
-
-}
+  constructor(private _camionesService: CamionesService) { }
 
   ngOnInit() {
     // this._camionesService.getCargas().subscribe(cargas => {
     //    this.cargas = cargas;
     //   });
   }
+
   // Carga automatica de horarios
   horarios(carga) {
     // toma el ultimo horario y retorna un horario nuevo aumentado en randomMin(entre 20 y 40min)
+    let lastTime;
+    let prop;
+    let nextTime;
+
+    for (prop in carga) {
+      if (carga[prop] !== null && prop !== 'id' && prop !== 'camion' && prop !== 'anden') {
+        lastTime = carga[prop];
+      }
+    }
+    if (lastTime !== 'llegadaDeposito') {
+     nextTime = (Date.parse(lastTime) + Math.round(Math.random() * 270000));
+     console.log(nextTime);
+      return (nextTime);
+    } else {
+      return carga.llegadaDeposito;
+    }
   }
 
   // Porcentajes Full y Min
-  obtenerPorcentaje() {
-    // deja de utilizar getPorcentajes, getFull, getMix, porcentajes.mock
+  obtenerPorcentaje(carga) {
     // falta evaluar que si la etapa siguiente esta completada no debe entrar en el while
-    while (this.i < 100) {
-      console.log(this.i);
-     this.porcentaje = this.i;
-     this.i += 0.5;
-      return this.porcentaje;
+    if (carga.terminaCarga === null ) {
+      while (this.i < 100) {
+        this.porcentaje = this.i;
+        this.i += 0.5;
+        return this.porcentaje;
+      }
     }
     return 100;
   }
+
   // Estado de la carga
   getStatus(carga): boolean {
 

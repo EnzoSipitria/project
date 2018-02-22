@@ -9,13 +9,13 @@
         <td [ngClass]="{'etapaCompletada': [carga.enrampe]!='' }"><p>{{carga.enrampe | date:'HH:mm'}}</p></td>
         <td [ngClass]="{'etapaCompletada': [carga.empiezaCarga]!='' }"><p>{{carga.empiezaCarga | date:'HH:mm'}}</p></td>
         <td class="celdaPorcentaje">
-                <div class="barraProgreso" [class.porcentajeVisible]="!([carga.empiezaCarga]!='')" [ngStyle]="{'background' : '-webkit-linear-gradient(left, rgba(45, 224, 0, 0.589) '+ obtenerPorcentaje()+'%, rgba(255, 255, 255,0) 0%)'}">
-                        <p>{{obtenerPorcentaje()}}%</p>
+                <div class="barraProgreso" [class.porcentajeVisible]="!([carga.empiezaCarga]!='')" [ngStyle]="{'background' : '-webkit-linear-gradient(left, rgba(45, 224, 0, 0.589) '+ obtenerPorcentaje(carga)+'%, rgba(255, 255, 255,0) 0%)'}">
+                        <p>{{obtenerPorcentaje(carga)}}%</p>
                 </div>
         </td>
         <td class="celdaPorcentaje">
-                <div class="barraProgreso" [class.porcentajeVisible]="!([carga.empiezaCarga]!='')" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(45, 224, 0, 0.589) '+obtenerPorcentaje()+'%, rgba(255,255,255,0) 0%)'}">
-                        <p>{{obtenerPorcentaje()}}%</p>
+                <div class="barraProgreso" [class.porcentajeVisible]="!([carga.empiezaCarga]!='')" [ngStyle]="{'background' : ' -webkit-linear-gradient(left, rgba(45, 224, 0, 0.589) '+obtenerPorcentaje(carga)+'%, rgba(255,255,255,0) 0%)'}">
+                        <p>{{obtenerPorcentaje(carga)}}%</p>
                 </div>
         </td>
         <td [ngClass]="{'etapaCompletada': [carga.terminaCarga]!='' }"><p>{{carga.terminaCarga | date:'HH:mm'}}</p></td>

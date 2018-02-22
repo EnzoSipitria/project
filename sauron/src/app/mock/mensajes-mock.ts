@@ -12,5 +12,9 @@ export const MENSAJES: Mensaje[] = [
     {
         id_carga: 8,
         mensaje: 'Cambiando rueda'
+    },
+    {
+        id_carga: 10,
+        mensaje: 'Atascado en ruta x'
     }
 ];

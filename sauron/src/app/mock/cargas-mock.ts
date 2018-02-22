@@ -1,7 +1,6 @@
 import { Carga } from '../model/carga';
-import {PORCENTAJES} from './porcentajes-mock';
 
-export const CARGAS: any[] = [
+export const CARGAS: Carga[] = [
     {
         id: 1,
         camion: {
@@ -11,7 +10,7 @@ export const CARGAS: any[] = [
         },
         anden: '1',
         llegadaRDC: new Date(2018, 1, 1, 14, 30),
-        enrampe:new Date(2018, 1, 1, 14, 45),
+        enrampe: new Date(2018, 1, 1, 14, 45),
         empiezaCarga: new Date(2018, 1, 1, 14, 53),
         terminaCarga: new Date(2018, 1, 1, 15, 48),
         initFacturacion: new Date(2018, 1, 1, 15, 52),
@@ -43,7 +42,7 @@ export const CARGAS: any[] = [
             nombre: 'Monterrey 2',
             conductor: null
         },
-        anden: '4',
+        anden: 'S',
         llegadaRDC: new Date(2018, 1, 1, 21, 10),
         enrampe: new Date(2018, 1, 1, 21, 17),
         empiezaCarga: null,
@@ -55,6 +54,23 @@ export const CARGAS: any[] = [
     },
     {
         id: 4,
+        camion: {
+            id: 'M13',
+            nombre: 'Monterrey 3',
+            conductor: null
+        },
+        anden: '27',
+        llegadaRDC: new Date(2018, 0, 31, 18, 10),
+        enrampe: new Date(2018, 0, 31, 18, 17),
+        empiezaCarga: new Date(2018, 0, 31, 18, 47),
+        terminaCarga: new Date(2018, 0, 31, 19, 57),
+        initFacturacion: new Date(2018, 0, 31, 20, 14),
+        endFacturacion: new Date(2018, 0, 31, 20, 47),
+        salidaRDC: new Date(2018, 0, 31, 21, 7),
+        llegadaDeposito: new Date(2018, 1, 1, 8, 17)
+    },
+    {
+        id: 5,
         camion: {
             id: 'M02',
             nombre: 'Macro 2',
@@ -71,7 +87,7 @@ export const CARGAS: any[] = [
         llegadaDeposito: null
     },
     {
-        id: 5,
+        id: 6,
         camion: {
             id: 'S01',
             nombre: 'Soriana 1',
@@ -81,7 +97,7 @@ export const CARGAS: any[] = [
         llegadaRDC: new Date(2018, 1, 1, 8, 38),
         enrampe:  new Date(2018, 1, 1, 8, 42),
         empiezaCarga:  new Date(2018, 1, 1, 9, 12),
-        terminaCarga:  new Date(2018, 1, 1, 9, 30),
+        terminaCarga:  null,
         initFacturacion: null,
         endFacturacion: null,
         salidaRDC: null,
@@ -89,13 +105,13 @@ export const CARGAS: any[] = [
 
     },
     {
-        id: 6,
+        id: 7,
         camion: {
             id: 'M03',
             nombre: 'Macro 3',
             conductor: null
         },
-        anden: '7',
+        anden: 'F',
         llegadaRDC: new Date(2018, 1, 1, 14, 30),
         enrampe: null,
         empiezaCarga: null,
@@ -106,7 +122,7 @@ export const CARGAS: any[] = [
         llegadaDeposito: null
     },
     {
-        id: 7,
+        id: 8,
         camion: {
             id: 'S02',
             nombre: 'Soriana 2',
@@ -124,7 +140,7 @@ export const CARGAS: any[] = [
 
     },
     {
-        id: 8,
+        id: 9,
         camion: {
             id: 'S03',
             nombre: 'Soriana 3',
@@ -132,13 +148,64 @@ export const CARGAS: any[] = [
         },
         anden: '15',
         llegadaRDC: new Date(2018, 1, 1, 8, 10),
-        enrampe: '',
-        empiezaCarga: '',
-        terminaCarga: '',
-        initFacturacion: '',
-        endFacturacion: '',
-        salidaRDC: '',
-        llegadaDeposito: ''
-    }
+        enrampe: null,
+        empiezaCarga: null,
+        terminaCarga: null,
+        initFacturacion: null,
+        endFacturacion: null,
+        salidaRDC: null,
+        llegadaDeposito: null
+    },
+    {
+        id: 10,
+        camion: {
+            id: 'M04',
+            nombre: 'Macro 4',
+            conductor: null
+        },
+        anden: 'S',
+        llegadaRDC: new Date(2018, 1, 1, 9, 30),
+        enrampe: new Date(2018, 1, 1, 9, 45),
+        empiezaCarga: new Date(2018, 1, 1, 9, 53),
+        terminaCarga: new Date(2018, 1, 1, 11, 48),
+        initFacturacion: new Date(2018, 1, 1, 11 , 52),
+        endFacturacion: new Date(2018, 1, 1, 12, 23),
+        salidaRDC: new Date(2018, 1, 1, 12, 45),
+        llegadaDeposito: new Date(2018, 1, 1, 18, 25)
+    },
+    {
+        id: 11,
+        camion: {
+            id: 'S04',
+            nombre: 'Soriana 4',
+            conductor: null
+        },
+        anden: '16',
+        llegadaRDC: new Date(2018, 1, 1, 14, 10),
+        enrampe: new Date(2018, 1, 1, 14, 24),
+        empiezaCarga: new Date(2018, 1, 1, 14, 53),
+        terminaCarga: new Date(2018, 1, 1, 15, 32),
+        initFacturacion: new Date(2018, 1, 1, 15, 48),
+        endFacturacion: new Date(2018, 1, 1, 16, 7),
+        salidaRDC: new Date(2018, 1, 1, 16, 25),
+        llegadaDeposito: null
+    },
+    // {
+    //     id: 11,
+    //     camion: {
+    //         id: 'M13',
+    //         nombre: 'Monterrey 3',
+    //         conductor: null
+    //     },
+    //     anden: '27',
+    //     llegadaRDC: new Date(2018, 0, 31, 18, 10),
+    //     enrampe: new Date(2018, 0, 31, 18, 17),
+    //     empiezaCarga: new Date(2018, 0, 31, 18, 47),
+    //     terminaCarga: new Date(2018, 0, 31, 19, 57),
+    //     initFacturacion: new Date(2018, 0, 31, 20, 14),
+    //     endFacturacion: new Date(2018, 0, 31, 20, 47),
+    //     salidaRDC: new Date(2018, 0, 31, 21, 7),
+    //     llegadaDeposito: new Date(2018, 1, 1, 8, 17)
+    // }
 
 ];
