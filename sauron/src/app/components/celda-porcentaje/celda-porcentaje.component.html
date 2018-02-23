@@ -1,13 +1,13 @@
-<div *ngIf="this.carga.porcentaje">
-    <div class="percent-block right-border" [ngStyle]="setProgress(this.carga.porcentaje.full)">
-        <span class="percent-content"> {{this.carga.porcentaje.full}}%</span>
+<div *ngIf="full.progreso && mix.progreso">
+    <div class="percent-block right-border" [ngStyle]="setProgress(full.progreso)">
+        <span class="percent-content"> {{full.progreso}}%</span>
     </div><!--
-    --><div class="percent-block" [ngStyle]="setProgress(this.carga.porcentaje.mix)">
-        <span class="percent-content">{{this.carga.porcentaje.mix}}%</span>
+    --><div class="percent-block" [ngStyle]="setProgress(mix.progreso)">
+        <span class="percent-content">{{mix.progreso}}%</span>
     </div>
 </div>
 
-<div *ngIf="!this.carga.porcentaje">
+<div *ngIf="!full.progreso || !mix.progreso">
     <div class="percent-block right-border">
         <span class="percent-content">-</span>
     </div><!--

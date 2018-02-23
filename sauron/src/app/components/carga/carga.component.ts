@@ -1,6 +1,8 @@
 import { Component, OnInit, trigger, state, style, transition, animate, Output } from '@angular/core';
 import { Carga } from '../../model/carga';
 import { CamionesService } from '../../services/camiones.service';
+import { Etapa } from '../../model/etapa';
+import { EtapaProgreso } from '../../model/etapaProgreso';
 
 @Component({
   selector: '[app-carga]',
@@ -22,8 +24,6 @@ export class CargaComponent implements OnInit {
 
   cargas: Carga[];
 
-
-
   constructor(private camionesService: CamionesService) {
     this.cargas = [];
     camionesService.cargas.subscribe(data => {
@@ -33,8 +33,23 @@ export class CargaComponent implements OnInit {
 
   ngOnInit() {
     this.camionesService.getCargas().subscribe(cargas => {
+
       this.cargas = cargas;
-      this.start();
+
+      // // parse all dates
+      // this.cargas.forEach(carga => {
+      //   for (let property in carga) {
+      //     if (carga.hasOwnProperty(property) && carga[property]) {
+      //       if(carga[property].length >= 19){
+      //         let date = new Date(Date.parse(carga[property]));
+      //         date.setFullYear(2018, 1, 1);
+      //         carga[property] = date;
+      //       }
+      //     }
+      //   }
+      // });
+
+        this.start();
     }
     );
   }
@@ -54,29 +69,28 @@ export class CargaComponent implements OnInit {
   }
 
   // generation code
-  nextStep(carga) {
+  nextStep(carga: Carga) {
     let step = this.getLastUnfinishedStep(carga);
     let lastStep = this.getLastFinishedStep(carga);
+    let full = carga.etapas[carga.getFullMixIndex()] as EtapaProgreso;
+    let mix = carga.etapas[carga.getFullMixIndex() + 1] as EtapaProgreso;
 
-    if (step == 'terminaCarga' && (!carga.porcentaje || carga.porcentaje.mix != 100 && carga.porcentaje.full != 100)) {
-      if(!carga.porcentaje){
-        carga.porcentaje = {
-          id: carga.id,
-          full: 0,
-          mix: 0,
-        };
+    if (step && step.nombre == 'Finaliza carga' && (!full.progreso || mix.progreso != 100 && full.progreso != 100)) {
+      if (!full.progreso && !mix.progreso) {
+        full.progreso = 0;
+        mix.progreso = 0;
       }
     }
     else {
       if (step) {
         let newDate = null; // 5 
-        lastStep.setFullYear(2018, 1, 1);
-        while (newDate == null || newDate.getTime() - lastStep.getTime() <= 0) {
-          newDate = new Date(2018, 1, 1, lastStep.getHours() + this.randomRange(0, 2), (lastStep.getMinutes() + this.randomRange(0, 30)) % 59);
+        lastStep.hora.setFullYear(2018, 1, 1);
+        while (newDate == null || newDate.getTime() - lastStep.hora.getTime() <= 0) {
+          newDate = new Date(2018, 1, 1, lastStep.hora.getHours() + this.randomRange(0, 2), (lastStep.hora.getMinutes() + this.randomRange(0, 30)) % 59);
         }
-        carga[step] = newDate;
+        step.hora = newDate;
 
-        setTimeout(() => this.nextStep(carga), this.randomRange(0, 10000));
+        setTimeout(() => this.nextStep(carga), this.randomRange(5000, 15000));
       }
     }
 
@@ -91,28 +105,28 @@ export class CargaComponent implements OnInit {
     }, 1000);
   }
 
-  getLastUnfinishedStep(carga) {
+  getLastUnfinishedStep(carga: Carga): Etapa {
 
-    for (let property in carga) {
-      if (carga.hasOwnProperty(property)) {
-        if (!carga[property]) return property;
+    for (let i = 0; i < carga.etapas.length; i++) {
+      const etapa = carga.etapas[i];
+      if (!etapa.hora && !(etapa instanceof EtapaProgreso)) { // bug
+        return etapa;
       }
     }
+    return null;
   }
-  getLastFinishedStep(carga): Date {
+  
+  getLastFinishedStep(carga: Carga): Etapa {
     let finished = null;
-    for (let property in carga) {
-      if (carga.hasOwnProperty(property) && carga[property] && property != 'porcentaje') {
-        finished = property;
-      }
+    for (let i = 0; i < carga.etapas.length; i++) {
+      const etapa = carga.etapas[i];
+      if (etapa.hora) finished = etapa;
     }
-    return new Date(Date.parse(carga[finished]));;
+    return finished;
   }
 
   randomRange(min, max) {
     return Math.random() * (max - min) + min;
   }
-
-
 
 }

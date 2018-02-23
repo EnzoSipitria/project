@@ -1,15 +1,11 @@
 <tr [@smoothchange]="carga.state" *ngFor="let carga of cargas; let i = index">
+
         <td class="bold mdl-data-table__cell--non-numeric no-border">{{carga.camion.nombre}}</td>
         <td class="bold no-border">{{carga.anden}}</td>
-        <td class="data-text" style="width: 125px" [class.active]="carga.llegadaRDC">{{carga.llegadaRDC | fechahs}}</td>
-        <td class="data-text" style="width: 125px" [class.active]="carga.enrampe">{{carga.enrampe | fechahs}}</td>
-        <td class="data-text" style="width: 125px" [class.active]="carga.empiezaCarga">{{carga.empiezaCarga | fechahs}}</td>
-        <td class="data-text" style="width: 125px" colspan="2" app-celda-porcentaje [carga]="carga" (onComplete)="nextStep($event)" [rowIndex]="i"></td>
-        <td class="data-text" style="width: 125px" [class.active]="carga.terminaCarga">{{carga.terminaCarga | fechahs}}</td>
-        <td class="data-text" style="width: 125px" [class.active]="carga.initFacturacion">{{carga.initFacturacion | fechahs}}</td>
-        <td class="data-text" style="width: 125px" [class.active]="carga.endFacturacion">{{carga.endFacturacion | fechahs}}</td>
-        <td class="data-text" style="width: 125px" [class.active]="carga.salidaRDC">{{carga.salidaRDC | fechahs}}</td>
-        <td class="data-text" style="width: 125px" [class.active]="carga.llegadaDeposito">{{carga.llegadaDeposito | fechahs}}</td>
+        <ng-container *ngFor="let etapa of carga.etapas; let j = index">
+                <td *ngIf="j == 3" class="data-text" style="width: 125px" colspan="2" app-celda-porcentaje [stepIndex]="j" [carga]="carga" (onComplete)="nextStep($event)" [rowIndex]="i"></td>
+                <td *ngIf="j != 3 && j != 4"class="data-text" style="width: 125px" [class.active]="etapa.getValue()">{{etapa.getValue() | fechahs}}</td>
+        </ng-container>
         <td class="data-text no-border-r" style="width: 20px">
                 <app-estado [carga]="carga"></app-estado>
         </td>

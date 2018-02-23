@@ -10,7 +10,6 @@ td{
 }
 
 .active{
-    background-color: rgb(113, 212, 111); /* for white background*/
     background-color: rgb(43, 97, 43);
     border: 1px solid  #2c3034;
 
@@ -18,11 +17,9 @@ td{
 }
 
 tr:nth-child(odd) .active{
-    background-color: rgb(92, 187, 91); /* for white background*/
     background-color: rgb(80, 132, 79);
     border: 1px solid  #424242;
 }
-
 
 tr:nth-child(odd) {
     background-color: #2c3034;
