@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Carga } from '../../model/carga';
+import { Estado } from '../../model/estado';
 
 @Component({
   selector: 'app-estado',
@@ -16,14 +17,18 @@ export class EstadoComponent implements OnInit {
 
   ngOnInit() {
    
-   setInterval(() => this.checkProgress(), 300);
-    // this.checkProgress();
+   setInterval(() => {
+    this.valido = this.checkProgress();
+   }, 300);
+    
   }
 
   checkProgress() {
-    let lastStep = this.getLastStep();
-    let firstStep = this.carga.etapas[0].hora;
-    this.valido = (lastStep.getTime() - firstStep.getTime()) <= this.limite; 
+    for (let i = 0; i < this.carga.etapas.length; i++) {
+      const etapa = this.carga.etapas[i];
+      if(etapa.estado == Estado.PROBLEMA) return false;
+    }
+    return true;
   }
 
   getLastStep() : Date{

@@ -3,6 +3,7 @@ import { Carga } from '../../model/carga';
 import { CamionesService } from '../../services/camiones.service';
 import { Etapa } from '../../model/etapa';
 import { EtapaProgreso } from '../../model/etapaProgreso';
+import { Estado } from '../../model/estado';
 
 @Component({
   selector: '[app-carga]',
@@ -33,23 +34,8 @@ export class CargaComponent implements OnInit {
 
   ngOnInit() {
     this.camionesService.getCargas().subscribe(cargas => {
-
       this.cargas = cargas;
-
-      // // parse all dates
-      // this.cargas.forEach(carga => {
-      //   for (let property in carga) {
-      //     if (carga.hasOwnProperty(property) && carga[property]) {
-      //       if(carga[property].length >= 19){
-      //         let date = new Date(Date.parse(carga[property]));
-      //         date.setFullYear(2018, 1, 1);
-      //         carga[property] = date;
-      //       }
-      //     }
-      //   }
-      // });
-
-        this.start();
+      this.start();
     }
     );
   }
@@ -84,11 +70,29 @@ export class CargaComponent implements OnInit {
     else {
       if (step) {
         let newDate = null; // 5 
-        lastStep.hora.setFullYear(2018, 1, 1);
-        while (newDate == null || newDate.getTime() - lastStep.hora.getTime() <= 0) {
-          newDate = new Date(2018, 1, 1, lastStep.hora.getHours() + this.randomRange(0, 2), (lastStep.hora.getMinutes() + this.randomRange(0, 30)) % 59);
+        let lastDate = null;
+        if (lastStep == null) lastDate = new Date(2018, 1, 1, step.horaEstimada.getHours() - this.randomRange(0, 1), (step.horaEstimada.getMinutes() - this.randomRange(0, 30)) % 60);
+        else lastDate = lastStep.hora;
+        lastDate.setFullYear(2018, 1, 1);
+        while (newDate == null || newDate.getTime() - lastDate.getTime() <= 0) {
+          newDate = new Date(2018, 1, 1, lastDate.getHours() + this.randomRange(0, 2), (lastDate.getMinutes() + this.randomRange(0, 30)) % 59);
         }
-        step.hora = newDate;
+        if (!step.horaEstimada) {
+          step.horaEstimada = newDate;
+          step.estado = Estado.ESPERANDO;
+        }
+        else {
+
+
+          step.hora = newDate;
+          if (step.hora.getTime() < step.horaEstimada.getTime()) {
+            step.estado = Estado.FINALIZADO;
+
+          }
+          else {
+            step.estado = Estado.PROBLEMA;
+          }
+        }
 
         setTimeout(() => this.nextStep(carga), this.randomRange(5000, 15000));
       }
@@ -98,11 +102,83 @@ export class CargaComponent implements OnInit {
   }
 
   start() {
-    setTimeout(() => {
-      this.cargas.forEach(carga => {
-        this.nextStep(carga);
-      });
-    }, 1000);
+    this.cargas.forEach(carga => {
+      setTimeout(() => this.nextStep(carga), this.randomRange(2000, 5000));
+    });
+    setInterval(() => {
+      let newCarga = new Carga();
+      newCarga.id = this.randomRange(10000, 100000);
+      newCarga.camion = {
+        id: this.randomRange(10000, 100000),
+        nombre: "Monte " + parseInt(this.randomRange(0, 50)),
+        conductor: ""
+      };
+      newCarga.anden = parseInt(this.randomRange(0, 50)).toString();
+      newCarga.etapas = [
+        new Etapa(
+          {
+            nombre: "Llegada RDC",
+            horaEstimada: new Date(2018, 1, 1, this.randomRange(0, 24), this.randomRange(0, 60)),
+            estado: Estado.ESPERANDO
+          }
+        ),
+        new Etapa(
+          {
+            nombre: "Enrampe",
+            estado: Estado.FINALIZADO
+          }
+        ),
+        new Etapa(
+          {
+            nombre: "Comienzo carga",
+            estado: Estado.FINALIZADO
+          }
+        ),
+        new EtapaProgreso(
+          {
+            nombre: "FULL"
+          }
+        ),
+        new EtapaProgreso(
+          {
+            nombre: "MIX"
+          }
+        ),
+        new Etapa(
+          {
+            nombre: "Finaliza carga",
+            estado: Estado.FINALIZADO
+          }
+        ),
+        new Etapa(
+          {
+            nombre: "Comienza facturación",
+            estado: Estado.FINALIZADO
+          }
+        ),
+        new Etapa(
+          {
+            nombre: "Termina facturacion",
+            estado: Estado.FINALIZADO
+          }
+        ),
+        new Etapa(
+          {
+            nombre: "Salida RDC",
+            estado: Estado.FINALIZADO
+          }
+        ),
+        new Etapa(
+          {
+            nombre: "Llegada Deposito",
+            estado: Estado.FINALIZADO
+          }
+        )
+      ];
+      this.cargas.unshift(newCarga);
+      setTimeout(() => this.nextStep(newCarga), this.randomRange(5000, 10000))
+
+    }, this.randomRange(30000, 60000));
   }
 
   getLastUnfinishedStep(carga: Carga): Etapa {
@@ -115,9 +191,9 @@ export class CargaComponent implements OnInit {
     }
     return null;
   }
-  
+
   getLastFinishedStep(carga: Carga): Etapa {
-    let finished = null;
+    let finished: Etapa = null;
     for (let i = 0; i < carga.etapas.length; i++) {
       const etapa = carga.etapas[i];
       if (etapa.hora) finished = etapa;
@@ -127,6 +203,25 @@ export class CargaComponent implements OnInit {
 
   randomRange(min, max) {
     return Math.random() * (max - min) + min;
+  }
+
+  getStateColor(etapa: Etapa) {
+
+    if (etapa.getValue()) {
+      switch (etapa.estado) {
+        case Estado.FINALIZADO:
+          return 'completed';
+        case Estado.PROBLEMA:
+          return 'problem';
+        case Estado.ESPERANDO:
+          return 'waiting';
+      }
+    }
+
+    // let className = {
+    //   'completed' : etapa.estado == Estado.FINALIZADO,
+    //   'waiting' : etapa.estado == Estado.
+    // };
   }
 
 }

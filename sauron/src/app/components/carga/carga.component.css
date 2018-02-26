@@ -9,16 +9,37 @@ td{
     padding: 0;
 }
 
-.active{
-    background-color: rgb(43, 97, 43);
-    border: 1px solid  #2c3034;
-
+.waiting, .completed, .problem{
     animation: fadeCell 2s;
+    transition: background-color .8s linear;
+    border: 1px solid  #2c3034;
 }
 
-tr:nth-child(odd) .active{
-    background-color: rgb(80, 132, 79);
+tr:nth-child(odd) .waiting, tr:nth-child(odd) .completed, tr:nth-child(odd) .problem{
     border: 1px solid  #424242;
+}
+
+.waiting{
+    background-color: #867021;
+}
+
+tr:nth-child(odd) .waiting{
+    background-color: #9e821b;
+}
+.completed{
+    background-color: rgb(43, 97, 43);
+}
+
+tr:nth-child(odd) .completed{
+    background-color: rgb(80, 132, 79);
+}
+
+.problem{
+    background-color: #793737;
+}
+
+tr:nth-child(odd) .problem{
+    background-color: #a95656;
 }
 
 tr:nth-child(odd) {
