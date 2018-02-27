@@ -103,6 +103,7 @@ export class CamionesService {
               }
             )
           ];
+          this.estimateDate(newCarga);
           cargas.push(newCarga);
         }
         return cargas;
@@ -118,11 +119,48 @@ export class CamionesService {
     });
   }
 
-  private parseDate(date : string){
+  private parseDate(date: string) {
     let parsedDate = Date.parse(date);
-    if(isNaN(parsedDate)) return null;
+    if (isNaN(parsedDate)) return null;
     return new Date(parsedDate);
+
+  }
+  //remove
+  private estimateDate(carga: Carga) {
+
+    for (let i = 0; i < carga.etapas.length; i++) {
+      const etapa = carga.etapas[i];
+      if (!(etapa instanceof EtapaProgreso)) {
+        let etapaAnterior: Etapa = this.previousStep(carga, i);
+
+        if (etapa.hora == null) {
+          if(etapaAnterior){
+            let hora = etapaAnterior.hora ? etapaAnterior.hora : etapaAnterior.horaEstimada;
+            hora.setFullYear(2018, 1, 1);
+            let newDate : Date = null;
+            while (newDate == null || newDate.getTime() - hora.getTime() <= 0) {
+              newDate = new Date(2018, 1, 1, hora.getHours() + this.randomRange(0, 2), (hora.getMinutes() + this.randomRange(0, 30)) % 60);
+            }
+            etapa.estado = Estado.PENDIENTE;
+            etapa.horaEstimada = newDate;
+          }
+        }
+      }
+
+    }
+  }
+
+  private previousStep(carga, stepIndex){
+    if(stepIndex == 0) return null;
     
+    while(carga.etapas[--stepIndex] instanceof EtapaProgreso);
+    
+    return carga.etapas[stepIndex];
+
+  }
+  // remove
+  private randomRange(min, max) {
+    return Math.random() * (max - min) + min;
   }
 
 }

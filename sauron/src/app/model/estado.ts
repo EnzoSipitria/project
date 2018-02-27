@@ -1,5 +1,7 @@
 export enum Estado{
-    ESPERANDO, // pendiente
-    PROBLEMA, // demorado
-    FINALIZADO
+    PENDIENTE, // pendiente
+    DEMORADO, // llego no tan tarde
+    TARDE, // llego muy tarde
+    FINALIZADO,
+
 }

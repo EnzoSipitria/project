@@ -11,12 +11,10 @@ export class Etapa {
     }
 
     getValue(): any {
-        if(this.horaEstimada && !this.hora){
+        if (this.horaEstimada && !this.hora) {
             return this.horaEstimada;
         }
-        else{
-            return this.hora;
-        }
+        return this.hora;
     }
 
 

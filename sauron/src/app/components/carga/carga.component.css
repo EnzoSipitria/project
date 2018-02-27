@@ -9,37 +9,52 @@ td{
     padding: 0;
 }
 
-.waiting, .completed, .problem{
+.delayed, .completed, .late, .pending{
     animation: fadeCell 2s;
     transition: background-color .8s linear;
     border: 1px solid  #2c3034;
 }
 
-tr:nth-child(odd) .waiting, tr:nth-child(odd) .completed, tr:nth-child(odd) .problem{
+tr:nth-child(odd) .delayed, tr:nth-child(odd) .completed, tr:nth-child(odd) .late, tr:nth-child(odd) .pending{
     border: 1px solid  #424242;
 }
 
-.waiting{
-    background-color: #867021;
+
+tr:nth-child(odd) .pending, 
+tr:nth-child(even) .pending{
+    border: none;
+    font-size: 15px;
 }
 
-tr:nth-child(odd) .waiting{
-    background-color: #9e821b;
+.pending{
+    color: #cecece;
+}
+
+tr:nth-child(odd) .pending{
+    color: #bdbdbd;
+}
+
+.delayed{
+    background-color: var(--yellow-even);
+}
+
+tr:nth-child(odd) .delayed{
+    background-color: var(--yellow-odd);
 }
 .completed{
-    background-color: rgb(43, 97, 43);
+    background-color: var(--green-even);
 }
 
 tr:nth-child(odd) .completed{
-    background-color: rgb(80, 132, 79);
+    background-color: var(--green-odd);
 }
 
-.problem{
-    background-color: #793737;
+.late{
+    background-color: var(--red-even);
 }
 
-tr:nth-child(odd) .problem{
-    background-color: #a95656;
+tr:nth-child(odd) .late{
+    background-color: var(--red-odd);
 }
 
 tr:nth-child(odd) {

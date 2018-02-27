@@ -34,7 +34,7 @@ export class CeldaPorcentajeComponent implements OnInit {
         }
       }
     );
-    this.autoFill();
+   this.autoFill();
   }
 
   setProgress(percent) {

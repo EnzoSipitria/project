@@ -7,6 +7,6 @@
                 <td *ngIf="j != 3 && j != 4" class="data-text" style="width: 125px" [ngClass]="getStateColor(etapa)">{{etapa.getValue() | fechahs}}</td>
         </ng-container>
         <td class="data-text no-border-r" style="width: 20px">
-                <app-estado [carga]="carga"></app-estado>
+                <app-estado [rowIndex]="i" [carga]="carga"></app-estado>
         </td>
 </tr>

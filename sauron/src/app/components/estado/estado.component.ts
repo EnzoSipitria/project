@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Carga } from '../../model/carga';
 import { Estado } from '../../model/estado';
+import { Etapa } from '../../model/etapa';
 
 @Component({
   selector: 'app-estado',
@@ -10,34 +11,59 @@ import { Estado } from '../../model/estado';
 export class EstadoComponent implements OnInit {
 
   @Input() carga: Carga;
-  valido: boolean;
-  limite : number = 9000000  * 6; // 2:30 hs en milisegundos
+  @Input() rowIndex: number;
+  currentStatusIcon: string;
+  limite: number = 9000000 * 6; // 2:30 hs en milisegundos
 
   constructor() { }
 
   ngOnInit() {
-   
-   setInterval(() => {
-    this.valido = this.checkProgress();
-   }, 300);
-    
+
+    setInterval(() => {
+      switch (this.getLastStep().estado) {
+        case Estado.FINALIZADO:
+          this.currentStatusIcon = 'check_circle'
+          break;
+        case Estado.TARDE:
+          this.currentStatusIcon = 'cancel'
+          break;
+        case Estado.DEMORADO:
+          this.currentStatusIcon = 'info'
+          break;
+      }
+      // this.valido = this.checkProgress();
+    }, 300);
+
   }
 
   checkProgress() {
     for (let i = 0; i < this.carga.etapas.length; i++) {
       const etapa = this.carga.etapas[i];
-      if(etapa.estado == Estado.PROBLEMA) return false;
+      if (etapa.estado == Estado.TARDE) return false;
     }
     return true;
   }
 
-  getLastStep() : Date{
+  getLastStep(): Etapa {
     let finished = null;
     for (let i = 0; i < this.carga.etapas.length; i++) {
       const etapa = this.carga.etapas[i];
       if (etapa.hora) finished = etapa;
     }
-    return finished.hora;
+    return finished;
   }
+
+  getRowColor() {
+    switch (this.getLastStep().estado) {
+      case Estado.FINALIZADO:
+        return { 'color': 'var(--green-odd)' }
+      case Estado.TARDE:
+        return { 'color': 'var(--red-odd)' }
+      case Estado.DEMORADO:
+        return { 'color': 'var(--yellow-odd)' }
+    }
+  }
+
+
 
 }
