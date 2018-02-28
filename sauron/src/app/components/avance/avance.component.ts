@@ -4,6 +4,7 @@ import { PorcentajeCargaService } from '../../services/porcentaje-carga.service'
 import { Etapa } from '../../model/etapa';
 import { EtapaProgreso } from '../../model/etapaProgreso';
 import { ConnectionService } from '../../services/connection.service';
+import { Estado } from '../../model/estado';
 
 @Component({
   selector: '[app-avance]',
@@ -13,10 +14,12 @@ import { ConnectionService } from '../../services/connection.service';
 export class AvanceComponent extends CeldaPorcentajeComponent {
 
   salida: Etapa;
-  avance : EtapaProgreso;
+  avance : Etapa;
+  progreso: number;
 
   constructor(private connection : ConnectionService) {
     super();
+    this.progreso = 0;
   }
 
   ngOnInit() {
@@ -24,12 +27,13 @@ export class AvanceComponent extends CeldaPorcentajeComponent {
     this.avance = this.carga.etapas.find(etapa => etapa.nombre == "Avance");
     let t = setInterval(() => {
 
-      if (this.salida.hora) {
-        if (this.avance.progreso == 100) {
+      if (this.salida.isCompleted()) {
+        if (this.progreso == 100) {
+          this.avance.estado = Estado.FINALIZADO;
           this.onComplete.emit(this.carga);
           clearInterval(t);
         }
-        else if (this.avance.progreso >= 0 && this.connection.online) this.avance.progreso++;
+        else if (this.connection.online) this.progreso++;
       }
     }, 50);
   }

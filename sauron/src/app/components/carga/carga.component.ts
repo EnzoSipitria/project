@@ -37,7 +37,7 @@ export class CargaComponent implements OnInit {
 
   cargas: Carga[];
 
-  constructor(private camionesService: CamionesService, private connection : ConnectionService) {
+  constructor(private camionesService: CamionesService, private connection: ConnectionService) {
     this.cargas = [];
     camionesService.cargas.subscribe(data => {
       this.updateCurrentList(data);
@@ -51,8 +51,6 @@ export class CargaComponent implements OnInit {
     }
     );
   }
-
-
 
   updateCurrentList(data) {
     switch (data.type) {
@@ -71,23 +69,19 @@ export class CargaComponent implements OnInit {
     if (this.connection.online) {
       let step = this.getLastUnfinishedStep(carga);
       let lastStep = this.getLastFinishedStep(carga);
-      let full = carga.etapas[carga.getFullMixIndex()] as EtapaProgreso;
-      let mix = carga.etapas[carga.getFullMixIndex() + 1] as EtapaProgreso;
-      let avance = carga.etapas[9] as EtapaProgreso; // cambiar
+      let full = carga.getStep("FULL");
+      let mix = carga.getStep("MIX");
+      let avance = carga.getStep("Avance");
 
-      if (step && ((step.nombre == 'Finaliza carga' && (!full.progreso || mix.progreso != 100 && full.progreso != 100)) ||
-        (step.nombre == 'Llegada Deposito' && (!avance.progreso || avance.progreso != 100)))) {
-        if (!full.progreso && !mix.progreso) {
-          full.progreso = 0;
-          mix.progreso = 0;
+      if (step) {
+        if (step.nombre == 'Finaliza carga' && !full.isCompleted(true)) {
+          full.estado = Estado.EN_PROGRESO;
+          mix.estado = Estado.EN_PROGRESO;
         }
-        if (!avance.progreso) {
-          avance.progreso = 0;
-          console.log("Empezo viaje");
+        else if (step.nombre == 'Llegada Deposito' && !avance.isCompleted(true)) {
+          avance.estado = Estado.EN_PROGRESO;
         }
-      }
-      else {
-        if (step) {
+        else {
           let newDate = null;
           let lastDate = null;
 
@@ -120,6 +114,8 @@ export class CargaComponent implements OnInit {
           else setTimeout(() => this.nextStep(carga), this.randomRange(5000, 15000));
         }
       }
+
+
     }
 
 
@@ -143,7 +139,7 @@ export class CargaComponent implements OnInit {
 
     for (let i = 0; i < carga.etapas.length; i++) {
       const etapa = carga.etapas[i];
-      if (!etapa.hora && !(etapa instanceof EtapaProgreso)) { // bug
+      if (etapa.estado == Estado.PENDIENTE) {
         return etapa;
       }
     }
@@ -154,7 +150,7 @@ export class CargaComponent implements OnInit {
     let finished: Etapa = null;
     for (let i = 0; i < carga.etapas.length; i++) {
       const etapa = carga.etapas[i];
-      if (etapa.hora) finished = etapa;
+      if (etapa.isCompleted()) finished = etapa;
     }
     return finished;
   }
@@ -177,11 +173,6 @@ export class CargaComponent implements OnInit {
           return 'pending';
       }
     }
-
-    // let className = {
-    //   'completed' : etapa.estado == Estado.FINALIZADO,
-    //   'waiting' : etapa.estado == Estado.
-    // };
   }
 
 }

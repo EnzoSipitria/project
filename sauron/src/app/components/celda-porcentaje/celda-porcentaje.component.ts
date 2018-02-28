@@ -7,7 +7,7 @@ import { Etapa } from '../../model/etapa';
 
 @Component({
   selector: '[app-celda-porcentaje]',
-  templateUrl: './celda-porcentaje.component.html',
+  template: ``,
   styleUrls: ['./celda-porcentaje.component.css']
 })
 export class CeldaPorcentajeComponent implements OnInit {

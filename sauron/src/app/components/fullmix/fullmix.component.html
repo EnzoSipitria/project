@@ -1,18 +1,9 @@
-<div *ngIf="full.progreso && mix.progreso">
-  <div class="percent-block right-border" [ngStyle]="setProgress(full.progreso)">
+<div>
+  <div class="percent-block right-border" [ngStyle]="setProgress(fullProgress)">
       <span class="percent-content"> 
-          {{full.progreso}}%</span>
+          {{fullProgress}}%</span>
   </div><!--
-  --><div class="percent-block" [ngStyle]="setProgress(mix.progreso)">
-      <span class="percent-content">{{mix.progreso}}%</span>
-  </div>
-</div>
-
-<div *ngIf="!full.progreso || !mix.progreso" [ngStyle]="setProgress(full.progreso)" >
-  <div class="percent-block right-border">
-      <span class="percent-content">0%</span>
-  </div><!--
-  --><div class="percent-block">
-      <span class="percent-content">0%</span>
+  --><div class="percent-block" [ngStyle]="setProgress(mixProgress)">
+      <span class="percent-content">{{mixProgress}}%</span>
   </div>
 </div>

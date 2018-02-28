@@ -47,14 +47,18 @@ export class CamionesService {
           estado: Estado.FINALIZADO
         }
       ),
-      new EtapaProgreso(
+      new Etapa(
         {
-          nombre: "FULL"
+          nombre: "FULL",
+          estado: Estado.NO_DISPONIBLE,
+          ignoreCompletion: true
         }
       ),
-      new EtapaProgreso(
+      new Etapa(
         {
-          nombre: "MIX"
+          nombre: "MIX",
+          estado: Estado.NO_DISPONIBLE,
+          ignoreCompletion: true
         }
       ),
       new Etapa(
@@ -81,9 +85,11 @@ export class CamionesService {
           estado: Estado.FINALIZADO
         }
       ),
-      new EtapaProgreso(
+      new Etapa(
         {
-          nombre: "Avance"
+          nombre: "Avance",
+          estado: Estado.NO_DISPONIBLE,
+          ignoreCompletion: true
         }
       ),
       new Etapa(
@@ -127,6 +133,7 @@ export class CamionesService {
                 nombre: "Enrampe",
                 hora: this.parseDate(carga.enrampe),
                 estado: Estado.FINALIZADO
+
               }
             ),
             new Etapa(
@@ -136,14 +143,18 @@ export class CamionesService {
                 estado: Estado.FINALIZADO
               }
             ),
-            new EtapaProgreso(
+            new Etapa(
               {
-                nombre: "FULL"
+                nombre: "FULL", // Estado finalizada se setea por el servicio de porcentajes
+                estado: Estado.NO_DISPONIBLE,
+                ignoreCompletion: true
               }
             ),
-            new EtapaProgreso(
+            new Etapa(
               {
-                nombre: "MIX"
+                nombre: "MIX",// Estado finalizada se setea por el servicio de porcentajes
+                estado: Estado.NO_DISPONIBLE,
+                ignoreCompletion: true
               }
             ),
             new Etapa(
@@ -175,9 +186,11 @@ export class CamionesService {
               }
             ),
 
-            new EtapaProgreso(
+            new Etapa(
               {
-                nombre: "Avance"
+                nombre: "Avance", // Estado finalizada se setea por el servicio de porcentajes
+                estado: Estado.NO_DISPONIBLE,
+                ignoreCompletion: true
               }
             ),
             new Etapa(
@@ -215,16 +228,16 @@ export class CamionesService {
 
     for (let i = 0; i < carga.etapas.length; i++) {
       const etapa = carga.etapas[i];
-      if (!(etapa instanceof EtapaProgreso)) {
-        let etapaAnterior: Etapa = this.previousStep(carga, i);
+      if (etapa.estado != Estado.NO_DISPONIBLE) {
+        let previousStep: Etapa = this.previousStep(carga, i);
 
-        if (etapaAnterior == null && !etapa.hora) {
+        if (previousStep == null && !etapa.hora) {
           etapa.horaEstimada = new Date(2018, 1, 1, this.randomRange(0, 24), this.randomRange(0, 60));
           etapa.estado = Estado.PENDIENTE;
         }
         else if (etapa.hora == null) {
-          if (etapaAnterior) {
-            let hora = etapaAnterior.hora ? etapaAnterior.hora : etapaAnterior.horaEstimada;
+          if (previousStep) {
+            let hora = previousStep.hora ? previousStep.hora : previousStep.horaEstimada;
             hora.setFullYear(2018, 1, 1);
             let newDate: Date = null;
             while (newDate == null || newDate.getTime() - hora.getTime() <= 0) {
@@ -235,17 +248,15 @@ export class CamionesService {
           }
         }
 
-
       }
+
 
     }
   }
 
-  private previousStep(carga, stepIndex) {
+  private previousStep(carga: Carga, stepIndex) {
     if (stepIndex == 0) return null;
-
-    while (carga.etapas[--stepIndex] instanceof EtapaProgreso);
-
+    while (carga.etapas[--stepIndex].estado == Estado.NO_DISPONIBLE);
     return carga.etapas[stepIndex];
 
   }

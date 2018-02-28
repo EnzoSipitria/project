@@ -9,7 +9,7 @@ export class ConnectionService {
     this.online = true;
     setTimeout(() => {
       this.online = false;
-    }, 35000);
+    }, 3500000);
    }
 
 }

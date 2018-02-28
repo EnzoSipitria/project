@@ -13,7 +13,6 @@ export class EstadoComponent implements OnInit {
   @Input() carga: Carga;
   @Input() rowIndex: number;
   currentStatusIcon: string;
-  limite: number = 9000000 * 6; // 2:30 hs en milisegundos
 
   constructor() { }
 
@@ -21,7 +20,7 @@ export class EstadoComponent implements OnInit {
 
     setInterval(() => {
       let step = this.getLastStep();
-      if(step){
+      if (step) {
         switch (this.getLastStep().estado) {
           case Estado.FINALIZADO:
             this.currentStatusIcon = 'check_circle'
@@ -35,7 +34,6 @@ export class EstadoComponent implements OnInit {
         }
       }
       else this.currentStatusIcon = 'check_circle'
-      // this.valido = this.checkProgress();
     }, 300);
 
   }
@@ -59,7 +57,7 @@ export class EstadoComponent implements OnInit {
 
   getRowColor() {
     let step = this.getLastStep();
-    if(step){
+    if (step) {
       switch (step.estado) {
         case Estado.TARDE:
           return { 'color': 'var(--red-odd)' }

@@ -1,12 +1,7 @@
 <div>
-  <div class="percent-block" [ngStyle]="setProgress(avance.progreso)">
+  <div class="percent-block" [ngStyle]="setProgress(progreso)">
       <span class="percent-content">
-        <ng-container *ngIf="avance.progreso">
-          {{avance.progreso}}%
-        </ng-container>
-        <ng-container *ngIf="!avance.progreso">
-            0%
-          </ng-container>
+          {{progreso}}%
       </span>
   </div>
 </div>

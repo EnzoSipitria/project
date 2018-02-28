@@ -1,6 +1,7 @@
 import { Camion } from './camion';
 import { PorcentajeCarga } from './porcentajeCarga';
 import { Etapa } from './etapa';
+import { EtapaProgreso } from './etapaProgreso';
 
 export class Carga {
     id: number;
@@ -8,8 +9,11 @@ export class Carga {
     anden: string;
     etapas: Etapa[];
 
-    public getFullMixIndex() {
-        return 3;
+    public getStep(name : string) {
+        return this.etapas[this.getStepIndex(name)];
     }
 
+    public getStepIndex(name : string) {
+        return this.etapas.findIndex(etapa => etapa.nombre == name);
+    }
 }
