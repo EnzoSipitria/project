@@ -1,0 +1,14 @@
+div{
+    height: 35px;
+}
+.percent-block{
+    display: inline-block;
+    width: 100%;
+}
+.percent-content{
+    display: block;
+    padding-top: 7px;
+}
+.right-border{
+    box-sizing: border-box;
+}

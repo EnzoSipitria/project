@@ -70,11 +70,17 @@ export class CargaComponent implements OnInit {
     let lastStep = this.getLastFinishedStep(carga);
     let full = carga.etapas[carga.getFullMixIndex()] as EtapaProgreso;
     let mix = carga.etapas[carga.getFullMixIndex() + 1] as EtapaProgreso;
+    let avance = carga.etapas[9] as EtapaProgreso; // cambiar
 
-    if (step && step.nombre == 'Finaliza carga' && (!full.progreso || mix.progreso != 100 && full.progreso != 100)) {
+    if (step && ((step.nombre == 'Finaliza carga' && (!full.progreso || mix.progreso != 100 && full.progreso != 100)) ||
+      (step.nombre == 'Llegada Deposito' && (!avance.progreso || avance.progreso != 100)))) {
       if (!full.progreso && !mix.progreso) {
         full.progreso = 0;
         mix.progreso = 0;
+      }
+      if (!avance.progreso) {
+        avance.progreso = 0;
+        console.log("Empezo viaje");
       }
     }
     else {
@@ -83,36 +89,32 @@ export class CargaComponent implements OnInit {
         let lastDate = null;
 
         if (lastStep == null) {
-    //      lastDate = new Date(2018, 1, 1, step.horaEstimada.getHours() - this.randomRange(0, 1), (step.horaEstimada.getMinutes() - this.randomRange(0, 30)) % 60);
-      //    console.log("No last step");
-          
+          lastDate = new Date(2018, 1, 1, step.horaEstimada.getHours() - this.randomRange(0, 1), (step.horaEstimada.getMinutes() - this.randomRange(0, 30)) % 60);
         }
-        else {
-          lastDate = lastStep.hora;
-          console.log(lastDate);
-          
-        }
+        else lastDate = lastStep.hora;
+
+
         lastDate.setFullYear(2018, 1, 1);
         while (newDate == null || newDate.getTime() - lastDate.getTime() <= 0) {
           newDate = new Date(2018, 1, 1, lastDate.getHours() + this.randomRange(0, 2), (lastDate.getMinutes() + this.randomRange(0, 60)) % 60);
         }
 
-        console.log("New date was: " + newDate);
-        console.log("Estimated was: " + step.horaEstimada);
-        
         step.hora = newDate;
 
         if (step.hora.getTime() < step.horaEstimada.getTime()) {
           step.estado = Estado.FINALIZADO;
         }
-        else if (step.hora.getTime() - step.horaEstimada.getTime() > 1800000){
+        else if (step.hora.getTime() - step.horaEstimada.getTime() > 1800000) {
           step.estado = Estado.DEMORADO;
         }
-        else{
+        else {
           step.estado = Estado.TARDE;
         }
 
-        setTimeout(() => this.nextStep(carga), this.randomRange(5000, 15000));
+        if (step.nombre == "Comienzo carga" || step.nombre == "Salida RDC") {
+          this.nextStep(carga);
+        }
+        else setTimeout(() => this.nextStep(carga), this.randomRange(5000, 15000));
       }
     }
 
@@ -124,79 +126,11 @@ export class CargaComponent implements OnInit {
       setTimeout(() => this.nextStep(carga), this.randomRange(2000, 5000));
     });
     setInterval(() => {
-      let newCarga = new Carga();
-      newCarga.id = this.randomRange(10000, 100000);
-      newCarga.camion = {
-        id: this.randomRange(10000, 100000),
-        nombre: "Monte " + parseInt(this.randomRange(0, 50)),
-        conductor: ""
-      };
-      newCarga.anden = parseInt(this.randomRange(0, 50)).toString();
-      newCarga.etapas = [
-        new Etapa(
-          {
-            nombre: "Llegada RDC",
-            horaEstimada: new Date(2018, 1, 1, this.randomRange(0, 24), this.randomRange(0, 60)),
-            estado: Estado.FINALIZADO
-          }
-        ),
-        new Etapa(
-          {
-            nombre: "Enrampe",
-            estado: Estado.FINALIZADO
-          }
-        ),
-        new Etapa(
-          {
-            nombre: "Comienzo carga",
-            estado: Estado.FINALIZADO
-          }
-        ),
-        new EtapaProgreso(
-          {
-            nombre: "FULL"
-          }
-        ),
-        new EtapaProgreso(
-          {
-            nombre: "MIX"
-          }
-        ),
-        new Etapa(
-          {
-            nombre: "Finaliza carga",
-            estado: Estado.FINALIZADO
-          }
-        ),
-        new Etapa(
-          {
-            nombre: "Comienza facturación",
-            estado: Estado.FINALIZADO
-          }
-        ),
-        new Etapa(
-          {
-            nombre: "Termina facturacion",
-            estado: Estado.FINALIZADO
-          }
-        ),
-        new Etapa(
-          {
-            nombre: "Salida RDC",
-            estado: Estado.FINALIZADO
-          }
-        ),
-        new Etapa(
-          {
-            nombre: "Llegada Deposito",
-            estado: Estado.FINALIZADO
-          }
-        )
-      ];
+      let newCarga = this.camionesService.generateNewCarga();
       this.cargas.unshift(newCarga);
       setTimeout(() => this.nextStep(newCarga), this.randomRange(5000, 10000))
 
-    }, this.randomRange(30000000, 60000000));
+    }, this.randomRange(3000, 6000));
   }
 
   getLastUnfinishedStep(carga: Carga): Etapa {

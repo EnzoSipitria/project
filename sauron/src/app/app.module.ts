@@ -11,6 +11,8 @@ import { CamionesService } from './services/camiones.service';
 import { FechaPipe } from './pipes/fecha.pipe';
 import { PorcentajeCargaService } from './services/porcentaje-carga.service';
 import { WebsocketService } from './services/web-socket.service';
+import { AvanceComponent } from './components/avance/avance.component';
+import { FullmixComponent } from './components/fullmix/fullmix.component';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import { WebsocketService } from './services/web-socket.service';
     CeldaPorcentajeComponent,
     EstadoComponent,
     FechaPipe,
+    AvanceComponent,
+    FullmixComponent,
   ],
   imports: [
     BrowserModule,

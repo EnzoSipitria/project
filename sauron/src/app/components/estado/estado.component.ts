@@ -20,17 +20,21 @@ export class EstadoComponent implements OnInit {
   ngOnInit() {
 
     setInterval(() => {
-      switch (this.getLastStep().estado) {
-        case Estado.FINALIZADO:
-          this.currentStatusIcon = 'check_circle'
-          break;
-        case Estado.TARDE:
-          this.currentStatusIcon = 'cancel'
-          break;
-        case Estado.DEMORADO:
-          this.currentStatusIcon = 'info'
-          break;
+      let step = this.getLastStep();
+      if(step){
+        switch (this.getLastStep().estado) {
+          case Estado.FINALIZADO:
+            this.currentStatusIcon = 'check_circle'
+            break;
+          case Estado.TARDE:
+            this.currentStatusIcon = 'cancel'
+            break;
+          case Estado.DEMORADO:
+            this.currentStatusIcon = 'info'
+            break;
+        }
       }
+      else this.currentStatusIcon = 'check_circle'
       // this.valido = this.checkProgress();
     }, 300);
 
@@ -54,14 +58,16 @@ export class EstadoComponent implements OnInit {
   }
 
   getRowColor() {
-    switch (this.getLastStep().estado) {
-      case Estado.FINALIZADO:
-        return { 'color': 'var(--green-odd)' }
-      case Estado.TARDE:
-        return { 'color': 'var(--red-odd)' }
-      case Estado.DEMORADO:
-        return { 'color': 'var(--yellow-odd)' }
+    let step = this.getLastStep();
+    if(step){
+      switch (step.estado) {
+        case Estado.TARDE:
+          return { 'color': 'var(--red-odd)' }
+        case Estado.DEMORADO:
+          return { 'color': 'var(--yellow-odd)' }
+      }
     }
+    return { 'color': 'var(--green-odd)' }
   }
 
 

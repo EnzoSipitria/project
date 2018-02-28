@@ -19,6 +19,85 @@ export class CamionesService {
     this.cargas = this.getSocket("ws://localhost:51907/api/socket/subscribe");
   }
 
+  generateNewCarga(): Carga {
+    let newCarga = new Carga();
+    newCarga.id = this.randomRange(10000, 100000);
+    newCarga.camion = {
+      id: this.randomRange(10000, 100000),
+      nombre: "Monte " + parseInt(this.randomRange(0, 50)),
+      conductor: ""
+    };
+    newCarga.anden = parseInt(this.randomRange(0, 50)).toString();
+    newCarga.etapas = [
+      new Etapa(
+        {
+          nombre: "Llegada RDC",
+          estado: Estado.FINALIZADO
+        }
+      ),
+      new Etapa(
+        {
+          nombre: "Enrampe",
+          estado: Estado.FINALIZADO
+        }
+      ),
+      new Etapa(
+        {
+          nombre: "Comienzo carga",
+          estado: Estado.FINALIZADO
+        }
+      ),
+      new EtapaProgreso(
+        {
+          nombre: "FULL"
+        }
+      ),
+      new EtapaProgreso(
+        {
+          nombre: "MIX"
+        }
+      ),
+      new Etapa(
+        {
+          nombre: "Finaliza carga",
+          estado: Estado.FINALIZADO
+        }
+      ),
+      new Etapa(
+        {
+          nombre: "Comienza facturación",
+          estado: Estado.FINALIZADO
+        }
+      ),
+      new Etapa(
+        {
+          nombre: "Termina facturacion",
+          estado: Estado.FINALIZADO
+        }
+      ),
+      new Etapa(
+        {
+          nombre: "Salida RDC",
+          estado: Estado.FINALIZADO
+        }
+      ),
+      new EtapaProgreso(
+        {
+          nombre: "Avance"
+        }
+      ),
+      new Etapa(
+        {
+          nombre: "Llegada Deposito",
+          estado: Estado.FINALIZADO
+        }
+      )
+    ];
+    this.estimateDate(newCarga);
+    return newCarga;
+
+  }
+
   getCargas(): Observable<Carga[]> {
     return this.http.get("http://localhost:51907/api/Cargas/All").pipe(
 
@@ -95,6 +174,12 @@ export class CamionesService {
                 estado: Estado.FINALIZADO
               }
             ),
+
+            new EtapaProgreso(
+              {
+                nombre: "Avance"
+              }
+            ),
             new Etapa(
               {
                 nombre: "Llegada Deposito",
@@ -133,11 +218,15 @@ export class CamionesService {
       if (!(etapa instanceof EtapaProgreso)) {
         let etapaAnterior: Etapa = this.previousStep(carga, i);
 
-        if (etapa.hora == null) {
-          if(etapaAnterior){
+        if (etapaAnterior == null && !etapa.hora) {
+          etapa.horaEstimada = new Date(2018, 1, 1, this.randomRange(0, 24), this.randomRange(0, 60));
+          etapa.estado = Estado.PENDIENTE;
+        }
+        else if (etapa.hora == null) {
+          if (etapaAnterior) {
             let hora = etapaAnterior.hora ? etapaAnterior.hora : etapaAnterior.horaEstimada;
             hora.setFullYear(2018, 1, 1);
-            let newDate : Date = null;
+            let newDate: Date = null;
             while (newDate == null || newDate.getTime() - hora.getTime() <= 0) {
               newDate = new Date(2018, 1, 1, hora.getHours() + this.randomRange(0, 2), (hora.getMinutes() + this.randomRange(0, 30)) % 60);
             }
@@ -145,16 +234,18 @@ export class CamionesService {
             etapa.horaEstimada = newDate;
           }
         }
+
+
       }
 
     }
   }
 
-  private previousStep(carga, stepIndex){
-    if(stepIndex == 0) return null;
-    
-    while(carga.etapas[--stepIndex] instanceof EtapaProgreso);
-    
+  private previousStep(carga, stepIndex) {
+    if (stepIndex == 0) return null;
+
+    while (carga.etapas[--stepIndex] instanceof EtapaProgreso);
+
     return carga.etapas[stepIndex];
 
   }
