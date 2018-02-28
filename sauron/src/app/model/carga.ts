@@ -9,7 +9,7 @@ export class Carga {
     etapas: Etapa[];
 
     public getFullMixIndex() {
-        return 3;
+        return 1;
     }
 
 }

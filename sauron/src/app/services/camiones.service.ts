@@ -35,6 +35,16 @@ export class CamionesService {
           estado: Estado.FINALIZADO
         }
       ),
+      new EtapaProgreso(
+        {
+          nombre: "FULL"
+        }
+      ),
+      new EtapaProgreso(
+        {
+          nombre: "MIX"
+        }
+      ),
       new Etapa(
         {
           nombre: "Enrampe",
@@ -45,16 +55,6 @@ export class CamionesService {
         {
           nombre: "Comienzo carga",
           estado: Estado.FINALIZADO
-        }
-      ),
-      new EtapaProgreso(
-        {
-          nombre: "FULL"
-        }
-      ),
-      new EtapaProgreso(
-        {
-          nombre: "MIX"
         }
       ),
       new Etapa(
@@ -122,6 +122,16 @@ export class CamionesService {
                 estado: Estado.FINALIZADO
               }
             ),
+            new EtapaProgreso(
+              {
+                nombre: "FULL"
+              }
+            ),
+            new EtapaProgreso(
+              {
+                nombre: "MIX"
+              }
+            ),
             new Etapa(
               {
                 nombre: "Enrampe",
@@ -134,16 +144,6 @@ export class CamionesService {
                 nombre: "Comienzo carga",
                 hora: this.parseDate(carga.empiezaCarga),
                 estado: Estado.FINALIZADO
-              }
-            ),
-            new EtapaProgreso(
-              {
-                nombre: "FULL"
-              }
-            ),
-            new EtapaProgreso(
-              {
-                nombre: "MIX"
               }
             ),
             new Etapa(

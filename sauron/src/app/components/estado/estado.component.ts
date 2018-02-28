@@ -35,7 +35,6 @@ export class EstadoComponent implements OnInit {
         }
       }
       else this.currentStatusIcon = 'check_circle'
-      // this.valido = this.checkProgress();
     }, 300);
 
   }
