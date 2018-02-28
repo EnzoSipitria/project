@@ -13,6 +13,8 @@ import { PorcentajeCargaService } from './services/porcentaje-carga.service';
 import { WebsocketService } from './services/web-socket.service';
 import { AvanceComponent } from './components/avance/avance.component';
 import { FullmixComponent } from './components/fullmix/fullmix.component';
+import { EstadoSistemaComponent } from './components/estado-sistema/estado-sistema.component';
+import { ConnectionService } from './services/connection.service';
 
 
 @NgModule({
@@ -24,13 +26,14 @@ import { FullmixComponent } from './components/fullmix/fullmix.component';
     FechaPipe,
     AvanceComponent,
     FullmixComponent,
+    EstadoSistemaComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule
   ],
-  providers: [CamionesService, PorcentajeCargaService, WebsocketService],
+  providers: [CamionesService, PorcentajeCargaService, WebsocketService, ConnectionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

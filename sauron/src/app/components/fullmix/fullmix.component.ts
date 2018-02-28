@@ -3,6 +3,8 @@ import { PorcentajeCargaService } from '../../services/porcentaje-carga.service'
 import { EtapaProgreso } from '../../model/etapaProgreso';
 import { CeldaPorcentajeComponent } from '../celda-porcentaje/celda-porcentaje.component';
 
+import { ConnectionService } from '../../services/connection.service';
+
 @Component({
   selector: '[app-fullmix]',
   templateUrl: './fullmix.component.html',
@@ -10,15 +12,15 @@ import { CeldaPorcentajeComponent } from '../celda-porcentaje/celda-porcentaje.c
 })
 export class FullmixComponent extends CeldaPorcentajeComponent{
 
-
   private mix: EtapaProgreso;
   private full: EtapaProgreso;
 
-  constructor(private porcentajeCargaService: PorcentajeCargaService) {
+  constructor(private porcentajeCargaService: PorcentajeCargaService, private connection : ConnectionService) {
    super();
   }
 
   ngOnInit() {
+
     this.porcentajeCargaService.getPorcentaje(this.carga.id).subscribe(
       porcentajes => {
         this.full = this.carga.etapas[this.stepIndex] as EtapaProgreso;
@@ -36,13 +38,13 @@ export class FullmixComponent extends CeldaPorcentajeComponent{
     let mixFill = setInterval(() => {
       if (this.mix) {
         if (this.mix.progreso == 100) clearInterval(mixFill);
-        else this.mix.progreso++;
+        else if(this.connection.online) this.mix.progreso++;
       }
     }, Math.random() * (200 - 50) + 50);
     let fullFill = setInterval(() => {
       if (this.full) {
         if (this.full.progreso == 100) clearInterval(fullFill);
-        else this.full.progreso++;
+        else if(this.connection.online) this.full.progreso++;
       }
     }, Math.random() * (200 - 50) + 50);
     let checkFull = setInterval(() => {

@@ -3,6 +3,7 @@ import { CeldaPorcentajeComponent } from '../celda-porcentaje/celda-porcentaje.c
 import { PorcentajeCargaService } from '../../services/porcentaje-carga.service';
 import { Etapa } from '../../model/etapa';
 import { EtapaProgreso } from '../../model/etapaProgreso';
+import { ConnectionService } from '../../services/connection.service';
 
 @Component({
   selector: '[app-avance]',
@@ -14,7 +15,7 @@ export class AvanceComponent extends CeldaPorcentajeComponent {
   salida: Etapa;
   avance : EtapaProgreso;
 
-  constructor() {
+  constructor(private connection : ConnectionService) {
     super();
   }
 
@@ -28,7 +29,7 @@ export class AvanceComponent extends CeldaPorcentajeComponent {
           this.onComplete.emit(this.carga);
           clearInterval(t);
         }
-        else if (this.avance.progreso >= 0) this.avance.progreso++;
+        else if (this.avance.progreso >= 0 && this.connection.online) this.avance.progreso++;
       }
     }, 50);
   }

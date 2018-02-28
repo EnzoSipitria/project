@@ -4,6 +4,8 @@ import { CamionesService } from '../../services/camiones.service';
 import { Etapa } from '../../model/etapa';
 import { EtapaProgreso } from '../../model/etapaProgreso';
 import { Estado } from '../../model/estado';
+import { ConnectionService } from '../../services/connection.service';
+
 
 @Component({
   selector: '[app-carga]',
@@ -35,7 +37,7 @@ export class CargaComponent implements OnInit {
 
   cargas: Carga[];
 
-  constructor(private camionesService: CamionesService) {
+  constructor(private camionesService: CamionesService, private connection : ConnectionService) {
     this.cargas = [];
     camionesService.cargas.subscribe(data => {
       this.updateCurrentList(data);
@@ -66,55 +68,57 @@ export class CargaComponent implements OnInit {
 
   // generation code
   nextStep(carga: Carga) {
-    let step = this.getLastUnfinishedStep(carga);
-    let lastStep = this.getLastFinishedStep(carga);
-    let full = carga.etapas[carga.getFullMixIndex()] as EtapaProgreso;
-    let mix = carga.etapas[carga.getFullMixIndex() + 1] as EtapaProgreso;
-    let avance = carga.etapas[9] as EtapaProgreso; // cambiar
+    if (this.connection.online) {
+      let step = this.getLastUnfinishedStep(carga);
+      let lastStep = this.getLastFinishedStep(carga);
+      let full = carga.etapas[carga.getFullMixIndex()] as EtapaProgreso;
+      let mix = carga.etapas[carga.getFullMixIndex() + 1] as EtapaProgreso;
+      let avance = carga.etapas[9] as EtapaProgreso; // cambiar
 
-    if (step && ((step.nombre == 'Finaliza carga' && (!full.progreso || mix.progreso != 100 && full.progreso != 100)) ||
-      (step.nombre == 'Llegada Deposito' && (!avance.progreso || avance.progreso != 100)))) {
-      if (!full.progreso && !mix.progreso) {
-        full.progreso = 0;
-        mix.progreso = 0;
+      if (step && ((step.nombre == 'Finaliza carga' && (!full.progreso || mix.progreso != 100 && full.progreso != 100)) ||
+        (step.nombre == 'Llegada Deposito' && (!avance.progreso || avance.progreso != 100)))) {
+        if (!full.progreso && !mix.progreso) {
+          full.progreso = 0;
+          mix.progreso = 0;
+        }
+        if (!avance.progreso) {
+          avance.progreso = 0;
+          console.log("Empezo viaje");
+        }
       }
-      if (!avance.progreso) {
-        avance.progreso = 0;
-        console.log("Empezo viaje");
-      }
-    }
-    else {
-      if (step) {
-        let newDate = null;
-        let lastDate = null;
+      else {
+        if (step) {
+          let newDate = null;
+          let lastDate = null;
 
-        if (lastStep == null) {
-          lastDate = new Date(2018, 1, 1, step.horaEstimada.getHours() - this.randomRange(0, 1), (step.horaEstimada.getMinutes() - this.randomRange(0, 30)) % 60);
-        }
-        else lastDate = lastStep.hora;
+          if (lastStep == null) {
+            lastDate = new Date(2018, 1, 1, step.horaEstimada.getHours() - this.randomRange(0, 1), (step.horaEstimada.getMinutes() - this.randomRange(0, 30)) % 60);
+          }
+          else lastDate = lastStep.hora;
 
 
-        lastDate.setFullYear(2018, 1, 1);
-        while (newDate == null || newDate.getTime() - lastDate.getTime() <= 0) {
-          newDate = new Date(2018, 1, 1, lastDate.getHours() + this.randomRange(0, 2), (lastDate.getMinutes() + this.randomRange(0, 60)) % 60);
-        }
+          lastDate.setFullYear(2018, 1, 1);
+          while (newDate == null || newDate.getTime() - lastDate.getTime() <= 0) {
+            newDate = new Date(2018, 1, 1, lastDate.getHours() + this.randomRange(0, 2), (lastDate.getMinutes() + this.randomRange(0, 60)) % 60);
+          }
 
-        step.hora = newDate;
+          step.hora = newDate;
 
-        if (step.hora.getTime() < step.horaEstimada.getTime()) {
-          step.estado = Estado.FINALIZADO;
-        }
-        else if (step.hora.getTime() - step.horaEstimada.getTime() > 1800000) {
-          step.estado = Estado.DEMORADO;
-        }
-        else {
-          step.estado = Estado.TARDE;
-        }
+          if (step.hora.getTime() < step.horaEstimada.getTime()) {
+            step.estado = Estado.FINALIZADO;
+          }
+          else if (step.hora.getTime() - step.horaEstimada.getTime() > 1800000) {
+            step.estado = Estado.DEMORADO;
+          }
+          else {
+            step.estado = Estado.TARDE;
+          }
 
-        if (step.nombre == "Comienzo carga" || step.nombre == "Salida RDC") {
-          this.nextStep(carga);
+          if (step.nombre == "Comienzo carga" || step.nombre == "Salida RDC") {
+            this.nextStep(carga);
+          }
+          else setTimeout(() => this.nextStep(carga), this.randomRange(5000, 15000));
         }
-        else setTimeout(() => this.nextStep(carga), this.randomRange(5000, 15000));
       }
     }
 
@@ -126,11 +130,13 @@ export class CargaComponent implements OnInit {
       setTimeout(() => this.nextStep(carga), this.randomRange(2000, 5000));
     });
     setInterval(() => {
-      let newCarga = this.camionesService.generateNewCarga();
-      this.cargas.unshift(newCarga);
-      setTimeout(() => this.nextStep(newCarga), this.randomRange(5000, 10000))
+      if (this.connection.online) {
+        let newCarga = this.camionesService.generateNewCarga();
+        this.cargas.unshift(newCarga);
+        setTimeout(() => this.nextStep(newCarga), this.randomRange(5000, 10000))
+      }
 
-    }, this.randomRange(3000, 6000));
+    }, this.randomRange(10000, 20000));
   }
 
   getLastUnfinishedStep(carga: Carga): Etapa {
